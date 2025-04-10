@@ -31,3 +31,55 @@
 .job-details .btn:hover {
     background: var(--secondary-color);
 }
+/* job details */
+.job-info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.info-card {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: var(--normSize);
+}
+/* job description */
+.job-description {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+/* job tags */
+.job-tags {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.job-tags span {
+    background-color: #e0e0e0; /* light gray */
+    color: #333; /* dark text */
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.job-tags span:hover {
+    background-color: #d5d5d5; /* slightly darker gray on hover */
+}
+/* job info cards : responsive */
+.job-info-cards,
+.info-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
