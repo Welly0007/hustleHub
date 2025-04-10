@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="jobs.css">
 </head>
+
 <body>
     <header>
-        <div id="headLogo">
+        <a href="index.html" id="headLogo">
             <img src="assets/headLogo.png" alt="Logo">
             <h1>hustleHUB</h1>
-        </div>
+        </a>
         <nav>
             <a href="index.html">Home</a>
             <a href="jobs.html">Jobs</a>
@@ -190,12 +192,13 @@
     </footer>
     <script>
         document.querySelectorAll('.filter-group h3').forEach((header) => {
-    header.addEventListener('click', () => {
-        const filterGroup = header.parentElement;
-        filterGroup.classList.toggle('active'); // Toggle the active class
-    });
-});
+            header.addEventListener('click', () => {
+                const filterGroup = header.parentElement;
+                filterGroup.classList.toggle('active'); // Toggle the active class
+            });
+        });
 
     </script>
 </body>
+
 </html>

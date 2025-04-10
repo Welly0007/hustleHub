@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 :root {
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
@@ -16,31 +17,40 @@
     --head4Size: 1.5rem;
     --fontFamily: 'Inter', 'poppins', sans-serif;
 }
+
 body {
     font-size: clamp(0.95rem, 2vw, 1rem);
     font-weight: 400;
     background: var(--bodybg);
 }
-h1, h2, h3 {
+
+h1,
+h2,
+h3 {
     font-family: var(--fontFamily);
 }
+
 h1 {
     font-size: clamp(1.5rem, 5vw, 2rem);
     font-weight: 700;
 }
+
 h2 {
     font-size: clamp(1rem, 4vw, 1.5rem);
     font-weight: 600;
 }
+
 h3 {
     font-size: clamp(0.75rem, 3vw, 1rem);
     font-weight: 500;
 }
+
 body {
     font-size: clamp(0.95rem, 2vw, 1rem);
     font-weight: 400;
     background: var(--bodybg);
 }
+
 .small-text {
     font-size: clamp(0.85rem, 1.5vw, 0.875rem);
     font-weight: 400;
@@ -57,17 +67,25 @@ header {
     width: 100%;
     background: var(--bodybg);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensure header stays above other elements */
+    z-index: 1000;
+    /* Ensure header stays above other elements */
     font-family: var(--fontFamily);
     padding: 30px;
 }
 
-header #headLogo {
+#headLogo {
     display: flex;
     align-items: center;
     gap: 10px;
     position: absolute;
     left: 20px;
+    text-decoration: none;
+    color: inherit;
+}
+
+#headLogo:hover {
+    color: var(--primary-color);
+    transition: color 0.3s ease;
 }
 
 header #headLogo img {
@@ -92,6 +110,7 @@ header nav a {
 header nav a:hover {
     color: var(--primary-color);
 }
+
 /* Header End */
 
 /* Footer Start */
@@ -125,4 +144,5 @@ footer nav a {
 footer nav a:hover {
     color: var(--primary-color);
 }
+
 /* Footer End */
