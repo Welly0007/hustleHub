@@ -83,3 +83,38 @@
     gap: 15px;
     margin-bottom: 20px;
 }
+/* company logo */
+.job-detail {
+    position: relative;
+    padding-top: 120px; /* More space for larger image */
+}
+
+.company-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.company-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .company-logo {
+        width: 75px;
+        height: 75px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .job-detail {
+        padding-top: 90px;
+    }
+}
