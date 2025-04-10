@@ -1,0 +1,170 @@
+body, html {
+    min-height: 100vh;
+    background-image: url('assets/office4.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+* {
+    font-family: var(--fontFamily);
+}
+
+input {
+    padding-left: 0.2rem;
+    background-color: #f9f9f9;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--secondary-color)
+}
+
+footer {
+    margin-bottom: 0px;
+}
+
+.logo-container {
+    position: fixed;
+    top: 5%;
+    left: 200%;
+    transform: translateX(20%);
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+    width: 100%;
+}
+
+.logo-container img
+{
+    width: 12%;
+    transform: scaleX(-1);
+    display: block;
+}
+
+.main-content {
+    background-color: var(--white); 
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 5rem 5rem 5rem; 
+    /* top right bottom left */
+    margin: 5% 25% 5% 36%;
+    height: 32rem;
+    width: 30rem;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2); 
+    text-align: left;
+    border-radius: 5px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 0.2rem;
+}
+
+.input-group input {
+    margin-bottom: 1rem;
+    height: 2rem;
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.input-group button {
+    height: 2rem;
+    background-color: var(--primary-color);
+    border: 0px;
+    color: var(--white);
+    font-size: 1rem;
+}
+
+.input-group button:hover {
+    background-color: var(--secondary-color);
+}
+
+.password-box {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+    height: 2rem;
+    overflow: hidden;
+    border: 1px solid;
+    border-radius: 4px;
+    margin-bottom: 0.2rem;
+}
+
+.password-box button {
+    width: 2rem;
+    height: 2rem;
+    border: 0px;
+    background-color: #e4e7ec;
+}
+
+.password-box input {
+    width: 100%;
+    outline: none;
+    border: none;
+    height: 2rem;
+}
+
+.login-footer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.bckg {
+    height: auto;
+    width: 100vw;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    align-self: flex-start;
+    z-index: -1;
+}
+
+#welcometext {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+
+}
+
+#forgotpassword {
+    align-self: center
+}
+
+@media (min-width: 768px) {
+
+    .logo-container {
+        transform: translateX(150%);
+    }
+    .logo-container img {
+        width: 15%;
+        transform: scaleX(-1);
+    }
+}
+
+@media (max-width: 600px) {
+    .main-content{
+        width: 20rem;
+        margin-left: 10% !important;
+        padding: 10%;
+    }
+    
+}
