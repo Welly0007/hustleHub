@@ -47,7 +47,7 @@ h2 {
 .job-form select:focus,
 .job-form textarea:focus {
     outline: none;
-    border-color: #0d6efd;
+    border-color: var(--primary-color);
 }
 
 
@@ -61,7 +61,7 @@ h2 {
 .job-form button {
     margin-top: 20px;
     padding: 12px;
-    background-color: #0d6efd;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 6px;
@@ -71,7 +71,8 @@ h2 {
 }
 
 .job-form button:hover {
-    background-color: #084fcb;
+    background-color: #2c80b4;
+    ;
 }
 
 @media (max-width: 768px) {
