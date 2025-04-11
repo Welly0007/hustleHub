@@ -16,58 +16,61 @@
 
 <body>
     <!-- <img src="assets/office.jpg" alt="Office Background" class="bckg"> -->
-    <div class="logo-wrapper">
-        <a href="index.html" id="headLogo" class="logo-container">
-            <img src="assets/headLogo.png" alt="Logo">
-            <h1>hustleHUB</h1>
-        </a>
-    </div>
-    <main class="main-content">
-        <h3 id="welcometext">Welcome Back</h3>
-        <section>
-            <form method="post" class="input-group">
-                
-                <label for="login-email">Email</label>
-                <input type="text" autofocus id="login-email" placeholder="Email">
+    <div class="content-wrapper">
+        <div class="logo-wrapper">
+            <a href="index.html" id="logo" class="logo-container">
+                <img src="assets/headLogo.png" alt="Logo">
+                <h1>hustleHUB</h1>
+            </a>
+        </div>
+        <main class="main-content">
+            <h3 id="welcometext">Welcome Back</h3>
+            <section>
+                <form method="post" class="input-group">
+                    
+                    <label for="login-email">Email</label>
+                    <input type="text" autofocus id="login-email" placeholder="Email">
 
-                <label for="login-password">Password</label>
-                <div class="password-box">
-                    <input type="password" id="login-passsword" placeholder="Password">
-                    <button type="button">
-                        <i size="24">
-                            <svg width="24" height="24" perserveAspectRatio="none" viewBox="0 0 24 24">
-                                <path fill="#000" d="M12 6c-4.09 0-7.585 2.488-9 6 1.415 3.512 4.91 6 9 
-                                6s7.585-2.488 9-6c-1.415-3.512-4.91-6-9-6zm0 10c-2.258 0-4.09-1.792-4.09-4S9.741
-                                8 12 8s4.09 1.792 4.09 4-1.832 4-4.09 4zm0-6.4c-1.358 0-2.455 1.072-2.455 2.4 0
-                                1.328 1.097 2.4 2.455 2.4s2.455-1.072 2.455-2.4c0-1.328-1.097-2.4-2.455-2.4z">
-                                </path>
-                            </svg>
-                        </i>
-                    </button>
+                    <label for="login-password">Password</label>
+                    <div class="password-box">
+                        <input type="password" id="login-passsword" placeholder="Password">
+                        <button type="button">
+                            <i size="24">
+                                <svg width="24" height="24" perserveAspectRatio="none" viewBox="0 0 24 24">
+                                    <path fill="#000" d="M12 6c-4.09 0-7.585 2.488-9 6 1.415 3.512 4.91 6 9 
+                                    6s7.585-2.488 9-6c-1.415-3.512-4.91-6-9-6zm0 10c-2.258 0-4.09-1.792-4.09-4S9.741
+                                    8 12 8s4.09 1.792 4.09 4-1.832 4-4.09 4zm0-6.4c-1.358 0-2.455 1.072-2.455 2.4 0
+                                    1.328 1.097 2.4 2.455 2.4s2.455-1.072 2.455-2.4c0-1.328-1.097-2.4-2.455-2.4z">
+                                    </path>
+                                </svg>
+                            </i>
+                        </button>
+                    </div>
+                    <button>Sign in</button>
+                    <input type="submit" hidden>
+                    <a id="forgotpassword" href="forgot-password.html">Forgot password?</a>
+                </form>
+
+                <div class="login-footer">
+                    <p>New to hustleHUB?<a href="signup.html"> Create an account</a></p>
                 </div>
-                <button>Sign in</button>
-                <input type="submit" hidden>
-                <a id="forgotpassword" href="forgot-password.html">Forgot password?</a>
-            </form>
-
-            <div class="login-footer">
-                <p>New to hustleHUB?<a href="signup.html"> Create an account</a></p>
-            </div>
-        </section>
+            </section>
 
 
-    </main>
-
-</body>
-<footer>
-    <div class="footer-content">
-        <p>&copy; 2023 HustleHUB. All rights reserved.</p>
-        <nav>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Contact Us</a>
-        </nav>
+        </main>
     </div>
-</footer>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 HustleHUB. All rights reserved.</p>
+                <nav>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact Us</a>
+                </nav>
+            </div>
+        </footer>
+</body>
+
 
 </html>
