@@ -1,0 +1,98 @@
+.profile-container {
+    max-width: 900px;
+    margin: 8rem auto 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .profile-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #eee;
+  }
+  
+  .profile-info h1 {
+    margin: 0;
+    font-size: var(--head2Size);
+  }
+  
+  .upload-text {
+    font-size: var(--normSize);
+    color: #888;
+    margin-top: 0.5rem;
+  }
+  
+  .account-info {
+    margin-top: 2rem;
+  }
+  
+  .account-info form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+  }
+  
+  .account-info form label {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--normSize);
+  }
+  
+  .account-info input,
+  select {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 0.3rem;
+    font-family: var(--fontFamily);
+  }
+  
+  .applied-jobs {
+    margin-top: 3rem;
+  }
+  
+  .applied-jobs ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .applied-jobs li {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .apply-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .account-info form {
+      grid-template-columns: 1fr;
+    }
+  
+    .profile-header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .profile-info {
+      text-align: center;
+    }
+  }
+  
