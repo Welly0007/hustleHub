@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="add_job.css">
+</head>
+
+<body>
+    <header>
+        <a href="index.html" id="headLogo">
+            <img src="assets/headLogo.png" alt="Logo">
+            <h1>hustleHUB</h1>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="jobs.html">Jobs</a>
+            <a href="contact.html">Contact Us</a>
+        </nav>
+    </header>
+    <div class="container" onsubmit="event.preventDefault(); window.location.href='jobs.html';">
+        <h2>Add Job</h2>
+        <form class="job-form">
+            <label for="title">Job Title</label>
+            <input type="text" id="title" required>
+
+            <label for="company">Company Name</label>
+            <input type="text" id="company" required>
+
+            <label for="location">Location</label>
+            <input type="text" id="location" required>
+
+            <label for="type">Job Type</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" value="Full Time"> Full Time</label>
+                <label><input type="checkbox" value="Part Time"> Part Time</label>
+                <label><input type="checkbox" value="Internship"> Internship</label>
+            </div>
+
+            <label for="mode">Work Mode</label>
+            <select id="mode" required>
+                <option value="On-site">On-site</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
+
+            <label for="level">Experience Level</label>
+            <select id="level" required>
+                <option value="Entry Level">Entry Level</option>
+                <option value="Mid Level">Mid Level</option>
+                <option value="Senior Level">Senior Level</option>
+            </select>
+
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" placeholder="e.g. Customer Service, Backend, APIs">
+
+            <label for="description">Job Description</label>
+            <textarea id="description" rows="4" required></textarea>
+
+
+            <button type="submit">Save Job</button>
+        </form>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 HustleHUB. All rights reserved.</p>
+            <nav>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </nav>
+        </div>
+    </footer>
+</body>
+
+</html>
