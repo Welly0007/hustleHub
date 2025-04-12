@@ -170,53 +170,59 @@
     background: var(--secondary-color);
 }
 /*       Filter     */
+
 /* Toggle button */
-.toggle-filters-btn {
+input, #toggleFiltersBtn {
     display: none;
-    padding: 10px 15px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin: 10px 0;
-    z-index: 101;
-    position: relative;
 }
 
 /* Media Query for mobile view */
 @media (max-width: 768px) {
-    .toggle-filters-btn {
-        display: inline-block; 
-    }
-
-    .job-container {
-        flex-direction: column;
-    }
-
-    .job-filters {
-        position: fixed;
-        top: 80px; 
-        left: 0;
-        width: 100%;
-        height: calc(100% - 80px); 
-        background: white;
-        overflow-y: auto;
-        transform: translateY(-100%); 
-        transition: transform 0.3s ease-in-out;
-        z-index: 100;
-    }
     
-    #toggle-filters:checked ~ .job-container .job-filters {
-        transform: translateY(0); 
+    .job-listings .job-cards {
+        width: 100%;
     }
 
-    #toggle-filters:checked + .toggle-filters-btn {
+    .job-listings .job-filters {
         display: none;
     }
 
-    .job-cards {
-        width: 100%;
+    .job-listings #toggleFiltersBtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 150px;
+        color: var(--white);
+        padding: 10px 15px;
+        background: var(--primary-color);
+        border: none;
+        border-radius: 5px;
+        font-size: var(--normSize);
+        margin: 10px 0;
+    }
+
+    #toggleFilters:checked + .job-listings #toggleFiltersBtn {
+        position: fixed;
+        top: 20px;
+        right: 10px;
+        background: url('assets/close.png') no-repeat;
+        background-size: contain;
+        width: 20px;
+        height: 20px;
+        z-index: 10001;
+        text-indent: -100px;
+    }
+
+    #toggleFilters:checked + .job-listings .job-filters {
+        display: block; 
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%; 
+        height: 100%; 
+        z-index: 1000;
+        padding: 20px;
     }
 }
+
