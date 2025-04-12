@@ -172,7 +172,7 @@
 /*       Filter     */
 /* Toggle button */
 .toggle-filters-btn {
-    display: none;
+    display: none; /* Hidden by default for desktop */
     padding: 10px 15px;
     background: var(--primary-color);
     color: white;
@@ -185,10 +185,34 @@
     position: relative;
 }
 
+.toggle-filters-close-btn {
+    display: none; /* Hidden by default */
+    padding: 10px 15px;
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px 0;
+    z-index: 101;
+    position: fixed;
+    top: 90px;
+    right: 20px;
+}
+
 /* Media Query for mobile view */
 @media (max-width: 768px) {
     .toggle-filters-btn {
-        display: inline-block; 
+        display: inline-block; /* Visible in mobile view */
+    }
+
+    .toggle-filters-close-btn {
+        display: none; /* Initially hidden */
+    }
+
+    #toggleFilters:checked ~ .toggle-filters-close-btn {
+        display: inline-block; /* Show close button when filters are open */
     }
 
     .job-container {
@@ -208,16 +232,22 @@
         z-index: 100;
     }
     
-    #toggle-filters:checked ~ .job-container .job-filters {
-        transform: translateY(0); 
+    #toggleFilters:checked ~ .job-container .job-filters {
+        transform: translateY(0); /* Slide filters into view */
     }
 
-    #toggle-filters:checked + .toggle-filters-btn {
-        display: none;
+    #toggleFilters:checked + .toggle-filters-btn {
+        display: none; /* Hide "Show Filters" button when filters are open */
     }
 
     .job-cards {
         width: 100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .toggle-filters-btn {
+        display: none; /* Ensure it's hidden in desktop view */
     }
 }
 .Company-logo {
