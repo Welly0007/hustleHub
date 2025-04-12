@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply to Job</title>
+  <link rel="stylesheet" href="style.css" >
+  <link rel="stylesheet" href="apply.css" >
+</head>
+<header>
+  <div id="headLogo">
+      <img src="assets/headLogo.png" alt="Logo">
+      <h1>hustleHUB</h1>
+  </div>
+  <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="Profile.html">Profile</a>
+      <a href="contact.html">Contact us</a>
+  </nav>
+</header>
+
+  <main class="apply-container">
+    <h1>Apply to Job</h1>
+    <h2 class="job-title">Position: Front-End Developer</h2>
+    <h2 class="job-title">At: Company</h2>
+    <form class="apply-form">
+      <label>
+        Full Name
+        <input type="text" name="name" placeholder="John Doe" required />
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" placeholder="john@example.com" required />
+      </label>
+
+      <label>
+        Phone Number
+        <input type="tel" name="phone" placeholder="123-456-7890" required />
+      </label>
+
+
+      <label for="jobImg">Upload Resume</label>
+            <div class="file-upload">
+                <label for="jobImg" class="upload-btn">Browse Files</label>
+                <span id="file-name">No file selected</span>
+                <input type="file" id="jobImg" accept="image/*" hidden>
+            </div>
+
+
+      <label>
+        Cover Letter
+        <textarea name="cover" rows="5" placeholder="Write your message here..." required></textarea>
+      </label>
+
+      <div class="form-actions">
+        <button type="submit">Submit Application</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 hustleHUB. All rights reserved.</p>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="terms.html">Terms</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
