@@ -1,8 +1,10 @@
 .contact {
+    background: url('assets/office5.jpg');
+    background-size: cover;
+    background-position: 0% 25%;
     padding: 70px 20px;
     text-align: center;
     font-family: var(--fontFamily);
-    background: var(--white);
     color: var(--black);
     height: 100vh;
     display: flex;
@@ -15,11 +17,13 @@
 }
 
 .contact-content h1 {
+    color: var(--primary-color);
     font-size: var(--head2Size);
     margin-bottom: 20px;
 }
 
 .contact-content p {
+    color: #f9f9f9;
     font-size: var(--normSize);
     margin-bottom: 30px;
 }
@@ -55,4 +59,25 @@
 
 .contact-form button:hover {
     background: var(--secondary-color);
+}
+
+@media (max-width: 768px) {
+    .contact-content h1 {
+        font-size: var(--head2Size);
+    }
+
+    .contact-content p {
+        font-size: var(--smallSize);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 7px;
+        font-size: var(--smallSize);
+    }
+
+    .contact-form button {
+        padding: 7px 17px;
+        font-size: var(--smallSize);
+    }
 }

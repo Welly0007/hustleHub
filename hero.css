@@ -83,3 +83,65 @@
 .hero-buttons .btn-secondary:hover {
     background: var(--primary-color);
 }
+
+@media (max-width : 1024px) {
+
+    .hero {
+        background-size: 120%;
+        background-position: 85% 10%;
+    }
+
+    .hero-content {
+        top: -10px;
+        margin-top: 0;
+    }
+    
+    .hero-content h1 {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .hero-content p {
+        font-size: var(--smallSize);
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        padding: 15px 60px;
+        font-size: var(--smallSize);
+    }  
+}
+
+@media (max-width : 768px) {
+
+    .hero {
+        background-size: 150%;
+        background-position: 65% 0%;
+    }  
+}
+
+@media (max-width : 426px) {
+
+    .hero {
+        background-size: cover;
+        background-position: 70% 0%;
+    }  
+
+    .hero-content {
+        top: -40px;
+        padding-right: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.3rem;
+    }
+
+    .hero-content p {
+        font-size: 0.5rem;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        padding: 12px 48px;
+        font-size: 0.5rem;
+    }
+}
