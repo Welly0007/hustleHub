@@ -1,3 +1,19 @@
+.back-button {
+    display: inline-block;
+    margin: 100px 0 0 30px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.back-button:hover {
+    color: #2c80b4;
+    text-decoration: underline;
+}
+
+
 body {
     font-size: clamp(0.95rem, 2vw, 1rem);
     font-weight: 400;
