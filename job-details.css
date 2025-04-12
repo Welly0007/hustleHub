@@ -39,12 +39,13 @@
     margin-bottom: 20px;
 }
 .info-card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 5px 0; 
+    border: none;
+    background: none; 
+    border-radius: 0; 
     font-size: var(--normSize);
 }
+
 /* job description */
 .job-description {
     list-style-type: disc;
@@ -79,7 +80,7 @@
 .job-info-cards,
 .info-card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -88,20 +89,48 @@
     position: relative;
     padding-top: 120px; /* More space for larger image */
 }
-
-.company-logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 90px;
-    height: 90px;
+.job-title-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .job-title-box {
+    flex: 1;
+  }
+  
+  .logo-box {
+    flex-shrink: 0;
+  }
+  
+  .job-title {
+    margin: 0;
+    font-size: var(--head2Size);
+  }
+  
+  .job-logo {
+    height: 50px;
+    width: auto;
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
-}
+  }
+  
+  @media (max-width: 600px) {
+    .job-title-logo-container {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .job-logo {
+      height: 40px;
+    }
+  }
+ 
 
-.company-logo:hover {
+.job-logo:hover {
     transform: scale(1.1);
 }
 
@@ -117,4 +146,120 @@
     .job-detail {
         padding-top: 90px;
     }
+}
+.strong{
+    
+        color: #3498db; 
+        font-weight: bold;
+        display: inline-block;
+        min-width: 120px; 
+
+
+}
+.Description_container {
+    background-color: #f5f7fa; 
+    border-left: 4px solid var(--primary-color); 
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* soft shadow */
+    margin-bottom: 25px;
+}
+
+.Description_container p strong {
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.Description_container ul.job-description {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #444;
+    line-height: 1.6;
+}
+.job-tags {
+    background-color: #f5f7fa;
+    border-left: 4px solid var(--primary-color);
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.job-tags strong {
+    flex-basis: 100%;
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.job-tags span {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.job-tags span:hover {
+    background-color: #d5d5d5;
+}
+.info-card-container {
+    background-color: #f5f7fa;
+    border-left: 4px solid var(--primary-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.info-card-container p strong {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.info-card {
+    padding: 6px 0;
+    border: none;
+    background: none;
+    border-radius: 0;
+    font-size: var(--normSize);
+}
+
+strong.strong {
+    color: #555;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 140px;
+}
+.job-specification,
+.job-description-container {
+    background-color: #f5f7fa;
+    border-left: 4px solid var(--primary-color);
+    padding: 20px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.job-specification p strong,
+.job-description-container p strong {
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.job-specification ul,
+.job-description-container ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    color: #444;
+    line-height: 1.6;
 }
