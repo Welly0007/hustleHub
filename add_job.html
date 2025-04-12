@@ -28,8 +28,12 @@
             <label for="title">Job Title</label>
             <input type="text" id="title" required>
 
-            <label for="company">Company Name</label>
-            <input type="text" id="company" required>
+            <label for="jobImg">Upload Image</label>
+            <div class="file-upload">
+                <label for="jobImg" class="upload-btn">Browse Files</label>
+                <span id="file-name">No file selected</span>
+                <input type="file" id="jobImg" accept="image/*" hidden>
+            </div>
 
             <label for="location">Location</label>
             <input type="text" id="location" required>
