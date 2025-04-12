@@ -1,6 +1,6 @@
         //fetching Header and rendering to page
         fetch('Header.html').then(res => res.text()).then(data =>{
-            document.querySelector('header').innerHTML = data;
+            document.querySelector('.headcontainer').innerHTML = data;
         });
         // fetching footer
         fetch('footer.html')

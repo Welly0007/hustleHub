@@ -1,10 +1,10 @@
 .hero {
     position: static;
     height: 100vh;
-    background: url('assets/hero1.png') no-repeat;
-    background-size: 115%;
-    background-position: calc(100%) 20%;
-    background-attachment: scroll;
+    background: url('assets/hero2.png') no-repeat;
+    background-size: 115%; /* Ensures the entire image is visible */
+    background-position: 100% 27%; /* Adjust horizontal and vertical position */
+    background-attachment: scroll; /* Keeps the background fixed */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,6 +30,7 @@
     z-index: 2;
     max-width: 600px;
     margin-top: 5%;
+    /* margin-left: 10%; */
     transform: perspective(1000px) rotateX(-5deg) rotateY(-10deg);
     text-align: center;
     transform-style: preserve-3d;
@@ -84,11 +85,11 @@
     background: var(--primary-color);
 }
 
-@media (max-width : 1024px) {
+@media (max-width : 1200px) {
 
     .hero {
-        background-size: 120%;
-        background-position: 85% 10%;
+        /* background-size: 100%;
+        background-position: 50% 20%; */
     }
 
     .hero-content {
@@ -111,37 +112,46 @@
     }  
 }
 
-@media (max-width : 768px) {
-
-    .hero {
-        background-size: 150%;
-        background-position: 65% 0%;
-    }  
-}
-
-@media (max-width : 426px) {
-
-    .hero {
-        background-size: cover;
-        background-position: 70% 0%;
-    }  
+@media (max-width : 850px) {
 
     .hero-content {
-        top: -40px;
-        padding-right: 15px;
+        top: -10%;
+        margin-top: 0;
     }
-
+    
     .hero-content h1 {
-        font-size: 1.3rem;
-    }
-
-    .hero-content p {
-        font-size: 0.5rem;
+        font-size: clamp(1rem, 3vw, 1.8rem);
     }
 
     .hero-buttons .btn-primary,
     .hero-buttons .btn-secondary {
-        padding: 12px 48px;
+        padding: 10px 30px;
+    }  
+}
+
+@media (max-width : 500px) {
+
+    .hero {
+        background-size: 150%;
+        background-position: 70% center;
+    }  
+
+    .hero-content {
+        top: -13%;
+        padding-right: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero-content p {
+        font-size: 0.6rem;
+    }
+
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        padding: 10px 30px;
         font-size: 0.5rem;
     }
 }

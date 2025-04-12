@@ -12,6 +12,7 @@
     --bodybg: #F5F6F7;
     --inputbckg: #f9f9f9;
     --normSize: 1rem;
+    --verySmallSize: 0.4rem;
     --smallSize: 0.7rem;
     --head1Size: 25px;
     --head2Size: 3rem;
@@ -67,10 +68,9 @@ header {
     justify-content: center;
     padding: 15px 20px;
     width: 100%;
-    background: var(--bodybg);
+    background: var(--white);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    /* Ensure header stays above other elements */
     font-family: var(--fontFamily);
     padding: 30px;
 }
@@ -99,7 +99,9 @@ header nav {
     display: flex;
     gap: 20px;
 }
-
+header nav:last-child{
+    align-self: flex-end;
+}
 header nav a {
     text-decoration: none;
     color: var(--black);
@@ -112,13 +114,27 @@ header nav a {
 header nav a:hover {
     color: var(--primary-color);
 }
-
-@media (max-width: 768px) {
-    
-    header nav, #profilePhoto {
-        display: none;
+@media (max-width: 1200px){
+    header nav a{
+        font-size: var(--smallSize);
     }
-
+}
+@media (max-width: 900px) {
+    header nav{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        position: absolute;
+        top: 150px;
+        opacity: 0;
+        transition-delay: 0.5s;
+        transition: 1s ease-in-out;
+    }
+    header{
+        justify-content: flex-start;
+        height: 0vh;
+        transition: 1s ease-in-out;
+    }
     #sideMenuToggleIcon {
         position: fixed;
         z-index: 1001;
@@ -139,17 +155,12 @@ header nav a:hover {
         height: 100vh;
         justify-content: flex-start;
     }
-
-    #sideMenuToggle:checked ~ header #headLogo {
-        top: 4px;
+    #sideMenuToggle:checked ~ header nav{
+        opacity: 100%;
     }
 
-    #sideMenuToggle:checked ~ header nav {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-        position: absolute;
-        top: 150px;
+    #sideMenuToggle ~ header #headLogo {
+        top: 4px;
     }
 }
 /* Header End */
