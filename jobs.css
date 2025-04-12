@@ -100,20 +100,15 @@
 }
 .job-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    background-color: #ffffff;
+    align-items: flex-start;
+    gap: 15px;
+    border-radius: 5px;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
+    background: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
 }
-
-.job-card-content {
-    flex: 1;
-}
-
 .job-card img {
     width: 50px;
     height: 50px;
@@ -175,62 +170,56 @@
     background: var(--secondary-color);
 }
 /*       Filter     */
-
 /* Toggle button */
-input, #toggleFiltersBtn {
+.toggle-filters-btn {
     display: none;
+    padding: 10px 15px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px 0;
+    z-index: 101;
+    position: relative;
 }
 
 /* Media Query for mobile view */
 @media (max-width: 768px) {
-    
-    .job-listings .job-cards {
-        width: 100%;
+    .toggle-filters-btn {
+        display: inline-block; 
     }
 
-    .job-listings .job-filters {
+    .job-container {
+        flex-direction: column;
+    }
+
+    .job-filters {
+        position: fixed;
+        top: 80px; 
+        left: 0;
+        width: 100%;
+        height: calc(100% - 80px); 
+        background: white;
+        overflow-y: auto;
+        transform: translateY(-100%); 
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
+    }
+    
+    #toggle-filters:checked ~ .job-container .job-filters {
+        transform: translateY(0); 
+    }
+
+    #toggle-filters:checked + .toggle-filters-btn {
         display: none;
     }
 
-    .job-listings #toggleFiltersBtn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        width: 150px;
-        color: var(--white);
-        padding: 10px 15px;
-        background: var(--primary-color);
-        border: none;
-        border-radius: 5px;
-        font-size: var(--normSize);
-        margin: 10px 0;
-    }
-
-    #toggleFilters:checked + .job-listings #toggleFiltersBtn {
-        position: fixed;
-        top: 20px;
-        right: 10px;
-        background: url('assets/close.png') no-repeat;
-        background-size: contain;
-        width: 20px;
-        height: 20px;
-        z-index: 10001;
-        text-indent: -100px;
-    }
-
-    #toggleFilters:checked + .job-listings .job-filters {
-        display: block; 
-        position: fixed; 
-        top: 0;
-        left: 0;
-        width: 100%; 
-        height: 100%; 
-        z-index: 1000;
-        padding: 20px;
+    .job-cards {
+        width: 100%;
     }
 }
-<<<<<<< HEAD
 .Company-logo {
     width: 120px;
     height: auto;
@@ -239,6 +228,3 @@ input, #toggleFiltersBtn {
     border-radius: 6px;
     margin-left: auto; 
 }
-=======
-
->>>>>>> 5d2ec571646f6068f0b0077536f02e36a1756c08
