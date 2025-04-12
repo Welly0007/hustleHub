@@ -43,6 +43,13 @@ h2 {
     transition: border-color 0.2s;
 }
 
+.job-form input,
+.job-form select,
+.job-form textarea,
+.job-form .checkbox-group {
+    margin-bottom: 10px;
+}
+
 .job-form input:focus,
 .job-form select:focus,
 .job-form textarea:focus {
