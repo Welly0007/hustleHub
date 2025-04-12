@@ -15,6 +15,9 @@
     <header>
         <!-- fetched from Header.HTML -->
     </header>
+    <a href="jobs.html" class="back-button">
+        ← Back to Jobs
+    </a>
 
     <div class="container" onsubmit="event.preventDefault(); window.location.href='jobs.html';">
         <h2>Edit Job</h2>
@@ -22,8 +25,13 @@
             <label for="jobTitle">Job Title</label>
             <input type="text" id="jobTitle" value="Backend Developer" required />
 
-            <label for="company">Company Name</label>
-            <input type="text" id="company" value="CodeBase Inc." required />
+            <label for="jobImg">Upload Image</label>
+            <div class="file-upload">
+                <label for="jobImg" class="upload-btn">Browse Files</label>
+                <span id="file-name">No file selected</span>
+                <input type="file" id="jobImg" accept="image/*" hidden>
+            </div>
+
 
             <label for="location">Location</label>
             <input type="text" id="location" value="New York, NY" required />
