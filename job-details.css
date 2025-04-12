@@ -117,6 +117,42 @@
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
   }
+
+  /* New CSS for logo and title */
+
+  .job-logo-title-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+
+  .job-logo-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 15vh;
+    min-width: 100px;
+  }
+
+  .new-logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    /* aspect-ratio: 107/ 25; */
+    border-radius: 12px;
+    object-fit: contain;
+    /* box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); */
+    transition: transform 0.3s ease;
+  }
+
+  .job-title-container {
+    display: flex;
+  }
+
+
   
   @media (max-width: 600px) {
     .job-title-logo-container {
