@@ -7,19 +7,13 @@
     <title>Job Listings</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="jobs.css">
+    <!-- Script responsible for pre-display queries -->
+    <script src="preDisplayScript.js"></script>
 </head>
 
 <body>
     <header>
-        <a href="index.html" id="headLogo">
-            <img src="assets/headLogo.png" alt="Logo">
-            <h1>hustleHUB</h1>
-        </a>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="jobs.html">Jobs</a>
-            <a href="contact.html">Contact us</a>
-        </nav>
+        <!-- fetched from Header.HTML -->
     </header>
 
     <main class="job-listings">
@@ -199,23 +193,10 @@
     </main>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2023 HustleHUB. All rights reserved.</p>
-            <nav>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Contact Us</a>
-            </nav>
-        </div>
+        <!-- Fetched from footer.html -->
     </footer>
-    <script>
-        document.querySelectorAll('.filter-group h3').forEach((header) => {
-            header.addEventListener('click', () => {
-                const filterGroup = header.parentElement;
-                filterGroup.classList.toggle('active'); // Toggle the active class
-            });
-        });
-
+    <!-- script after the page is displayed -->
+    <script src="afterDisplayScript.js">
     </script>
 </body>
 
