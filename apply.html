@@ -22,6 +22,8 @@
 
   <main class="apply-container">
     <h1>Apply to Job</h1>
+    <h2 class="job-title">Position: Front-End Developer</h2>
+    <h2 class="job-title">At: Company</h2>
     <form class="apply-form">
       <label>
         Full Name
@@ -38,10 +40,14 @@
         <input type="tel" name="phone" placeholder="123-456-7890" required />
       </label>
 
-      <label>
-        Upload Resume
-        <input type="file" name="resume" accept=".pdf,.doc,.docx"  />
-      </label>
+
+      <label for="jobImg">Upload Resume</label>
+            <div class="file-upload">
+                <label for="jobImg" class="upload-btn">Browse Files</label>
+                <span id="file-name">No file selected</span>
+                <input type="file" id="jobImg" accept="image/*" hidden>
+            </div>
+
 
       <label>
         Cover Letter

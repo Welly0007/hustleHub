@@ -12,6 +12,7 @@
     --bodybg: #F5F6F7;
     --inputbckg: #f9f9f9;
     --normSize: 1rem;
+    --smallSize: 0.7rem;
     --head1Size: 25px;
     --head2Size: 3rem;
     --head3Size: 2rem;
@@ -112,6 +113,45 @@ header nav a:hover {
     color: var(--primary-color);
 }
 
+@media (max-width: 768px) {
+    
+    header nav, #profilePhoto {
+        display: none;
+    }
+
+    #sideMenuToggleIcon {
+        position: fixed;
+        z-index: 1001;
+        background: url('assets/menu.png');
+        background-size: cover;
+        width: 25px;
+        height: 25px;
+        right: 25px;
+        top: 18px;
+    }
+
+    #sideMenuToggle:checked + #sideMenuToggleIcon {
+        background: url('assets/close.png');
+        background-size: cover;
+    }
+
+    #sideMenuToggle:checked ~ header {
+        height: 100vh;
+        justify-content: flex-start;
+    }
+
+    #sideMenuToggle:checked ~ header #headLogo {
+        top: 4px;
+    }
+
+    #sideMenuToggle:checked ~ header nav {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        position: absolute;
+        top: 150px;
+    }
+}
 /* Header End */
 
 /* Footer Start */
@@ -144,6 +184,17 @@ footer nav a {
 
 footer nav a:hover {
     color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    
+    footer {
+        font-size: var(--smallSize);
+    }
+
+    footer nav a {
+        font-size: var(--smallSize);
+    }
 }
 
 /* Footer End */

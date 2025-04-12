@@ -27,14 +27,14 @@
             <section>
                 <form method="post" class="input-group">
                     <label for="login-email">Username</label>
-                    <input type="text" autofocus id="username" placeholder="Username">
+                    <input type="text" autofocus id="username" placeholder="Username" required>
                     
                     <label for="signup-email">Email</label>
-                    <input type="text" id="signup" placeholder="Email">
+                    <input type="text" id="signup" placeholder="Email" required>
 
                     <label for="signup-password">Password</label>
                     <div class="password-box">
-                        <input type="password" id="signup-password" placeholder="Password">
+                        <input type="password" id="signup-password" placeholder="Password" required minlength="8">
                         <button type="button">
                             <i size="24">
                                 <svg width="24" height="24" perserveAspectRatio="none" viewBox="0 0 24 24">
@@ -50,7 +50,7 @@
 
                     <label for="signup-password-confirmation">Confirm Password</label>
                     <div class="password-box">
-                        <input type="password" id="signup-password-confirmation" placeholder="Confirm Password">
+                        <input type="password" id="signup-password-confirmation" placeholder="Confirm Password" required minlength="8">
                         <button type="button">
                             <i size="24">
                                 <svg width="24" height="24" perserveAspectRatio="none" viewBox="0 0 24 24">
@@ -78,7 +78,7 @@
 
                         <div class="input-group">
                             <label for="company_name">Company name</label>
-                            <input type="text" placeholder="Company name" name="company_name">
+                            <input type="text" placeholder="Company name" name="company_name" required>
                         </div>
                     </fieldset>
 

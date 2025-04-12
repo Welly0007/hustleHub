@@ -282,11 +282,11 @@ input[type="radio"]
 @media (min-width: 1024px)
 {
     .logo-container{
-        transform: translateX(130%);
+        transform: translateX(140%);
     }
 
     .content-wrapper{
-        margin-left: -20rem;
+        margin-left: -14rem;
     }
 
     .logo-wrapper {

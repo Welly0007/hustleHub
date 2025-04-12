@@ -21,45 +21,59 @@
         </nav>
     </header>
 
-  <div class="profile-container">
-    <div class="profile-header">
-      <img src="user_photo.jpg" alt="Profile Photo" class="profile-pic">
-      <div class="profile-info">`
-        <h1>John Doe</h1>
-        <p><a href="mailto:ryan@example.com">ryan@example.com</a> - <span>Administrator</span></p>
-        <p class="upload-text"><a href="#">upload your own avatar</a></p>
+    <div class="profile-container">
+      <div class="profile-header">
+        <img src="assets/anon5.jpg" alt="Profile Photo" class="profile-avatar" id="avatarPreview">
+        
+        <div class="profile-info">
+          <h1>John Doe</h1>
+          <p>ryan@example.com - <span>Administrator</span></p>
+          <label class="profile-upload-btn">
+            Upload your own avatar
+            <input type="file" accept="image/*" class="profile-avatar-input" />
+          </label>
+        </div>
+      </div>
+    
+      <div class="profile-account">
+        <h2>Account</h2>
+        <form>
+          <label>Username <input type="text" value="ryan"></label>
+          <label>Email* <input type="email" value="ryan@example.com"></label>
+          <label>Phone Number <input type="tel" value="+1234567890"></label>
+          <label>Password <input type="password" value="password"></label>
+          <label>Full name* <input type="text" value="John Doe"></label>
+          <label>Date of Birth <input type="date"></label>
+          <label>Location <input type="text" value="New York, USA"></label>
+          <label>Title <input type="text" value="Administrator"></label>
+          <label>Company <input type="text" value="Devworks"></label>
+          <label>Language
+            <select>
+              <option>English</option>
+              <option>French</option>
+              <option>Arabic</option>
+            </select>
+          </label>
+          <label>LinkedIn <input type="url" value="https://linkedin.com/in/ryan"></label>
+          <br>
+          <div class="form-actions">
+            <button type="submit">Save Changes</button>
+            <button type="button" class="delete-account-btn">Delete Account</button>
+          </div>
+
+        </form>
+      </div>
+    
+      <div class="profile-jobs">
+        <h2>📝 Added Jobs</h2>
+        <ul>
+          <li>✅ Backend Developer at CodeBase Inc.</li>
+          <li>✅ Call Center Agent at Etisalat Egypt</li>
+        </ul>
+        <a href="add_job.html" class="profile-add-btn">➕ Add a new job</a>
       </div>
     </div>
-
-
-    <div class="account-info">
-      <h2>Account</h2>
-      <form>
-        <label>Username <input type="text" value="ryan"></label>
-        <label>Email* <input type="email" value="ryan@example.com"></label>
-        <label>Password <input type="password" value="password"></label>
-        <label>Full name* <input type="text" value="John Doe"></label>
-        <label>Title <input type="text" value="Administrator"></label>
-        <label>Company <input type="text" value="Devworks"></label>
-        <label>Language
-          <select>
-            <option>English</option>
-            <option>French</option>
-            <option>Arabic</option>
-          </select>
-        </label>
-      </form>
-    </div>
-
-    <div class="applied-jobs">
-      <h2>📝 Added Jobs</h2>
-      <ul>
-        <li>✅ Backend Developer at CodeBase Inc.</li>
-        <li>✅ Call Center Agent at Etisalat Egypt</li>
-      </ul>
-      <a href="apply.html" class="apply-btn">➕ Add a new job</a>
-    </div>
-  </div>
+    
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 hustleHUB. All rights reserved.</p>
