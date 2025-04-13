@@ -3,17 +3,20 @@
     font-family: var(--fontFamily);
     color: var(--black);
 }
+
 .job-listings h1 {
     text-align: center;
     font-size: var(--head2Size);
     margin-bottom: 30px;
 }
+
 .job-container {
     display: flex;
     gap: 20px;
     align-items: flex-start;
     position: relative;
 }
+
 .job-filters {
     position: sticky;
     top: 100px;
@@ -27,63 +30,65 @@
     height: fit-content;
     z-index: 10;
 }
+
 .job-filters h2 {
     font-size: var(--head3Size);
     margin-bottom: 10px;
     color: var(--black);
 }
+
 .filter-summary {
     font-size: 0.9rem;
     color: #666;
     margin-bottom: 15px;
 }
+
 .filter-group {
     margin-bottom: 20px;
 }
+
 .filter-group h3 {
     font-size: var(--normSize);
     margin-bottom: 10px;
-    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: var(--black);
 }
+
 .filter-group h3:hover {
     color: var(--primary-color);
 }
+
 .filter-group .arrow {
     font-size: 0.9rem;
     transition: transform 0.3s ease;
 }
+
 .filter-group.active .arrow {
     transform: rotate(180deg);
 }
+
 .filter-options {
     list-style: none;
     padding-left: 0;
     margin: 0;
     display: none;
 }
+
 .filter-group.active .filter-options {
     display: block;
 }
+
 .filter-options li {
     margin-bottom: 10px;
 }
+
 .filter-options label {
     font-size: var(--normSize);
     color: #333;
-    display: flex; /* Ensure label and checkbox are aligned */
-    align-items: center;
-    gap: 5px; /* Add spacing between checkbox and label text */
 }
-.filter-options input[type="checkbox"] {
-    display: inline-block; /* Ensure checkboxes are visible */
-    width: auto; /* Reset any width that might hide them */
-    height: auto; /* Reset any height that might hide them */
-    margin: 0; /* Remove unwanted margins */
-}
+
 .filter-options select {
     width: 48%;
     padding: 5px;
@@ -92,21 +97,25 @@
     border-radius: 3px;
     margin-right: 4%;
 }
+
 .filter-options select:last-child {
     margin-right: 0;
 }
+
 .filter-options .show-more {
     font-size: 0.9rem;
     color: var(--primary-color);
     text-decoration: none;
-    cursor: pointer;
 }
+
 .filter-options .show-more:hover {
     text-decoration: underline;
 }
+
 .job-cards {
     width: 75%;
 }
+
 .job-card {
     display: flex;
     align-items: flex-start;
@@ -118,30 +127,36 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
 }
+
 .job-card img {
     width: 50px;
     height: 50px;
     object-fit: contain;
     border-radius: 5px;
 }
+
 .job-card-content {
     flex: 1;
 }
+
 .job-card-content h2 {
     font-size: var(--head3Size);
     color: var(--primary-color);
     margin-bottom: 5px;
 }
+
 .job-card-content p {
     font-size: var(--normSize);
     margin-bottom: 5px;
     color: var(--black);
 }
+
 .job-card-content .job-meta {
     display: flex;
     gap: 10px;
     margin-bottom: 10px;
 }
+
 .job-card-content .job-meta span {
     font-size: 0.9rem;
     color: #666;
@@ -149,21 +164,26 @@
     padding: 5px 10px;
     border-radius: 3px;
 }
+
 .job-card-content .job-tags {
     font-size: 0.9rem;
     color: #666;
     margin-top: 10px;
 }
+
 .job-card-content .job-tags span {
     margin-right: 5px;
 }
+
 .job-card-content .job-tags span::after {
     content: "·";
     margin-left: 5px;
 }
+
 .job-card-content .job-tags span:last-child::after {
     content: "";
 }
+
 .job-card .btn-details {
     display: inline-block;
     padding: 10px 20px;
@@ -175,34 +195,36 @@
     margin-top: 10px;
     transition: background-color 0.3s ease;
 }
+
 .job-card .btn-details:hover {
     background: var(--secondary-color);
 }
+
 /*       Filter     */
 /* Toggle button */
 .toggle-filters-btn {
-    display: none; /* Hidden by default for desktop */
+    display: none;
+    /* Hidden by default for desktop */
     padding: 10px 15px;
     background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-    cursor: pointer;
     margin: 10px 0;
-    z-index: 10;
+    z-index: 101;
     position: relative;
 }
 
 .toggle-filters-close-btn {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     padding: 10px 15px;
     background: var(--secondary-color);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 1rem;
-    cursor: pointer;
     margin: 10px 0;
     z-index: 101;
     position: fixed;
@@ -212,13 +234,13 @@
 
 /* Media Query for mobile view */
 /* Toggle button */
-input, #toggleFiltersBtn {
+#toggleFiltersBtn {
     display: none;
 }
 
 /* Media Query for mobile view */
 @media (max-width: 768px) {
-    
+
     .job-listings .job-cards {
         width: 100%;
     }
@@ -233,6 +255,7 @@ input, #toggleFiltersBtn {
         align-items: center;
         position: relative;
         width: 150px;
+        cursor: pointer;
         color: var(--white);
         padding: 10px 15px;
         background: var(--primary-color);
@@ -242,40 +265,45 @@ input, #toggleFiltersBtn {
         margin: 10px 0;
     }
 
-    #toggleFilters:checked + .job-listings #toggleFiltersBtn {
+    #toggleFilters:checked+.job-listings #toggleFiltersBtn {
         position: fixed;
-        top: 50px;
+        top: 60px;
         right: 10px;
-        background: url('assets/close.png') no-repeat;
+        background: url('../assets/close.webp') no-repeat;
         background-size: contain;
         width: 20px;
         height: 20px;
-        z-index: 10001;
+        z-index: 100;
         text-indent: -100px;
+        /* Hides the text */
+        color: transparent;
+        /* Ensures text is not visible */
     }
 
-    #toggleFilters:checked + .job-listings .job-filters {
-        display: block; 
-        position: fixed; 
+    #toggleFilters:checked+.job-listings .job-filters {
+        display: block;
+        position: fixed;
         top: 0;
         left: 0;
-        width: 100%; 
-        height: 100%; 
-        z-index: 1000;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
         padding: 20px;
     }
 }
 
 @media (min-width: 769px) {
     .toggle-filters-btn {
-        display: none; /* Ensure it's hidden in desktop view */
+        display: none;
+        /* Ensure it's hidden in desktop view */
     }
 }
+
 .Company-logo {
     width: 120px;
     height: auto;
     max-height: 60px;
     object-fit: contain;
     border-radius: 6px;
-    margin-left: auto; 
+    margin-left: auto;
 }

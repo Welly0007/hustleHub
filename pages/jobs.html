@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Listings</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/jobs.css">
+        <!-- Script responsible for pre-display queries -->
+        <script src="../scripts/preDisplayScript.js"></script>
+    </head>
+
+    <body>
+        <div class="headcontainer">
+            <!-- header fetched from js -->
+        </div>
+
+        <input type="checkbox" id="toggleFilters">
+
+        <main class="job-listings">
+            <h1>Jobs Available</h1>
+            <label for="toggleFilters" id="toggleFiltersBtn">Show
+                Filters</label>
+
+            <div class="job-container">
+                <!-- Sidebar Filters -->
+                <aside class="job-filters">
+                    <h2>Filters</h2>
+                    <p class="filter-summary">0 filters selected</p>
+                    <div class="filter-group">
+                        <h3>Workplace <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li><label><input type="checkbox"> On-site</label></li>
+                            <li><label><input type="checkbox"> Hybrid</label></li>
+                            <li><label><input type="checkbox"> Remote</label></li>
+                        </ul>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Country <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li>
+                                <select>
+                                    <option value="all">All Countries</option>
+                                    <option value="egypt">Egypt</option>
+                                    <option value="usa">United States</option>
+                                    <option value="uk">United Kingdom</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="germany">Germany</option>
+                                    <option value="france">France</option>
+                                    <option value="india">India</option>
+                                    <option value="australia">Australia</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="filter-group">
+                        <h3>Career Level <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li><label><input type="checkbox"> Entry
+                                    Level</label></li>
+                            <li><label><input type="checkbox"> Mid
+                                    Level</label></li>
+                            <li><label><input type="checkbox"> Senior
+                                    Level</label></li>
+                        </ul>
+                    </div>
+                    <!-- Years of Experience -->
+                    <div class="filter-group">
+                        <h3>Years of Experience <span
+                                class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li>
+                                <select>
+                                    <option value="min">Min</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                                <select>
+                                    <option value="max">Max</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="5">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15+</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Job Category -->
+                    <div class="filter-group">
+                        <h3>Job Category <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li><label><input type="checkbox"> All
+                                    (7318)</label></li>
+                            <li><label><input type="checkbox"> Sales/Retail
+                                    (1394)</label></li>
+                            <li><label><input type="checkbox"> Customer
+                                    Service/Support (915)</label></li>
+                            <li><label><input type="checkbox"> IT/Software
+                                    Development (826)</label></li>
+                            <li><label><input type="checkbox"> Engineering -
+                                    Mechanical/Electrical (816)</label></li>
+                            <li><a href="#" class="show-more">Show more</a></li>
+                        </ul>
+                    </div>
+                    <!-- Job Type -->
+                    <div class="filter-group">
+                        <h3>Job Type <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li><label><input type="checkbox"> All
+                                    (7318)</label></li>
+                            <li><label><input type="checkbox"> Full Time
+                                    (7086)</label></li>
+                            <li><label><input type="checkbox"> Part Time
+                                    (150)</label></li>
+                            <li><label><input type="checkbox"> Internship
+                                    (104)</label></li>
+                            <li><label><input type="checkbox"> Freelance Project
+                                    (89)</label></li>
+                            <li><a href="#" class="show-more">Show more</a></li>
+                        </ul>
+                    </div>
+                    <!-- Add more filter groups as needed -->
+                </aside>
+
+                <!-- Job Listings -->
+                <section class="job-cards">
+                    <div class="job-card">
+                        <div class="job-card-content">
+                            <h2>Call Center Agent {B1+ English speakers}</h2>
+                            <p><strong>Company:</strong> Etisalat Egypt - Maadi,
+                                Cairo, Egypt</p>
+                            <p><strong>Posted:</strong> 47 minutes ago</p>
+                            <p><strong>Salary:</strong> $3000/month</p>
+                            <p><strong>Status:</strong> Open</p>
+                            <p><strong>Experience:</strong> 2+ years</p>
+                            <p><strong>Created By:</strong> admin_user</p>
+
+                            <div class="job-meta">
+                                <span>Full Time</span>
+                                <span>On-site</span>
+                            </div>
+                            <div class="job-tags">
+                                <span>Entry Level</span>
+                                <span>Customer Service/Support</span>
+                                <span>Call Center</span>
+                                <span>Customer Care</span>
+                                <span>Customer Relations</span>
+                            </div>
+                            <a href="../pages/job_details1.html"
+                                class="btn-details">Show Job Details</a>
+                        </div>
+                        <img src="../assets/etisalat-logo.webp"
+                            alt="Company Logo" class="Company-logo">
+                    </div>
+                    <div class="job-card">
+                        <div class="job-card-content">
+                            <h2>Backend Developer</h2>
+                            <p><strong>Company:</strong> CodeBase Inc.</p>
+                            <p><strong>Posted:</strong> 2 days ago</p>
+                            <p><strong>Salary:</strong> $6000/month</p>
+                            <p><strong>Status:</strong> Closed</p>
+                            <p><strong>Experience:</strong> 5+ years</p>
+                            <p><strong>Created By:</strong> admin_user</p>
+
+                            <div class="job-meta">
+                                <span>Full Time</span>
+                                <span>Remote</span>
+                            </div>
+                            <div class="job-tags">
+                                <span>Mid Level</span>
+                                <span>Backend Development</span>
+                                <span>APIs</span>
+                                <span>Server-side Logic</span>
+                            </div>
+                            <a href="../pages/job_details2.html?id=2"
+                                class="btn-details">Show Job Details</a>
+                        </div>
+                        <img src="../assets/codebase_inc.webp"
+                            alt="Company Logo" class="Company-logo">
+                    </div>
+                    <div class="job-card">
+                        <div class="job-card-content">
+                            <h2>Fullstack Developer</h2>
+                            <p><strong>Company:</strong> DevWorks</p>
+                            <p><strong>Posted:</strong> 1 week ago</p>
+                            <p><strong>Salary:</strong> $4000/month</p>
+                            <p><strong>Status:</strong> Open</p>
+                            <p><strong>Experience:</strong> 4+ years</p>
+                            <p><strong>Created By:</strong> admin_user</p>
+
+                            <div class="job-meta">
+                                <span>Full Time</span>
+                                <span>Hybrid</span>
+                            </div>
+                            <div class="job-tags">
+                                <span>Senior Level</span>
+                                <span>Frontend</span>
+                                <span>Backend</span>
+                                <span>Fullstack Development</span>
+                            </div>
+                            <a href="../pages/job_details3.html?id=3"
+                                class="btn-details">Show Job Details</a>
+                        </div>
+                        <img src="../assets/logo-devworks.svg"
+                            alt="Company Logo" class="Company-logo">
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Fetched from footer.html -->
+        </footer>
+        <!-- script after the page is displayed -->
+        <script src="../scripts/afterDisplayScript.js">
+    </script>
+    </body>
+
+</html>
