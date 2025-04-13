@@ -1,5 +1,5 @@
 // Fetching Header and rendering to page
-fetch('pages/header.html')
+fetch('header.html')
     .then(res => res.text())
     .then(data => {
         document.querySelector('.headcontainer').innerHTML = data;
