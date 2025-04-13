@@ -118,6 +118,7 @@
 
 .job-card {
     display: flex;
+    position: relative;
     align-items: flex-start;
     gap: 15px;
     border-radius: 5px;
@@ -127,12 +128,14 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     border: 1px solid #ddd;
 }
-
-.job-card img {
-    width: 50px;
-    height: 50px;
+.Company-logo {
+    position: absolute;
+    width: 150px;
+    top: 20px;
+    right:10px;
     object-fit: contain;
-    border-radius: 5px;
+    border-radius: 6px;
+    margin-left: auto;
 }
 
 .job-card-content {
@@ -248,6 +251,9 @@
     .job-listings .job-filters {
         display: none;
     }
+    .Company-logo{
+        width: 75px;
+    }
 
     .job-listings #toggleFiltersBtn {
         display: flex;
@@ -297,13 +303,4 @@
         display: none;
         /* Ensure it's hidden in desktop view */
     }
-}
-
-.Company-logo {
-    width: 120px;
-    height: auto;
-    max-height: 60px;
-    object-fit: contain;
-    border-radius: 6px;
-    margin-left: auto;
 }
