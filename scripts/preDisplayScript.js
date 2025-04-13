@@ -17,4 +17,3 @@ fetch('pages/footer.html')
     .then(data => {
         document.querySelector('footer').innerHTML = data;
     });
-// comment
