@@ -72,6 +72,7 @@ footer {
     color: var(--primary-color);
     top: 5%;
     display: flex;
+    overflow: hidden;
     align-items: center;
     margin-bottom: 5%;
 }
@@ -79,6 +80,7 @@ footer {
 .logo-wrapper {
     display: flex;
     justify-content: center;
+    overflow: hidden;
     margin-top: 2rem;
     margin-bottom: 6rem;
     width: 100%;
