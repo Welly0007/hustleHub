@@ -17,6 +17,7 @@ body {
 
 * {
     font-family: var(--fontFamily);
+    /* outline: solid red 1px; */
 }
 
 input {
@@ -54,8 +55,6 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    position: absolute;
-    left: 20px;
     text-decoration: none;
     color: var(--primary-color);
 }
@@ -65,25 +64,31 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 
 .logo-container {
-    position: fixed;
+    position: relative;
     color: var(--primary-color);
-    top: 5%;
     display: flex;
     overflow: hidden;
     align-items: center;
-    margin-bottom: 5%;
+    justify-content: center;
+    margin: auto;
 }
 
 .logo-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     overflow: hidden;
+    margin: auto;
     margin-top: 2rem;
-    margin-bottom: 6rem;
-    width: 100%;
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 50%;
+    height: auto;
 }
 
 .logo-container img {
@@ -98,8 +103,7 @@ footer {
     display: flex;
     flex-direction: column;
     padding: 2.5rem 5rem 5rem 5rem;
-    /* top right bottom left */
-    margin: 5% 25% 5% 36%;
+    margin: auto;
     height: 32rem;
     width: 30rem;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
@@ -231,15 +235,6 @@ input[type="radio"] {
 
 @media (min-width: 600px) and (max-width: 1024px) {
 
-    .logo-container {
-        transform: translateX(70%);
-    }
-
-    .logo-container img {
-        width: 15%;
-        transform: scaleX(-1);
-    }
-
     body {
         max-width: 100vw;
     }
@@ -254,45 +249,10 @@ input[type="radio"] {
         max-width: 100vw;
     }
 
-    .logo-container {
-        transform: translateX(0%);
-        overflow-x: hidden;
-        padding-left: 15%;
-        padding-top: 2rem;
-    }
-
-    .logo-container img {
-        width: 3rem;
-        transform: scaleX(-1);
-        display: block;
-    }
-
-    .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-left: 4rem;
-    }
-
     .main-content,
     .signup-main-content {
         width: 17rem;
-        margin-left: 0px;
         padding: 2rem;
     }
 
-}
-
-@media (min-width: 1024px) {
-    .logo-container {
-        transform: translateX(140%);
-    }
-
-    .content-wrapper {
-        margin-left: -14rem;
-    }
-
-    .logo-wrapper {
-        margin-bottom: -1rem;
-    }
 }
