@@ -136,97 +136,42 @@
                 </aside>
 
                 <!-- Job Listings -->
-                <section class="job-cards">
+                <section id="job-cards"></section>
+                
+                <template id="job-card">
                     <div class="job-card">
                         <div class="job-card-content">
-                            <h2>Call Center Agent {B1+ English speakers}</h2>
-                            <p><strong>Company:</strong> Etisalat Egypt - Maadi,
-                                Cairo, Egypt</p>
-                            <p><strong>Posted:</strong> 47 minutes ago</p>
-                            <p><strong>Salary:</strong> $3000/month</p>
-                            <p><strong>Status:</strong> Open</p>
-                            <p><strong>Experience:</strong> 2+ years</p>
-                            <p><strong>Created By:</strong> admin_user</p>
+                            <h2 class="jobTitle"></h2>
+                            <p class="jobCompany"><strong>Company: </strong></p>
+                            <p class="jobPostTime"><strong>Posted: </strong></p>
+                            <p class="jobSalary"><strong>Salary: </strong></p>
+                            <p class="jobStatus"><strong>Status: </strong></p>
+                            <p class="jobExperience"><strong>Experience: </strong></p>
+                            <p class="jobCreator"><strong>Created By: </strong></p>
 
                             <div class="job-meta">
-                                <span>Full Time</span>
-                                <span>On-site</span>
+                                <span class="jobType"></span>
+                                <span class="jobPlace"></span>
                             </div>
-                            <div class="job-tags">
-                                <span>Entry Level</span>
-                                <span>Customer Service/Support</span>
-                                <span>Call Center</span>
-                                <span>Customer Care</span>
-                                <span>Customer Relations</span>
-                            </div>
-                            <a href="pages/job_details1.html"
-                                class="btn-details">Show Job Details</a>
-                        </div>
-                        <img src="assets/etisalat-logo.webp"
-                            alt="Company Logo" class="Company-logo">
-                    </div>
-                    <div class="job-card">
-                        <div class="job-card-content">
-                            <h2>Backend Developer</h2>
-                            <p><strong>Company:</strong> CodeBase Inc.</p>
-                            <p><strong>Posted:</strong> 2 days ago</p>
-                            <p><strong>Salary:</strong> $6000/month</p>
-                            <p><strong>Status:</strong> Closed</p>
-                            <p><strong>Experience:</strong> 5+ years</p>
-                            <p><strong>Created By:</strong> admin_user</p>
 
-                            <div class="job-meta">
-                                <span>Full Time</span>
-                                <span>Remote</span>
-                            </div>
-                            <div class="job-tags">
-                                <span>Mid Level</span>
-                                <span>Backend Development</span>
-                                <span>APIs</span>
-                                <span>Server-side Logic</span>
-                            </div>
-                            <a href="pages/job_details2.html?id=2"
-                                class="btn-details">Show Job Details</a>
+                            <div class="job-tags"></div>
+                            <a href="" class="btn-details">Show Job Details</a>
                         </div>
-                        <img src="assets/codebase_inc.webp"
-                            alt="Company Logo" class="Company-logo">
+                        
+                        <img src="" alt="Company Logo" class="Company-logo">
+                    
                     </div>
-                    <div class="job-card">
-                        <div class="job-card-content">
-                            <h2>Fullstack Developer</h2>
-                            <p><strong>Company:</strong> DevWorks</p>
-                            <p><strong>Posted:</strong> 1 week ago</p>
-                            <p><strong>Salary:</strong> $4000/month</p>
-                            <p><strong>Status:</strong> Open</p>
-                            <p><strong>Experience:</strong> 4+ years</p>
-                            <p><strong>Created By:</strong> admin_user</p>
-
-                            <div class="job-meta">
-                                <span>Full Time</span>
-                                <span>Hybrid</span>
-                            </div>
-                            <div class="job-tags">
-                                <span>Senior Level</span>
-                                <span>Frontend</span>
-                                <span>Backend</span>
-                                <span>Fullstack Development</span>
-                            </div>
-                            <a href="pages/job_details3.html?id=3"
-                                class="btn-details">Show Job Details</a>
-                        </div>
-                        <img src="assets/logo-devworks.svg"
-                            alt="Company Logo" class="Company-logo">
-                    </div>
-                </section>
+                </template>
             </div>
         </main>
 
         <footer>
             <!-- Fetched from footer.html -->
         </footer>
+
         <!-- script after the page is displayed -->
-        <script src="scripts/afterDisplayScript.js">
-    </script>
+        <script src="scripts/afterDisplayScript.js"></script>
+        <script src="../scripts/available_jobs.js"></script>
     </body>
 
 </html>
