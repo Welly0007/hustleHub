@@ -8,12 +8,14 @@ async function getJobs() {
 async function initPage() {
     const initialJobsArray = await getJobs();  // Waits here until fetch is done
     displayJobs(initialJobsArray);             // You can now safely use jobsArray
-    // setupFilters(initialJobsArray);            // Another example of dependent function
+    setupFilters(initialJobsArray);            // Another example of dependent function
 }
 
 function displayJobs(jobs) {
     const jobCardsContainer = document.getElementById("job-cards");
+    jobCardsContainer.textContent = ' ';
     const JobCard = document.getElementById("job-card"); 
+    console.log("displayJobs called");
 
     jobs.forEach(element => {
         const tempCard = JobCard.content.cloneNode(true);
@@ -42,7 +44,6 @@ function displayJobs(jobs) {
             jobTags.appendChild(span);
         });
 
-        // Link to job details
         tempCardContent.querySelector(".btn-details").setAttribute("href", element.details_link);
 
         // Company Logo
@@ -53,9 +54,63 @@ function displayJobs(jobs) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", initPage);
+// Applying event listeners to all filters
+function setupFilters(jobsArray) {
+    const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
+    const selects = document.querySelectorAll('.filter-options select');
+    console.log("selects NodeList:", selects);
+    console.log("Setup filters was called");
+    console.log(selects);
 
-function setupFilters(jobsArray)
-{
+    checkboxes.forEach(cb => cb.addEventListener('change', () => {applyFilters(jobsArray, checkboxes, selects)}));
+    selects.forEach(select => select.addEventListener('change', () => {
+        console.log("Attached event listener to checkboxes and selects");
+        applyFilters(jobsArray, checkboxes, selects)
+    }));
     
+
 }
+
+function applyFilters(jobsArray, checkboxes, selects) {
+    let filtered = [...jobsArray];
+
+    // Get selected checkboxes
+    const selectedCheckboxes = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.parentElement.textContent.trim());
+
+    const selectedSelects = Array.from(selects).filter((select) => {
+        return select.value != "none";
+    }).map(select => select.value);
+
+    filtered = filtered.filter(job => {
+        // Filter by workplace, job type, etc.
+        let checkboxMatch = true;
+        let selectMatch = true;
+
+        // Filter based on checkbox tags (e.g., Entry Level, Full Time)
+        if (selectedCheckboxes.length > 0) {
+            checkboxMatch = selectedCheckboxes.some(filter =>
+                job.tags.includes(filter) ||
+                job.job_type === filter ||
+                job.workplace === filter
+            );
+        }
+
+        return checkboxMatch && selectMatch;
+    });
+
+    // Calculating the number of filters applied
+    let num = selectedCheckboxes.length + selectedSelects.length;
+    console.log("selected checkboxes", selectedCheckboxes);
+    console.log("selects", selectedSelects);
+
+    displayJobs(filtered);
+    let filtersCount = document.getElementById("numberOfSelectedFilters");
+    filtersCount.textContent = ' ';
+    filtersCount.textContent = num + " filters selected";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initPage();
+});

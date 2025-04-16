@@ -32,8 +32,8 @@
                 <!-- Sidebar Filters -->
                 <aside class="job-filters">
                     <h2>Filters</h2>
-                    <p class="filter-summary">0 filters selected</p>
-                    <div class="filter-group">
+                    <p class="filter-summary" id="numberOfSelectedFilters">0 filters selected</p>
+                    <div class="filter-group" id="workplace">
                         <h3>Workplace <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li><label><input type="checkbox"> On-site</label></li>
@@ -41,12 +41,12 @@
                             <li><label><input type="checkbox"> Remote</label></li>
                         </ul>
                     </div>
-                    <div class="filter-group">
+                    <div class="filter-group" id="country">
                         <h3>Country <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li>
                                 <select>
-                                    <option value="all">All Countries</option>
+                                    <option value="none">All Countries</option>
                                     <option value="egypt">Egypt</option>
                                     <option value="usa">United States</option>
                                     <option value="uk">United Kingdom</option>
@@ -77,7 +77,7 @@
                         <ul class="filter-options">
                             <li>
                                 <select>
-                                    <option value="min">Min</option>
+                                    <option value="none">Min</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -86,7 +86,7 @@
                                     <option value="10">10</option>
                                 </select>
                                 <select>
-                                    <option value="max">Max</option>
+                                    <option value="none">Max</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
