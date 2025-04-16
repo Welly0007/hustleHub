@@ -8,7 +8,7 @@ async function getJobs() {
 async function initPage() {
     const initialJobsArray = await getJobs();  // Waits here until fetch is done
     displayJobs(initialJobsArray);             // You can now safely use jobsArray
-    setupFilters(initialJobsArray);            // Another example of dependent function
+    // setupFilters(initialJobsArray);            // Another example of dependent function
 }
 
 function displayJobs(jobs) {
@@ -54,3 +54,8 @@ function displayJobs(jobs) {
 }
 
 document.addEventListener("DOMContentLoaded", initPage);
+
+function setupFilters(jobsArray)
+{
+    
+}
