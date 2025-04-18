@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../styles/login-signup.css">
         <!-- Script responsible for pre-display queries -->
         <script src="../scripts/preDisplayScript.js"></script>
+        <script type="module" src="../scripts/signup.js"></script>
     </head>
 
     <body>
@@ -31,20 +32,20 @@
                         <label for="login-email">Username</label>
                         <input type="text" autofocus id="username"
                             placeholder="Username" required>
+                        <div class="error-message" id="username-error"></div>
 
                         <label for="signup-email">Email</label>
                         <input type="text" id="signup" placeholder="Email"
                             required>
+                        <div class="error-message" id="signup-error"></div>
 
+                    
                         <label for="signup-password">Password</label>
-                        <div class="password-box">
-                            <input type="password" id="signup-password"
-                                placeholder="Password" required minlength="8">
-                            <button type="button">
-                                <i size="24">
-                                    <svg width="24" height="24"
-                                        perserveAspectRatio="none"
-                                        viewBox="0 0 24 24">
+                        <div class="password-field">
+                            <div class="password-wrapper">
+                                <input type="password" id="signup-password" placeholder="Password">
+                                <button type="button" aria-label="Toggle password visibility"><i size="24">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                         <path fill="#000"
                                             d="M12 6c-4.09 0-7.585 2.488-9 6 1.415 3.512 4.91 6 9 
                                     6s7.585-2.488 9-6c-1.415-3.512-4.91-6-9-6zm0 10c-2.258 0-4.09-1.792-4.09-4S9.741
@@ -52,22 +53,17 @@
                                     1.328 1.097 2.4 2.455 2.4s2.455-1.072 2.455-2.4c0-1.328-1.097-2.4-2.455-2.4z">
                                         </path>
                                     </svg>
-                                </i>
-                            </button>
+                                </i></button>
+                            </div>
+                            <div class="error-message" id="password-error"></div>
                         </div>
 
-                        <label for="signup-password-confirmation">Confirm
-                            Password</label>
-                        <div class="password-box">
-                            <input type="password"
-                                id="signup-password-confirmation"
-                                placeholder="Confirm Password" required
-                                minlength="8">
-                            <button type="button">
-                                <i size="24">
-                                    <svg width="24" height="24"
-                                        perserveAspectRatio="none"
-                                        viewBox="0 0 24 24">
+                        <label for="signup-password-confirmation">Confirm Password</label>
+                        <div class="password-field">
+                            <div class="password-wrapper">
+                                <input type="password" id="signup-password-confirmation" placeholder="Confirm Password">
+                                <button type="button" aria-label="Toggle password visibility"> <i size="24">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                         <path fill="#000"
                                             d="M12 6c-4.09 0-7.585 2.488-9 6 1.415 3.512 4.91 6 9 
                                     6s7.585-2.488 9-6c-1.415-3.512-4.91-6-9-6zm0 10c-2.258 0-4.09-1.792-4.09-4S9.741
@@ -75,28 +71,27 @@
                                     1.328 1.097 2.4 2.455 2.4s2.455-1.072 2.455-2.4c0-1.328-1.097-2.4-2.455-2.4z">
                                         </path>
                                     </svg>
-                                </i>
-                            </button>
+                                </i></button>
+                            </div>
+                            <div class="error-message" id="confirm-password-error"></div>
                         </div>
-
                         <!-- Admin section -->
                         <fieldset>
                             <div class="radio-class">
                                 <legend>Company Admin</legend>
-
-                                <input type="radio" id="yes"
-                                    name="is_company_admin" value="True">
+                            
+                                <input type="radio" id="yes" name="is_company_admin" value="True">
                                 <label for="yes">Yes</label>
-
-                                <input type="radio" id="no"
-                                    name="is_company_admin" value="False">
+                            
+                                <input type="radio" id="no" name="is_company_admin" value="False">
                                 <label for="no">No</label>
+                            
                             </div>
 
-                            <div class="input-group">
+                            <div class="input-group" id="company-name-wrapper" style="display: none;">
                                 <label for="company_name">Company name</label>
-                                <input type="text" placeholder="Company name"
-                                    name="company_name" required>
+                                <input type="text" placeholder="Company name" name="company_name">
+                                <div class="error-message" id="company-error"></div>
                             </div>
                         </fieldset>
 
