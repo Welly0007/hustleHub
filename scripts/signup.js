@@ -100,24 +100,13 @@ toggleButtons.forEach(button => {
         }
     });
 });
-// Real-time validation on blur
-// Show and clear error in real-time
+
 usernameInput.addEventListener("blur", validateUsername);
-usernameInput.addEventListener("input", validateUsername);
-
 emailInput.addEventListener("blur", validateEmail);
-emailInput.addEventListener("input", validateEmail);
-
 passwordInput.addEventListener("blur", validatePassword);
-passwordInput.addEventListener("input", validatePassword);
-
 confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
-confirmPasswordInput.addEventListener("input", validateConfirmPassword);
-
 companyNameInput.addEventListener("blur", validateCompanyName);
-companyNameInput.addEventListener("input", validateCompanyName);
 
-// Validation functions
 function validateUsername() {
     errorFields.username.textContent = isValidUsername(usernameInput.value)
         ? ""

@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../styles/login-signup.css">
         <!-- Script responsible for pre-display queries -->
         <script src="../scripts/preDisplayScript.js"></script>
+        <script type="module" src="../scripts/login.js"></script>
     </head>
 
     <body>
@@ -30,28 +31,25 @@
                     <form method="post" class="input-group">
 
                         <label for="login-email">Email</label>
-                        <input type="text" autofocus id="login-email"
-                            placeholder="Email" required>
-
+                        <input type="text" autofocus id="login-email" placeholder="Email">
+                        <div class="error-message" id="login-email-error"></div>
+                        
                         <label for="login-password">Password</label>
-                        <div class="password-box">
-                            <input type="password" id="login-passsword"
-                                placeholder="Password" required minlength="8">
-                            <button type="button">
-                                <i size="24">
-                                    <svg width="24" height="24"
-                                        perserveAspectRatio="none"
-                                        viewBox="0 0 24 24">
-                                        <path fill="#000"
+                        <div class="password-wrapper">
+                            <input type="password" id="login-password" placeholder="Password">
+                            <button type="button" aria-label="Toggle password visibility">
+                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill="#000"
                                             d="M12 6c-4.09 0-7.585 2.488-9 6 1.415 3.512 4.91 6 9 
                                     6s7.585-2.488 9-6c-1.415-3.512-4.91-6-9-6zm0 10c-2.258 0-4.09-1.792-4.09-4S9.741
                                     8 12 8s4.09 1.792 4.09 4-1.832 4-4.09 4zm0-6.4c-1.358 0-2.455 1.072-2.455 2.4 0
                                     1.328 1.097 2.4 2.455 2.4s2.455-1.072 2.455-2.4c0-1.328-1.097-2.4-2.455-2.4z">
                                         </path>
-                                    </svg>
-                                </i>
+                                </svg>
                             </button>
                         </div>
+                        <div class="error-message" id="login-password-error"></div>
+
                         <button>Sign in</button>
                         <input type="submit" hidden>
                         <a id="forgotpassword"

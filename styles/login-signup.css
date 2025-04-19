@@ -258,8 +258,8 @@ input[type="radio"] {
 }
 /*error massage*/
 .error-message {
-    color: #e63946; /* soft red */
-    font-size: 0.8rem;
+    color: #e63946;
+    font-size: 0.7rem;
     margin-top: 4px;
     margin-bottom: 0;
     margin-left: 4px;
@@ -269,10 +269,10 @@ input[type="radio"] {
 
 .input-group input,
 .password-box input {
-    margin-bottom: 2px; /* reduce bottom space if needed */
+    margin-bottom: 2px; 
 }
 
-/*password-wrapper*/
+
 .password-field {
     display: flex;
     flex-direction: column;
@@ -323,7 +323,20 @@ input[type="radio"] {
 .input-group button:hover {
     background-color: var(--secondary-color);
 }
+
 #company-name-wrapper {
-    display: none;
+    display: none; /* still hidden initially */
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     transition: all 0.3s ease;
+}
+
+#company-name-wrapper label,
+#company-name-wrapper input,
+#company-name-wrapper .error-message {
+    display: block;
+    width: 100%;
 }
