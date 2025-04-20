@@ -70,8 +70,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!hasError) {
-            form.submit();
+                   
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const emailExists = users.some(user => user.email === email);
+        if (emailExists) {
+            errorFields.email.textContent = "This email is already registered.";
+            return;
         }
+        const newUser = {
+            username,
+            email,
+            password, 
+            isAdmin,
+            fullName: "",
+            phoneNumber: "",
+            location: "",
+            dateOfBirth: "",
+            title: "",
+            occupation: "",
+            linkedin: "",
+            language: "",
+            skills: []
+        };
+
+        users.push(newUser);
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("loggedInUser", JSON.stringify(newUser)); 
+    
+
+        window.location.href = isAdmin ? "pages/AProfile.html" : "pages/profile.html";
+                }
     });
     const companyNameWrapper = document.getElementById("company-name-wrapper");
 

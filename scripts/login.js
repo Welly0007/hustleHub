@@ -1,11 +1,11 @@
-// login.js
+//login.js
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const emailInput = document.getElementById("login-email");
     const passwordInput = document.getElementById("login-password");
-    const errorField = document.getElementById("login-email-error");
+    const errorField = document.getElementById("login-email-error"); 
 
-    // Toggle password visibility
+   
     const toggleButton = document.querySelector(".password-wrapper button");
     toggleButton.addEventListener("click", () => {
         const input = toggleButton.previousElementSibling;
@@ -13,11 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function showError(message) {
-        errorField.textContent = message;
+        if (errorField) {
+            errorField.textContent = message;
+        } else {
+            alert(message); 
+        }
     }
 
     function clearError() {
-        errorField.textContent = "";
+        if (errorField) {
+            errorField.textContent = "";
+        }
     }
 
     form.addEventListener("submit", (e) => {
@@ -27,17 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        // Get users from localStorage (simulate DB)
         const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Check for match
         const userExists = users.find(user => user.email === email && user.password === password);
 
         if (userExists) {
-            // Successful login - redirect
-            window.location.href = "profile.html";
+            localStorage.setItem("loggedInUser", JSON.stringify(userExists));
+            window.location.href = userExists.isAdmin ? "pages/AProfile.html" : "pages/profile.html";
         } else {
-            // Invalid credentials
             showError("Invalid email or password.");
         }
     });
