@@ -58,35 +58,38 @@ function displayJobs(jobs) {
 function setupFilters(jobsArray) {
     const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
     const selects = document.querySelectorAll('.filter-options select');
-    // console.log("selects NodeList:", selects);
-    // console.log("Setup filters was called");
-    // console.log(selects);
 
     checkboxes.forEach(cb => cb.addEventListener('change', () => {
         applyFilters(jobsArray, checkboxes, selects);
     }));
 
     selects.forEach((select, idx) => {
-        // console.log(`Attaching listener to select #${idx}`, select);
         select.addEventListener('change', () => {
             applyFilters(jobsArray, checkboxes, selects);
         });
     });
     
-    // console.log("Finished setting up filters");   
 
 }
 
 function applyFilters(jobsArray, checkboxes, selects) {
     let filtered = [...jobsArray];
 
-    const selectedCheckboxes = Array.from(checkboxes)
-    .filter(checkbox => checkbox.checked && checkbox.value !== "none")
-    .map(checkbox => checkbox.value);
+    const checkboxGroups = {};
+
+    checkboxes.forEach(cb => {
+        const groupId = cb.closest('.filter-group').id;
+        if (cb.checked && !checkboxGroups[groupId]) {
+            checkboxGroups[groupId] = [];
+        }
+
+        if (cb.checked) {
+            checkboxGroups[groupId].push(cb.value);
+        }
+    });
   
 
     const selectedSelects = Array.from(selects).filter((select) => {
-        // console.log(select.value);
         return select.value != "none";
     }).map(select => select.value);
 
@@ -96,35 +99,23 @@ function applyFilters(jobsArray, checkboxes, selects) {
     const minExp = minExpSelect.value !== "none" ? parseInt(minExpSelect.value) : null;
     const maxExp = maxExpSelect.value !== "none" ? parseInt(maxExpSelect.value) : null;
     const selectedCountry = document.getElementById("countryValues").value;
-    // console.log("This is the min value", minExp);
+
 
     filtered = filtered.filter(job => {
-        // Filter by workplace, job type, etc.
-        let checkboxMatch = true;
-        let selectMatch = true;
-
-        // Filter based on checkbox tags (e.g., Entry Level, Full Time)
-        if (selectedCheckboxes.length > 0) {
-            checkboxMatch = selectedCheckboxes.some(filter =>
-                job.tags.includes(filter) ||
-                job.job_type === filter ||
-                job.workplace === filter
-            );
-        }
-        
-
-        let countryMatch = (selectedCountry ==="none" ? true: (job.country.map(c => c.toLowerCase()).includes(selectedCountry.toLowerCase())));
-        let minMatch = (minExp === null || parseInt(job.experience) >= minExp);
-        let maxMatch = (maxExp === null || parseInt(job.experience) <= maxExp);
-        // console.log("The job experience", parseInt(job.experience), " The minMatch ", minMatch);
-
-        return checkboxMatch && countryMatch && minMatch && maxMatch;
+        const workplaceMatch = !checkboxGroups["workplace"] || checkboxGroups["workplace"].includes(job.workplace);
+        const jobTypeMatch = !checkboxGroups["job-type"] || checkboxGroups["job-type"].includes(job.job_type);
+        const careerLevelMatch = !checkboxGroups["career-level"] || checkboxGroups["career-level"].some(lvl => job.tags.includes(lvl));
+        const jobCategoryMatch = !checkboxGroups["job-category"] || checkboxGroups["job-category"].some(ctg => job.tags.includes(ctg));
+    
+        let countryMatch = (selectedCountry ==="none" ? true : (job.country.map(c => c.toLowerCase()).includes(selectedCountry.toLowerCase())));
+        let expRangeMatch = (minExp === null || parseInt(job.experience) >= minExp) && (maxExp === null || parseInt(job.experience) <= maxExp);
+    
+        return workplaceMatch && jobTypeMatch && careerLevelMatch && countryMatch && expRangeMatch && jobCategoryMatch;
     });
+    
 
     // Calculating the number of filters applied
-    let num = selectedCheckboxes.length + selectedSelects.length;
-    // console.log("selected checkboxes", selectedCheckboxes);
-    // console.log("selects", selectedSelects);
+    let num = Object.keys(checkboxGroups).length + selectedSelects.length;
 
     displayJobs(filtered);
     let filtersCount = document.getElementById("numberOfSelectedFilters");
