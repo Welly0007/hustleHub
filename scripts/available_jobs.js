@@ -6,16 +6,16 @@ async function getJobs() {
 }
 
 async function initPage() {
-    const initialJobsArray = await getJobs();  // Waits here until fetch is done
-    displayJobs(initialJobsArray);             // You can now safely use jobsArray
-    setupFilters(initialJobsArray);            // Another example of dependent function
+    const initialJobsArray = await getJobs();
+    displayJobs(initialJobsArray);
+    setupFilters(initialJobsArray);
 }
 
 function displayJobs(jobs) {
     const jobCardsContainer = document.getElementById("job-cards");
     jobCardsContainer.textContent = ' ';
     const JobCard = document.getElementById("job-card"); 
-    console.log("displayJobs called");
+    // console.log("displayJobs called");
 
     jobs.forEach(element => {
         const tempCard = JobCard.content.cloneNode(true);
@@ -28,7 +28,7 @@ function displayJobs(jobs) {
         tempCardContent.querySelector(".jobPostTime").append(element.posted);
         tempCardContent.querySelector(".jobSalary").append(element.salary);
         tempCardContent.querySelector(".jobStatus").append(element.status);
-        tempCardContent.querySelector(".jobExperience").append(element.experience);
+        tempCardContent.querySelector(".jobExperience").append(element.experience + "+ years");
         tempCardContent.querySelector(".jobCreator").append(element.created_by);
 
 
@@ -58,30 +58,45 @@ function displayJobs(jobs) {
 function setupFilters(jobsArray) {
     const checkboxes = document.querySelectorAll('.filter-options input[type="checkbox"]');
     const selects = document.querySelectorAll('.filter-options select');
-    console.log("selects NodeList:", selects);
-    console.log("Setup filters was called");
-    console.log(selects);
+    // console.log("selects NodeList:", selects);
+    // console.log("Setup filters was called");
+    // console.log(selects);
 
-    checkboxes.forEach(cb => cb.addEventListener('change', () => {applyFilters(jobsArray, checkboxes, selects)}));
-    selects.forEach(select => select.addEventListener('change', () => {
-        console.log("Attached event listener to checkboxes and selects");
-        applyFilters(jobsArray, checkboxes, selects)
+    checkboxes.forEach(cb => cb.addEventListener('change', () => {
+        applyFilters(jobsArray, checkboxes, selects);
     }));
+
+    selects.forEach((select, idx) => {
+        // console.log(`Attaching listener to select #${idx}`, select);
+        select.addEventListener('change', () => {
+            applyFilters(jobsArray, checkboxes, selects);
+        });
+    });
     
+    // console.log("Finished setting up filters");   
 
 }
 
 function applyFilters(jobsArray, checkboxes, selects) {
     let filtered = [...jobsArray];
 
-    // Get selected checkboxes
     const selectedCheckboxes = Array.from(checkboxes)
-        .filter(cb => cb.checked)
-        .map(cb => cb.parentElement.textContent.trim());
+    .filter(checkbox => checkbox.checked && checkbox.value !== "none")
+    .map(checkbox => checkbox.value);
+  
 
     const selectedSelects = Array.from(selects).filter((select) => {
+        // console.log(select.value);
         return select.value != "none";
     }).map(select => select.value);
+
+    const minExpSelect = document.getElementById("min-experience");
+    const maxExpSelect = document.getElementById("max-experience");
+
+    const minExp = minExpSelect.value !== "none" ? parseInt(minExpSelect.value) : null;
+    const maxExp = maxExpSelect.value !== "none" ? parseInt(maxExpSelect.value) : null;
+    const selectedCountry = document.getElementById("countryValues").value;
+    // console.log("This is the min value", minExp);
 
     filtered = filtered.filter(job => {
         // Filter by workplace, job type, etc.
@@ -96,14 +111,20 @@ function applyFilters(jobsArray, checkboxes, selects) {
                 job.workplace === filter
             );
         }
+        
 
-        return checkboxMatch && selectMatch;
+        let countryMatch = (selectedCountry ==="none" ? true: (job.country.map(c => c.toLowerCase()).includes(selectedCountry.toLowerCase())));
+        let minMatch = (minExp === null || parseInt(job.experience) >= minExp);
+        let maxMatch = (maxExp === null || parseInt(job.experience) <= maxExp);
+        // console.log("The job experience", parseInt(job.experience), " The minMatch ", minMatch);
+
+        return checkboxMatch && countryMatch && minMatch && maxMatch;
     });
 
     // Calculating the number of filters applied
     let num = selectedCheckboxes.length + selectedSelects.length;
-    console.log("selected checkboxes", selectedCheckboxes);
-    console.log("selects", selectedSelects);
+    // console.log("selected checkboxes", selectedCheckboxes);
+    // console.log("selects", selectedSelects);
 
     displayJobs(filtered);
     let filtersCount = document.getElementById("numberOfSelectedFilters");

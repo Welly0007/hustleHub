@@ -36,16 +36,16 @@
                     <div class="filter-group" id="workplace">
                         <h3>Workplace <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
-                            <li><label><input type="checkbox"> On-site</label></li>
-                            <li><label><input type="checkbox"> Hybrid</label></li>
-                            <li><label><input type="checkbox"> Remote</label></li>
+                            <li><label><input type="checkbox" value="On-site"> On-site</label></li>
+                            <li><label><input type="checkbox" value="Hybrid"> Hybrid</label></li>
+                            <li><label><input type="checkbox" value="Remote"> Remote</label></li>
                         </ul>
                     </div>
                     <div class="filter-group" id="country">
                         <h3>Country <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li>
-                                <select>
+                                <select id="countryValues">
                                     <option value="none">All Countries</option>
                                     <option value="egypt">Egypt</option>
                                     <option value="usa">United States</option>
@@ -62,12 +62,9 @@
                     <div class="filter-group">
                         <h3>Career Level <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
-                            <li><label><input type="checkbox"> Entry
-                                    Level</label></li>
-                            <li><label><input type="checkbox"> Mid
-                                    Level</label></li>
-                            <li><label><input type="checkbox"> Senior
-                                    Level</label></li>
+                            <li><label><input type="checkbox" value="Entry Level"> Entry Level</label></li>
+                            <li><label><input type="checkbox" value="Mid Level"> Mid Level</label></li>
+                            <li><label><input type="checkbox" value="Senior Level"> Senior Level</label></li>
                         </ul>
                     </div>
                     <!-- Years of Experience -->
@@ -76,7 +73,7 @@
                                 class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li>
-                                <select>
+                                <select id="min-experience">
                                     <option value="none">Min</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -85,7 +82,7 @@
                                     <option value="5">5</option>
                                     <option value="10">10</option>
                                 </select>
-                                <select>
+                                <select id="max-experience">
                                     <option value="none">Max</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -101,16 +98,11 @@
                     <div class="filter-group">
                         <h3>Job Category <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
-                            <li><label><input type="checkbox"> All
-                                    (7318)</label></li>
-                            <li><label><input type="checkbox"> Sales/Retail
-                                    (1394)</label></li>
-                            <li><label><input type="checkbox"> Customer
-                                    Service/Support (915)</label></li>
-                            <li><label><input type="checkbox"> IT/Software
-                                    Development (826)</label></li>
-                            <li><label><input type="checkbox"> Engineering -
-                                    Mechanical/Electrical (816)</label></li>
+                            <li><label><input type="checkbox" value="none"> All (7318)</label></li>
+                            <li><label><input type="checkbox" value="Sales/Retail"> Sales/Retail (1394)</label></li>
+                            <li><label><input type="checkbox" value="Customer Service/Support"> Customer Service/Support (915)</label></li>
+                            <li><label><input type="checkbox" value="IT/Software Development"> IT/Software Development (826)</label></li>
+                            <li><label><input type="checkbox" value="Engineering - Mechanical/Electrical"> Engineering - Mechanical/Electrical (816)</label></li>
                             <li><a href="#" class="show-more">Show more</a></li>
                         </ul>
                     </div>
@@ -118,15 +110,15 @@
                     <div class="filter-group">
                         <h3>Job Type <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
-                            <li><label><input type="checkbox"> All
+                            <li><label><input type="checkbox" value="none"> All
                                     (7318)</label></li>
-                            <li><label><input type="checkbox"> Full Time
+                            <li><label><input type="checkbox" value="Full Time"> Full Time
                                     (7086)</label></li>
-                            <li><label><input type="checkbox"> Part Time
+                            <li><label><input type="checkbox" value="Part Time"> Part Time
                                     (150)</label></li>
-                            <li><label><input type="checkbox"> Internship
+                            <li><label><input type="checkbox" value="Internship"> Internship
                                     (104)</label></li>
-                            <li><label><input type="checkbox"> Freelance Project
+                            <li><label><input type="checkbox" value="Freelance Project"> Freelance Project
                                     (89)</label></li>
                             <li><a href="#" class="show-more">Show more</a></li>
                         </ul>

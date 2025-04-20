@@ -3,10 +3,13 @@
         "id": 1,
         "title": "Call Center Agent {B1+ English speakers}",
         "company": "Etisalat Egypt - Maadi, Cairo, Egypt",
+        "country": [
+            "Egypt"
+        ],
         "posted": "47 minutes ago",
         "salary": "$3000/month",
         "status": "Open",
-        "experience": "2+ years",
+        "experience": "2",
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "On-site",
@@ -24,10 +27,14 @@
         "id": 2,
         "title": "Backend Developer",
         "company": "CodeBase Inc.",
+        "country": [
+            "USA",
+            "Canada"
+        ],
         "posted": "2 days ago",
         "salary": "$6000/month",
         "status": "Closed",
-        "experience": "5+ years",
+        "experience": "5",
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "Remote",
@@ -35,7 +42,8 @@
             "Mid Level",
             "Backend Development",
             "APIs",
-            "Server-side Logic"
+            "Server-side Logic",
+            "IT/Software Development"
         ],
         "logo": "assets/codebase_inc.webp",
         "details_link": "pages/job_details2.html?id=2"
@@ -44,10 +52,13 @@
         "id": 3,
         "title": "Fullstack Developer",
         "company": "DevWorks",
+        "country": [
+            "none"
+        ],
         "posted": "1 week ago",
         "salary": "$4000/month",
         "status": "Open",
-        "experience": "4+ years",
+        "experience": "4",
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "Hybrid",
@@ -55,7 +66,8 @@
             "Senior Level",
             "Frontend",
             "Backend",
-            "Fullstack Development"
+            "Fullstack Development",
+            "IT/Software Development"
         ],
         "logo": "assets/logo-devworks.svg",
         "details_link": "pages/job_details3.html?id=3"
