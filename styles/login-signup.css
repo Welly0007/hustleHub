@@ -112,7 +112,7 @@ footer {
 }
 
 .signup-main-content {
-    height: 42rem;
+    height: 45rem;
 }
 
 .input-group {
@@ -351,4 +351,11 @@ input[type="radio"] {
 #company-name-wrapper .error-message {
     display: block;
     width: 100%;
+}
+.password-hint {
+    font-size: 0.65rem;
+    margin-bottom: 0.2rem;
+    margin-left: 4px;
+    color: #555;
+    font-style: italic;
 }
