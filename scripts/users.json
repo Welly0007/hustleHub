@@ -1,0 +1,51 @@
+[
+    {
+        "username": "ryan",
+        "email": "ryan@example.com",
+        "password": "hashed_password_here",
+        "isAdmin": false,
+        "fullName": "John Doe",
+        "phoneNumber": "+1234567890",
+        "location": "New York, USA",
+        "dateOfBirth": "1990-01-01",
+        "title": "User",
+        "occupation": "Front-End Developer",
+        "linkedin": "https://linkedin.com/in/ryan",
+        "language": "English",
+        "skills": [
+            "JavaScript",
+            "Python",
+            "React"
+        ]
+    },
+    {
+        "username": "admin01",
+        "email": "admin@company.com",
+        "password": "admin_hashed_pw",
+        "isAdmin": true,
+        "fullName": "Alice Admin",
+        "phoneNumber": "",
+        "location": "",
+        "dateOfBirth": "",
+        "title": "",
+        "occupation": "",
+        "linkedin": "",
+        "language": "",
+        "skills": []
+    },
+    {
+        "username": "newuser123",
+        "email": "newuser@example.com",
+        "password": "new_user_pw",
+        "isAdmin": false,
+        "fullName": "",
+        "phoneNumber": "",
+        "location": "",
+        "dateOfBirth": "",
+        "title": "",
+        "occupation": "",
+        "linkedin": "",
+        "language": "",
+        "skills": []
+    }
+]
