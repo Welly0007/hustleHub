@@ -41,6 +41,9 @@
 
                     
                         <label for="signup-password">Password</label>
+                        <small class="password-hint">
+                            Password must contain at least 8 characters, including an uppercase letter, lowercase letter, number, and a special character.
+                          </small>
                         <div class="password-field">
                             <div class="password-wrapper">
                                 <input type="password" id="signup-password" placeholder="Password">
@@ -78,14 +81,14 @@
                         <!-- Admin section -->
                         <fieldset>
                             <div class="radio-class">
-                                <legend>Company Admin</legend>
-                            
+                              <legend>Company Admin</legend>
+                              <div class="radio-options">
                                 <input type="radio" id="yes" name="is_company_admin" value="True">
                                 <label for="yes">Yes</label>
-                            
+                          
                                 <input type="radio" id="no" name="is_company_admin" value="False">
                                 <label for="no">No</label>
-                            
+                              </div>
                             </div>
 
                             <div class="input-group" id="company-name-wrapper" style="display: none;">
@@ -95,7 +98,7 @@
                             </div>
                         </fieldset>
 
-                        <button>Sign up</button>
+                        <button class="submit-btn">Sign up</button>
                         <input type="submit" hidden>
                     </form>
                 </section>

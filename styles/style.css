@@ -179,6 +179,45 @@ header nav a:hover {
 
 /* Header End */
 
+/* Full-page height for specific pages */
+.full-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: var(--bodybg);
+}
+
+.full-page h1 {
+    font-size: var(--head2Size);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.full-page p {
+    font-size: var(--normSize);
+    color: var(--black);
+    margin-bottom: 20px;
+}
+
+.full-page .btn-primary {
+    text-decoration: none;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: var(--normSize);
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.full-page .btn-primary:hover {
+    background: var(--secondary-color);
+}
+
 /* Footer Start */
 footer {
     background: var(--black);
