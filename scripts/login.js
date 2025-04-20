@@ -41,7 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("loggedInUser", JSON.stringify(userExists));
             window.location.href = userExists.isAdmin ? "pages/AProfile.html" : "pages/profile.html";
         } else {
-            showError("Invalid email or password.");
+            const errorField = document.getElementById("login-email-error");
+            errorField.textContent = "Invalid email or password.";
+            
         }
     });
 });
