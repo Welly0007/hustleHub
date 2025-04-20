@@ -1,59 +1,44 @@
 // login.js
-import {
-    isValidEmail,
-    isStrongPassword
-} from './authValidation.js';
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
     const emailInput = document.getElementById("login-email");
     const passwordInput = document.getElementById("login-password");
+    const errorField = document.getElementById("login-email-error");
 
-    const errorFields = {
-        email: document.getElementById("login-email-error"),
-        password: document.getElementById("login-password-error")
-    };
-
-    function clearErrors() {
-        errorFields.email.textContent = "";
-        errorFields.password.textContent = "";
-    }
-
-    
-    function validateEmail() {
-        errorFields.email.textContent = isValidEmail(emailInput.value)
-            ? ""
-            : "Please enter a valid email.";
-    }
-
-    function validatePassword() {
-        errorFields.password.textContent = isStrongPassword(passwordInput.value)
-            ? ""
-            : "Password must include uppercase, lowercase, number, and symbol.";
-    }
-
-    // Real-time validation
-    emailInput.addEventListener("blur", validateEmail);
-    passwordInput.addEventListener("blur", validatePassword);
-    
-
-    
+    // Toggle password visibility
     const toggleButton = document.querySelector(".password-wrapper button");
     toggleButton.addEventListener("click", () => {
         const input = toggleButton.previousElementSibling;
         input.type = input.type === "password" ? "text" : "password";
     });
 
-    
+    function showError(message) {
+        errorField.textContent = message;
+    }
+
+    function clearError() {
+        errorField.textContent = "";
+    }
+
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        clearErrors();
-        validateEmail();
-        validatePassword();
+        clearError();
 
-        const hasError = Object.values(errorFields).some(div => div.textContent !== "");
-        if (!hasError) {
-            form.submit();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        // Get users from localStorage (simulate DB)
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Check for match
+        const userExists = users.find(user => user.email === email && user.password === password);
+
+        if (userExists) {
+            // Successful login - redirect
+            window.location.href = "profile.html";
+        } else {
+            // Invalid credentials
+            showError("Invalid email or password.");
         }
     });
 });
