@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="../styles/contact.css">
         <!-- Script responsible for pre-display queries -->
         <script src="../scripts/preDisplayScript.js"></script>
+        <script type="module" src="../scripts/contact.js"></script>
     </head>
 
     <body>
@@ -26,9 +27,10 @@
                 <h1>Contact Us</h1>
                 <p>We'd love to hear from you! Fill out the form below to get in
                     touch.</p>
-                <form class="contact-form">
+                <form class="contact-form" novalidate>
                     <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
+                    <input type="email" placeholder="Your Email" id="contact-email" required>
+                    <div class="error-message" id="contact-email-error"></div>
                     <textarea placeholder="Your Message" rows="5"
                         required></textarea>
                     <button type="submit" class="btn-primary">Send

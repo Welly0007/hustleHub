@@ -81,3 +81,14 @@
         font-size: var(--smallSize);
     }
 }
+
+.error-message{
+    color: #f6081c;
+    font-size: 1rem;
+    margin-top: 4px;
+    margin-bottom: 0;
+    margin-left: 4px;
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    align-self: center;
+}

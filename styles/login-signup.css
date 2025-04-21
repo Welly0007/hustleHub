@@ -266,7 +266,7 @@ input[type="radio"] {
 
 }
 /*error massage*/
-.error-message {
+.error-message ,.login-error-message{
     color: #e63946;
     font-size: 0.7rem;
     margin-top: 4px;
@@ -276,13 +276,7 @@ input[type="radio"] {
     line-height: 1;
 }
 .login-error-message {
-    color: #e63946;
     font-size: 1rem;
-    margin-top: 4px;
-    margin-bottom: 0;
-    margin-left: 4px;
-    font-family: 'Inter', sans-serif;
-    line-height: 1;
     align-self: center
     
 }
