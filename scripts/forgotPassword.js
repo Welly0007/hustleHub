@@ -7,55 +7,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const errorField = document.getElementById("recover-email-error");
     const resendBtn = document.getElementById("resend-email");
 
-    function validateEmail() {
+    function validateEmailExists() {
         const value = emailInput.value.trim();
 
         if (value === "") {
             errorField.textContent = "Email is required.";
-        } else if (!isValidEmail(value)) {
-            errorField.textContent = "Please enter a valid email address.";
-        } else {
-            errorField.textContent = "";
+            return false;
         }
-    }
-
-    // Real-time validation
-    emailInput.addEventListener("blur", validateEmail);
-    
-
-
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        validateEmail();
-
-        if (errorField.textContent === "") {
-            form.submit();
-        }
-    });
-
-   
-    resendBtn.addEventListener("click", () => {
-        const value = emailInput.value.trim();
 
         if (!isValidEmail(value)) {
-            errorField.textContent = "Enter a valid email before resending.";
-            return;
+            errorField.textContent = "Please enter a valid email address.";
+            return false;
+        }
+
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const userExists = users.some(user => user.email === value);
+
+        if (!userExists) {
+            errorField.textContent = "This email is not registered.";
+            return false;
         }
 
         errorField.textContent = "";
+        return true;
+    }
 
-        
+    emailInput.addEventListener("blur", validateEmailExists);
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (validateEmailExists()) {
+            form.submit(); 
+        }
+    });
+
+    resendBtn.addEventListener("click", () => {
+        if (!validateEmailExists()) return;
+
         resendBtn.disabled = true;
         resendBtn.textContent = "Resending...";
 
-        
         const msg = document.createElement("p");
         msg.textContent = "Resend request sent! (simulated)";
         msg.style.color = "#28a745";
         msg.style.marginTop = "1rem";
         resendBtn.insertAdjacentElement("afterend", msg);
 
-        
         setTimeout(() => {
             resendBtn.disabled = false;
             resendBtn.textContent = "Resend Email";
