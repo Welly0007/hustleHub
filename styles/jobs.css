@@ -140,6 +140,7 @@
 
 .job-card-content {
     flex: 1;
+    margin-top: 1rem;
 }
 
 .job-card-content h2 {
@@ -302,5 +303,12 @@
     .toggle-filters-btn {
         display: none;
         /* Ensure it's hidden in desktop view */
+    }
+}
+
+@media(min-width: 425px)
+{
+    .job-card-content {
+        margin-top: 0;
     }
 }

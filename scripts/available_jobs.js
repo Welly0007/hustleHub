@@ -60,6 +60,7 @@ function setupFilters(jobsArray) {
     const selects = document.querySelectorAll('.filter-options select');
 
     checkboxes.forEach(cb => cb.addEventListener('change', () => {
+        console.log("cb changed, calling applyFilters");
         applyFilters(jobsArray, checkboxes, selects);
     }));
 
@@ -79,13 +80,15 @@ function applyFilters(jobsArray, checkboxes, selects) {
 
     checkboxes.forEach(cb => {
         const groupId = cb.closest('.filter-group').id;
-        if (cb.checked && !checkboxGroups[groupId]) {
+        if (cb.checked && !checkboxGroups[groupId] && cb.value != "none") {
             checkboxGroups[groupId] = [];
+            if (cb.checked) {
+                checkboxGroups[groupId].push(cb.value);
+            }
         }
+        console.log("here are the groups", checkboxGroups);
 
-        if (cb.checked) {
-            checkboxGroups[groupId].push(cb.value);
-        }
+        
     });
   
 
