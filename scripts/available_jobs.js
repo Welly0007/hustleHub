@@ -8,50 +8,9 @@ async function getJobs() {
 async function initPage() {
     const initialJobsArray = await getJobs();
     displayJobs(initialJobsArray);
+    displayFilters(initialJobsArray);
+    clearAllFilters(initialJobsArray);
     setupFilters(initialJobsArray);
-}
-
-function displayJobs(jobs) {
-    const jobCardsContainer = document.getElementById("job-cards");
-    jobCardsContainer.textContent = ' ';
-    const JobCard = document.getElementById("job-card"); 
-    // console.log("displayJobs called");
-
-    jobs.forEach(element => {
-        const tempCard = JobCard.content.cloneNode(true);
-
-        // Add the values for the job card content
-        const tempCardContent = tempCard.querySelector(".job-card-content");
-
-        tempCardContent.querySelector(".jobTitle").textContent = element.title;
-        tempCardContent.querySelector(".jobCompany").append(element.company);
-        tempCardContent.querySelector(".jobPostTime").append(element.posted);
-        tempCardContent.querySelector(".jobSalary").append(element.salary);
-        tempCardContent.querySelector(".jobStatus").append(element.status);
-        tempCardContent.querySelector(".jobExperience").append(element.experience + "+ years");
-        tempCardContent.querySelector(".jobCreator").append(element.created_by);
-
-
-        // Job meta data
-        tempCardContent.querySelector(".job-meta .jobType").textContent = element.job_type;
-        tempCardContent.querySelector(".job-meta .jobPlace").textContent = element.workplace;
-        
-        // Job Tags
-        const jobTags = tempCardContent.querySelector(".job-tags");
-        element.tags.forEach(tag => {
-            const span = document.createElement("span");
-            span.textContent = tag;
-            jobTags.appendChild(span);
-        });
-
-        tempCardContent.querySelector(".btn-details").setAttribute("href", element.details_link);
-
-        // Company Logo
-        tempCard.querySelector(".Company-logo").setAttribute("src", element.logo);
-    
-        jobCardsContainer.appendChild(tempCard);
-
-    });
 }
 
 // Applying event listeners to all filters
@@ -70,7 +29,6 @@ function setupFilters(jobsArray) {
         });
     });
     
-
 }
 
 function applyFilters(jobsArray, checkboxes, selects) {
@@ -79,6 +37,8 @@ function applyFilters(jobsArray, checkboxes, selects) {
     const checkboxGroups = {};
 
     checkboxes.forEach(cb => {
+        console.log(cb);
+        console.log(cb.closest('.filter-group'));
         const groupId = cb.closest('.filter-group').id;
         if (cb.checked && !checkboxGroups[groupId] && cb.value != "none") {
             checkboxGroups[groupId] = [];
