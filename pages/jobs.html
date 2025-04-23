@@ -32,96 +32,49 @@
                 <!-- Sidebar Filters -->
                 <aside class="job-filters">
                     <h2>Filters</h2>
-                    <p class="filter-summary" id="numberOfSelectedFilters">0 filters selected</p>
+
+                    <div id="meta-filters">
+                        <p class="filter-summary" id="numberOfSelectedFilters">0 filters selected</p>
+                        <button id="clear-filters">Clear all filters</button>
+                    </div>
+
                     <div class="filter-group" id="workplace">
                         <h3>Workplace <span class="arrow">&#9660;</span></h3>
-                        <ul class="filter-options">
-                            <li><label><input type="checkbox" value="On-site"> On-site</label></li>
-                            <li><label><input type="checkbox" value="Hybrid"> Hybrid</label></li>
-                            <li><label><input type="checkbox" value="Remote"> Remote</label></li>
-                        </ul>
+                        <ul class="filter-options" id="workplace-list"></ul>
                     </div>
+
                     <div class="filter-group" id="country">
                         <h3>Country <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li>
-                                <select id="countryValues">
-                                    <option value="none">All Countries</option>
-                                    <option value="egypt">Egypt</option>
-                                    <option value="usa">United States</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="canada">Canada</option>
-                                    <option value="germany">Germany</option>
-                                    <option value="france">France</option>
-                                    <option value="india">India</option>
-                                    <option value="australia">Australia</option>
-                                </select>
+                                <select id="countryValues"></select>
                             </li>
                         </ul>
                     </div>
+
                     <div class="filter-group" id="career-level">
                         <h3>Career Level <span class="arrow">&#9660;</span></h3>
-                        <ul class="filter-options">
-                            <li><label><input type="checkbox" value="Entry Level"> Entry Level</label></li>
-                            <li><label><input type="checkbox" value="Mid Level"> Mid Level</label></li>
-                            <li><label><input type="checkbox" value="Senior Level"> Senior Level</label></li>
-                        </ul>
+                        <ul class="filter-options" id="career-level-list"></ul>
                     </div>
                     <!-- Years of Experience -->
                     <div class="filter-group">
-                        <h3>Years of Experience <span
-                                class="arrow">&#9660;</span></h3>
+                        <h3>Years of Experience <span class="arrow">&#9660;</span></h3>
                         <ul class="filter-options">
                             <li>
-                                <select id="min-experience">
-                                    <option value="none">Min</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                </select>
-                                <select id="max-experience">
-                                    <option value="none">Max</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="5">5</option>
-                                    <option value="10">10</option>
-                                    <option value="15">15+</option>
-                                </select>
+                                <select id="min-experience"></select>
+                                <select id="max-experience"></select>
                             </li>
                         </ul>
                     </div>
                     <!-- Job Category -->
                     <div class="filter-group" id="job-category">
                         <h3>Job Category <span class="arrow">&#9660;</span></h3>
-                        <ul class="filter-options">
-                            <li><label><input type="checkbox" value="none"> All (7318)</label></li>
-                            <li><label><input type="checkbox" value="Sales/Retail"> Sales/Retail (1394)</label></li>
-                            <li><label><input type="checkbox" value="Customer Service/Support"> Customer Service/Support (915)</label></li>
-                            <li><label><input type="checkbox" value="IT/Software Development"> IT/Software Development (826)</label></li>
-                            <li><label><input type="checkbox" value="Engineering - Mechanical/Electrical"> Engineering - Mechanical/Electrical (816)</label></li>
-                            <li><a href="#" class="show-more">Show more</a></li>
-                        </ul>
+                        <ul class="filter-options" id="job-category-list"></ul>
                     </div>
                     <!-- Job Type -->
                     <div class="filter-group" id="job-type">
                         <h3>Job Type <span class="arrow">&#9660;</span></h3>
-                        <ul class="filter-options">
-                            <li><label><input type="checkbox" value="none"> All
-                                    (7318)</label></li>
-                            <li><label><input type="checkbox" value="Full Time"> Full Time
-                                    (7086)</label></li>
-                            <li><label><input type="checkbox" value="Part Time"> Part Time
-                                    (150)</label></li>
-                            <li><label><input type="checkbox" value="Internship"> Internship
-                                    (104)</label></li>
-                            <li><label><input type="checkbox" value="Freelance Project"> Freelance Project
-                                    (89)</label></li>
-                            <li><a href="#" class="show-more">Show more</a></li>
-                        </ul>
+                        <ul class="filter-options" id="job-type-list"></ul>
                     </div>
                     <!-- Add more filter groups as needed -->
                 </aside>
@@ -163,6 +116,7 @@
 
         <!-- script after the page is displayed -->
         <script src="../scripts/afterDisplayScript.js"></script>
+        <script src="../scripts/displayJobs.js"></script>
         <script src="../scripts/available_jobs.js"></script>
     </body>
 

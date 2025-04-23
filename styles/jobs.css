@@ -43,6 +43,18 @@
     margin-bottom: 15px;
 }
 
+#meta-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#meta-filters #clear-filters {
+    margin-bottom: 15px;
+}
+
 .filter-group {
     margin-bottom: 20px;
 }
@@ -102,13 +114,16 @@
     margin-right: 0;
 }
 
-.filter-options .show-more {
+.filter-options .toggleCheckBoxes, #meta-filters #clear-filters {
+    background: none;
+    border: none;
     font-size: 0.9rem;
     color: var(--primary-color);
     text-decoration: none;
 }
 
-.filter-options .show-more:hover {
+.filter-options .toggleCheckBoxes:hover,
+#meta-filters #clear-filters:hover {
     text-decoration: underline;
 }
 
@@ -272,7 +287,7 @@
         margin: 10px 0;
     }
 
-    #toggleFilters:checked+.job-listings #toggleFiltersBtn {
+    #toggleFilters:checked + .job-listings #toggleFiltersBtn {
         position: fixed;
         top: 60px;
         right: 10px;
@@ -287,7 +302,13 @@
         /* Ensures text is not visible */
     }
 
-    #toggleFilters:checked+.job-listings .job-filters {
+    #toggleFilters:checked + .job-listings #meta-filters {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #toggleFilters:checked + .job-listings .job-filters {
         display: block;
         position: fixed;
         top: 0;
