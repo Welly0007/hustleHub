@@ -150,6 +150,7 @@ function clearAllFilters(jobs) {
 
         displayFilters(jobs);
         displayJobs(jobs);
+        setupFilters(jobs);
 
         document.getElementById("numberOfSelectedFilters").textContent = "0 filters selected";
     });
