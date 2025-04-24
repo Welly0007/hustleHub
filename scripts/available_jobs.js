@@ -37,19 +37,21 @@ function applyFilters(jobsArray, checkboxes, selects) {
     const checkboxGroups = {};
 
     checkboxes.forEach(cb => {
-        console.log(cb);
-        console.log(cb.closest('.filter-group'));
+        // console.log(cb);
+        // console.log(cb.closest('.filter-group'));
         const groupId = cb.closest('.filter-group').id;
-        if (cb.checked && !checkboxGroups[groupId] && cb.value != "none") {
-            checkboxGroups[groupId] = [];
+        if (cb.checked && cb.value != "none") {
+            if (!checkboxGroups[groupId])
+            {
+                checkboxGroups[groupId] = [];
+            }
             if (cb.checked) {
                 checkboxGroups[groupId].push(cb.value);
             }
         }
-        console.log("here are the groups", checkboxGroups);
-
         
     });
+    // console.log("here are the groups", checkboxGroups);
   
 
     const selectedSelects = Array.from(selects).filter((select) => {
