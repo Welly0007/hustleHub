@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function saveJobToLocalStorage(job) {
         let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+        job.id = Date.now();
         jobs.push(job);
         localStorage.setItem("jobs", JSON.stringify(jobs));
     }
