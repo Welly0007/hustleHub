@@ -78,15 +78,12 @@ function createCheckboxList(jobs, containerId, key) {
 function renderList(containerId, labels, start, end) {
     const container = document.getElementById(containerId);
     Object.entries(labels).slice(start, end).forEach(([label, num]) => {
-        createCheckBox(container, `${label} (${num})`, label);
+        if (![...container.querySelectorAll("input[type='checkbox']")].some(cb => cb.value === label)) {
+            createCheckBox(container, `${label} (${num})`, label);
+        }
     });
 }
 
-function removeFromList(container, end) {
-    while (container.children.length > 4) {
-        container.removeChild(container.lastElementChild);
-    }
-}
 
 function addToggleBtn(jobs, containerId, labels, total, state, batchSize) {
     const container = document.getElementById(containerId);
@@ -99,16 +96,31 @@ function addToggleBtn(jobs, containerId, labels, total, state, batchSize) {
 
     btn.addEventListener("click", () => {
 
+        const preserved = Array.from(container.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value)
+                .filter(v => v !== "none");
+
         if (fullyExpanded()) {
-            removeFromList(container, state.end);
+            
             state.start = 0;
             state.end = 4;
-        }
+            container.innerHTML = "";
+            createCheckBox(container, `All (${total})`, "none");
+            renderList(containerId, labels, state.start, state.end);
+        
+            preserved.forEach(val => {
+                if (!container.querySelector(`input[value="${val}"]`)) {
+                    createCheckBox(container, `${val} (${labels[val] || 1})`, val);
+                }
+                container.querySelector(`input[value="${val}"]`).checked = true;
+            });
+            
+        } 
         else {
-            state.start = fullyExpanded() ? batchSize : Math.min(state.start + batchSize, total);
-            state.end = fullyExpanded() ? batchSize : Math.min(state.end + batchSize, total);
+            state.start = Math.min(state.start + batchSize, total);
+            state.end = Math.min(state.end + batchSize, total);
             container.removeChild(btnLi);
-            renderList(containerId, labels, state.start,state.end);
+            renderList(containerId, labels, state.start, state.end);
         }
         
         setupFilters(jobs);

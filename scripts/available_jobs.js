@@ -7,6 +7,13 @@ async function getJobs() {
 
 async function initPage() {
     const initialJobsArray = await getJobs();
+
+    if (!localStorage.getItem("jobs")) {
+        localStorage.setItem("jobs", JSON.stringify(initialJobsArray));
+    }
+
+    // const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
+
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
     clearAllFilters(initialJobsArray);
@@ -20,6 +27,19 @@ function setupFilters(jobsArray) {
 
     checkboxes.forEach(cb => cb.addEventListener('change', () => {
         console.log("cb changed, calling applyFilters");
+
+        if (cb.value == "none" && cb.checked) {
+            // Uncheck all others in the group
+            checkboxes.forEach(other => {
+                if (other != cb) other.checked = false;
+            });
+        } else if (cb.value != "none" && cb.checked) {
+            // Uncheck the "All" checkbox
+            checkboxes.forEach(other => {
+                if (other.value == "none") other.checked = false;
+            });
+        }
+
         applyFilters(jobsArray, checkboxes, selects);
     }));
 
