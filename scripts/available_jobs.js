@@ -16,6 +16,7 @@ async function initPage() {
 
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
+    exclusiveAll(initialJobsArray);
     clearAllFilters(initialJobsArray);
     setupFilters(initialJobsArray);
 }
@@ -27,19 +28,6 @@ function setupFilters(jobsArray) {
 
     checkboxes.forEach(cb => cb.addEventListener('change', () => {
         console.log("cb changed, calling applyFilters");
-
-        if (cb.value == "none" && cb.checked) {
-            // Uncheck all others in the group
-            checkboxes.forEach(other => {
-                if (other != cb) other.checked = false;
-            });
-        } else if (cb.value != "none" && cb.checked) {
-            // Uncheck the "All" checkbox
-            checkboxes.forEach(other => {
-                if (other.value == "none") other.checked = false;
-            });
-        }
-
         applyFilters(jobsArray, checkboxes, selects);
     }));
 
@@ -111,3 +99,4 @@ function applyFilters(jobsArray, checkboxes, selects) {
 document.addEventListener("DOMContentLoaded", () => {
     initPage();
 });
+
