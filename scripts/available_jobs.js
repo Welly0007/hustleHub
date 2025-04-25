@@ -5,15 +5,39 @@ async function getJobs() {
     return data; // This is your array of job objects
 }
 
-async function initPage() {
-    const initialJobsArray = await getJobs();
+function setJobsInLocalStorage(jobs)
+{
+    localStorage.setItem("jobs", JSON.stringify(fetchedJobs));
+    localStorage.setItem("jobsTimeStamp", Date.now().toString());
+}
 
-    if (!localStorage.getItem("jobs")) {
-        localStorage.setItem("jobs", JSON.stringify(initialJobsArray));
+function isJobsWithinLimits(maxTimeInHours = 1)
+{
+    if (!localStorage.getItem("jobs")) return false;
+
+    const rawTimestamp = localStorage.getItem("jobsTimeStamp");
+    const ageInMs = Date.now() - parseInt(rawTimestamp, 10);
+    maxTimeInHours = maxTimeInHours * 60 * 60 * 1000;
+
+    if (ageInMs > maxTimeInHours) {
+        localStorage.removeItem('jobData');
+        localStorage.removeItem('jobDataTimestamp');
+        return false;
     }
 
-    // const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
+    return true;
+}
 
+async function initPage() {
+    
+    // Ensuring fresh jobs are in the localStorage
+    if(!isJobsWithinLimits)
+    {
+        const fetchedJobs = await getJobs();
+        setJobsInLocalStorage(fetchedJobs);
+    }
+
+    const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
     clearAllFilters(initialJobsArray);
