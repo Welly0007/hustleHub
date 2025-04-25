@@ -260,6 +260,12 @@
 /* Media Query for mobile view */
 @media (max-width: 768px) {
 
+    body, html {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
     .job-listings #job-cards {
         width: 100%;
     }
