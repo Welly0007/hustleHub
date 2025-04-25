@@ -101,6 +101,12 @@ header nav {
     gap: 20px;
 }
 
+header nav a.active {
+    color: var(--primary-color);
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
+}
+
 header nav:last-child {
     align-self: flex-end;
 }
