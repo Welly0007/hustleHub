@@ -12,64 +12,61 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         // get values from the form
+        const salary = document.getElementById("salary").value;
+        const category = document.getElementById("category").value;
         const title = document.getElementById("title").value;
-        const location = document.getElementById("location").value;
-        const mode = document.getElementById("mode").value;
-        const level = document.getElementById("level").value;
+        const country = document.getElementById("country").value;
+        const workplace = document.getElementById("workplace").value;
+        const career_level = document.getElementById("level").value;
         const experience = document.getElementById("experience").value;
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
-        const description = document.getElementById("description").value;
-        const typeCheckboxes = document.querySelectorAll(".checkbox-group input[type='checkbox']:checked");
-        const jobTypes = Array.from(typeCheckboxes).map(checkBox => checkBox.value);
+        //const description = document.getElementById("description").value;
+        const job_type = document.getElementById("job_type").value;
         const file = imgInput.files[0];
+        const currentDate = new Date();
+        const egyptianTime = new Date(currentDate.getTime() + (3 * 60 * 60 * 1000));
+
+        const jobData = {
+            title,
+            company: "HustleHub",
+            country,
+            posted: egyptianTime.toISOString(),
+            salary,
+            status: "Open",
+            experience,
+            created_by: "user",
+            job_type,
+            workplace,
+            tags,
+            category,
+            career_level,
+            logo: null // will be updated if image exists
+        };
         if (file) {
             const reader = new FileReader();
             reader.onload = function () {
-                const imageData = reader.result;
-
-                // Convert the current date to Egyptian time (UTC+2)
-                const currentDate = new Date();
-                const egyptianTime = new Date(currentDate.getTime() + (3 * 60 * 60 * 1000));
-
-                saveJobToLocalStorage({
-                    title,
-                    location,
-                    mode,
-                    level,
-                    experience,
-                    tags,
-                    description,
-                    jobTypes,
-                    image: imageData,
-                    dateAdded: egyptianTime.toISOString()
-                });
-
+                jobData.logo = reader.result;
+                saveJobToLocalStorage(jobData);
                 window.location.href = "pages/jobs.html";
             };
             reader.readAsDataURL(file);
         } else {
-            const currentDate = new Date();
-            const egyptianTime = new Date(currentDate.getTime() + (3 * 60 * 60 * 1000));
-            saveJobToLocalStorage({
-                title,
-                location,
-                mode,
-                level,
-                experience,
-                tags,
-                description,
-                jobTypes,
-                image: null,
-                dateAdded: egyptianTime.toISOString()
-            });
-
+            saveJobToLocalStorage(jobData);
             window.location.href = "pages/jobs.html";
         }
     });
 
-    function saveJobToLocalStorage(job) {
+    function saveJobToLocalStorage(jobData) {
         let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
-        job.id = Date.now();
+        const newId = Date.now();
+
+        const job = {
+            id: newId,
+            ...jobData,
+            logo: jobData.logo || "assets/default-logo.png",
+            details_link: `pages/job_details${newId}.html`
+        };
+
         jobs.push(job);
         localStorage.setItem("jobs", JSON.stringify(jobs));
     }
