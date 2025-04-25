@@ -96,8 +96,8 @@ function applyFilters(jobsArray, checkboxes, selects) {
     filtered = filtered.filter(job => {
         const workplaceMatch = !checkboxGroups["workplace"] || checkboxGroups["workplace"].includes(job.workplace);
         const jobTypeMatch = !checkboxGroups["job-type"] || checkboxGroups["job-type"].includes(job.job_type);
-        const careerLevelMatch = !checkboxGroups["career-level"] || checkboxGroups["career-level"].some(lvl => job.tags.includes(lvl));
-        const jobCategoryMatch = !checkboxGroups["job-category"] || checkboxGroups["job-category"].some(ctg => job.tags.includes(ctg));
+        const careerLevelMatch = !checkboxGroups["career-level"] || checkboxGroups["career-level"].includes(job.career_level);
+        const jobCategoryMatch = !checkboxGroups["job-category"] || checkboxGroups["job-category"].includes(job.category);
     
         let countryMatch = (selectedCountry ==="none" ? true : (job.country.map(c => c.toLowerCase()).includes(selectedCountry.toLowerCase())));
         let expRangeMatch = (minExp === null || parseInt(job.experience) >= minExp) && (maxExp === null || parseInt(job.experience) <= maxExp);
