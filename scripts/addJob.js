@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const career_level = document.getElementById("level").value;
         const experience = document.getElementById("experience").value;
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
         //const description = document.getElementById("description").value;
+
         const job_type = document.getElementById("job_type").value;
         const file = imgInput.files[0];
         const currentDate = new Date();
@@ -37,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             created_by: "user",
             job_type,
             workplace,
+            created_by: loggedInUser.username,
             tags,
             category,
             career_level,
