@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             email,
             password, 
             isAdmin,
+            companyName: isAdmin ? companyName : "",
             fullName: "",
             phoneNumber: "",
             location: "",
