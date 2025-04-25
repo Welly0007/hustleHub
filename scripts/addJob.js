@@ -15,11 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const salary = document.getElementById("salary").value;
         const category = document.getElementById("category").value;
         const title = document.getElementById("title").value;
-        const country = document.getElementById("country").value;
         const workplace = document.getElementById("workplace").value;
         const career_level = document.getElementById("level").value;
         const experience = document.getElementById("experience").value;
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
+        const countryCheckboxes = document.querySelectorAll('.country-container input[type="checkbox"]');
+        const selectedCountries = Array.from(countryCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => cb.value);
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
 
         //const description = document.getElementById("description").value;
@@ -32,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const jobData = {
             title,
             company: "HustleHub",
-            country,
+            country: selectedCountries,
             posted: egyptianTime.toISOString(),
             salary,
             status: "Open",
