@@ -16,7 +16,6 @@ async function initPage() {
 
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
-    exclusiveAll(initialJobsArray);
     clearAllFilters(initialJobsArray);
     setupFilters(initialJobsArray);
 }
