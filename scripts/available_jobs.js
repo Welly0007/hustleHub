@@ -5,14 +5,12 @@ async function getJobs() {
     return data; // This is your array of job objects
 }
 
-function setJobsInLocalStorage(jobs)
-{
-    localStorage.setItem("jobs", JSON.stringify(fetchedJobs));
+function setJobsInLocalStorage(jobs) {
+    localStorage.setItem("jobs", JSON.stringify(jobs)); // Use the 'jobs' parameter
     localStorage.setItem("jobsTimeStamp", Date.now().toString());
 }
 
-function isJobsWithinLimits(maxTimeInHours = 1)
-{
+function isJobsWithinLimits(maxTimeInHours = 1) {
     if (!localStorage.getItem("jobs")) return false;
 
     const rawTimestamp = localStorage.getItem("jobsTimeStamp");
@@ -20,8 +18,8 @@ function isJobsWithinLimits(maxTimeInHours = 1)
     maxTimeInHours = maxTimeInHours * 60 * 60 * 1000;
 
     if (ageInMs > maxTimeInHours) {
-        localStorage.removeItem('jobData');
-        localStorage.removeItem('jobDataTimestamp');
+        localStorage.removeItem("jobs");
+        localStorage.removeItem("jobsTimeStamp");
         return false;
     }
 
@@ -29,10 +27,8 @@ function isJobsWithinLimits(maxTimeInHours = 1)
 }
 
 async function initPage() {
-    
     // Ensuring fresh jobs are in the localStorage
-    if(!isJobsWithinLimits)
-    {
+    if (!isJobsWithinLimits()) {
         const fetchedJobs = await getJobs();
         setJobsInLocalStorage(fetchedJobs);
     }
