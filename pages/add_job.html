@@ -1,87 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact Us</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/add_job.css">
-        <!-- Script responsible for pre-display queries -->
-        <script src="../scripts/preDisplayScript.js"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/add_job.css">
+    <!-- Script responsible for pre-display queries -->
+    <script src="../scripts/preDisplayScript.js"></script>
+    <script src="../scripts/addJob.js" defer></script>
+</head>
 
-    <body>
-        <div class="headcontainer">
-            <!-- header fetched from js -->
-        </div>
-        <a href="" class="back-button">
-            ← Back to Dashboard
-        </a>
-        <div class="container"
-            onsubmit="event.preventDefault(); window.location.href='pages/jobs.html';">
-            <h2>Add Job</h2>
-            <form class="job-form">
-                <label for="title">Job Title</label>
-                <input type="text" id="title" required>
+<body>
+    <div class="headcontainer">
+        <!-- header fetched from js -->
+    </div>
+    <a href="" class="back-button">
+        ← Back to Dashboard
+    </a>
+    <div class="container">
+        <h2>Add Job</h2>
+        <form class="job-form" id="jobForm">
+            <label for="title">Job Title</label>
+            <input type="text" id="title" required>
 
-                <label for="jobImg">Upload Image</label>
-                <div class="file-upload">
-                    <label for="jobImg" class="upload-btn">Browse Files</label>
-                    <span id="file-name">No file selected</span>
-                    <input type="file" id="jobImg" accept="image/*" hidden>
-                </div>
+            <label for="jobImg">Upload Image</label>
+            <div class="file-upload">
+                <label for="jobImg" class="upload-btn">Browse Files</label>
+                <span id="file-name">No file selected</span>
+                <input type="file" id="jobImg" accept="image/*" hidden>
+            </div>
 
-                <label for="location">Location</label>
-                <input type="text" id="location" required>
+            <label for="location">Location</label>
+            <input type="text" id="location" required>
 
-                <label for="type">Job Type</label>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" value="Full Time"> Full
-                        Time</label>
-                    <label><input type="checkbox" value="Part Time"> Part
-                        Time</label>
-                    <label><input type="checkbox" value="Internship">
-                        Internship</label>
-                </div>
+            <label for="type">Job Type</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" value="Full Time"> Full
+                    Time</label>
+                <label><input type="checkbox" value="Part Time"> Part
+                    Time</label>
+                <label><input type="checkbox" value="Internship">
+                    Internship</label>
+            </div>
 
-                <label for="mode">Work Mode</label>
-                <select id="mode" required>
-                    <option value="On-site">On-site</option>
-                    <option value="Remote">Remote</option>
-                    <option value="Hybrid">Hybrid</option>
-                </select>
+            <label for="mode">Work Mode</label>
+            <select id="mode" required>
+                <option value="On-site">On-site</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+            </select>
 
-                <label for="level">Experience Level</label>
-                <select id="level" required>
-                    <option value="Entry Level">Entry Level</option>
-                    <option value="Mid Level">Mid Level</option>
-                    <option value="Senior Level">Senior Level</option>
-                </select>
+            <label for="level">Experience Level</label>
+            <select id="level" required>
+                <option value="Entry Level">Entry Level</option>
+                <option value="Mid Level">Mid Level</option>
+                <option value="Senior Level">Senior Level</option>
+            </select>
 
-                <label for="experience">Years of Experience</label>
-                <input type="number" id="experience" min="0"
-                    placeholder="e.g. 2" required>
+            <label for="experience">Years of Experience</label>
+            <input type="number" id="experience" min="0" placeholder="e.g. 2" required>
 
-                <label for="tags">Tags</label>
-                <input type="text" id="tags"
-                    placeholder="e.g. Customer Service, Backend, APIs">
+            <label for="tags">Tags</label>
+            <input type="text" id="tags" placeholder="e.g. Customer Service, Backend, APIs">
 
-                <label for="description">Job Description</label>
-                <textarea id="description" rows="4" required></textarea>
+            <label for="description">Job Description</label>
+            <textarea id="description" rows="4" required></textarea>
 
-                <button type="submit">Save Job</button>
-            </form>
+            <button type="submit">Save Job</button>
+        </form>
 
-        </div>
-        <footer>
-            <!-- Fetched from footer.html -->
-        </footer>
-    </body>
+    </div>
+    <footer>
+        <!-- Fetched from footer.html -->
+    </footer>
+</body>
 
 </html>
