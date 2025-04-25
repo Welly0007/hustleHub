@@ -1,5 +1,18 @@
+// fetching the data form the json object
+async function getJobs() {
+    const response = await fetch('../scripts/jobs.json');
+    const data = await response.json();
+    return data; // This is your array of job objects
+}
+
 async function initPage() {
-    const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
+    const initialJobsArray = await getJobs();
+
+    if (!localStorage.getItem("jobs")) {
+        localStorage.setItem("jobs", JSON.stringify(initialJobsArray));
+    }
+
+    // const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
 
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
