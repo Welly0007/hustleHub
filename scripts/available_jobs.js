@@ -1,12 +1,6 @@
-// fetching the data form the json object
-async function getJobs() {
-    const response = await fetch('../scripts/jobs.json');
-    const data = await response.json();
-    return data; // This is your array of job objects
-}
-
 async function initPage() {
-    const initialJobsArray = await getJobs();
+    const initialJobsArray = JSON.parse(localStorage.getItem("jobs"));
+
     displayJobs(initialJobsArray);
     displayFilters(initialJobsArray);
     clearAllFilters(initialJobsArray);
@@ -20,6 +14,19 @@ function setupFilters(jobsArray) {
 
     checkboxes.forEach(cb => cb.addEventListener('change', () => {
         console.log("cb changed, calling applyFilters");
+
+        if (cb.value == "none" && cb.checked) {
+            // Uncheck all others in the group
+            checkboxes.forEach(other => {
+                if (other != cb) other.checked = false;
+            });
+        } else if (cb.value != "none" && cb.checked) {
+            // Uncheck the "All" checkbox
+            checkboxes.forEach(other => {
+                if (other.value == "none") other.checked = false;
+            });
+        }
+
         applyFilters(jobsArray, checkboxes, selects);
     }));
 
