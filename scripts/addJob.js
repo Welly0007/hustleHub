@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const title = document.getElementById("title").value;
         const workplace = document.getElementById("workplace").value;
         const career_level = document.getElementById("level").value;
+        const description = document.getElementById("description").value;
         const experience = document.getElementById("experience").value;
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
         const countryCheckboxes = document.querySelectorAll('.country-container input[type="checkbox"]');
@@ -24,9 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .filter(cb => cb.checked)
             .map(cb => cb.value);
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-
-        //const description = document.getElementById("description").value;
-
         const job_type = document.getElementById("job_type").value;
         const file = imgInput.files[0];
         const currentDate = new Date();
@@ -34,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const jobData = {
             title,
-            company: "HustleHub",
+            company: loggedInUser.companyName,
             country: selectedCountries,
             posted: egyptianTime.toISOString(),
             salary,
@@ -47,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
             tags,
             category,
             career_level,
-            logo: null // will be updated if image exists
+            logo: null, // will be updated if image exists
+            description,
         };
         if (file) {
             const reader = new FileReader();
