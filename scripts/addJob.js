@@ -27,14 +27,22 @@ document.addEventListener("DOMContentLoaded", function () {
         const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
         const job_type = document.getElementById("job_type").value;
         const file = imgInput.files[0];
-        const currentDate = new Date();
-        const egyptianTime = new Date(currentDate.getTime() + (3 * 60 * 60 * 1000));
+        //const egyptianTime = new Date().toLocaleString("en-GB", { timeZone: "Africa/Cairo" });
 
         const jobData = {
             title,
             company: loggedInUser.companyName,
             country: selectedCountries,
-            posted: egyptianTime.toISOString(),
+            posted: new Date().toLocaleString("en-GB", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Africa/Cairo",
+            }),
             salary,
             status: "Open",
             experience,
