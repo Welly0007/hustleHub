@@ -2,6 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const url = new URLSearchParams(window.location.search);
     const jobId = url.get('job_id');
 
+    const editBtn = document.querySelector('a[href^="pages/edit_job.html"]');
+    if (editBtn && jobId) {
+        editBtn.href = `pages/edit_job.html?job_id=${jobId}`;
+    }
+
     if (!jobId) {
         console.error("Job ID is missing in the URL");
         return;
