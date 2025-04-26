@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("category").value = editedJob.category;
     document.getElementById("workplace").value = editedJob.workplace;
     document.getElementById("level").value = editedJob.career_level;
+    document.getElementById("status").value = editedJob.status;
     document.getElementById("experience").value = editedJob.experience;
     document.getElementById("job_type").value = editedJob.job_type;
     document.getElementById("tags").value = editedJob.tags.join(", ");
@@ -50,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const title = document.getElementById("title").value;
         const workplace = document.getElementById("workplace").value;
         const career_level = document.getElementById("level").value;
+        const status = document.getElementById("status").value;
         const description = document.getElementById("description").value;
         const experience = document.getElementById("experience").value;
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
@@ -67,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             country: countries,
             posted: editedJob.posted,
             salary,
-            status: "Open",
+            status,
             experience,
             created_by: loggedInUser.username,
             job_type,
