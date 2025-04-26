@@ -3,7 +3,9 @@
         "id": 1,
         "title": "Call Center Agent {B1+ English speakers}",
         "company": "Etisalat Egypt - Maadi, Cairo, Egypt",
-        "country": ["Egypt"],
+        "country": [
+            "Egypt"
+        ],
         "posted": "47 minutes ago",
         "salary": "$3000/month",
         "status": "Open",
@@ -11,17 +13,26 @@
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "On-site",
-        "tags": ["Entry Level", "Customer Service/Support", "Call Center", "Customer Care", "Customer Relations"],
+        "tags": [
+            "Entry Level",
+            "Customer Service/Support",
+            "Call Center",
+            "Customer Care",
+            "Customer Relations"
+        ],
         "category": "Customer Service/Support",
         "career_level": "Entry Level",
         "logo": "assets/etisalat-logo.webp",
-        "details_link": "pages/job_details1.html"
+        "details_link": "pages/job_details.html?job_id=1"
     },
     {
         "id": 2,
         "title": "Backend Developer",
         "company": "CodeBase Inc.",
-        "country": ["USA", "Canada"],
+        "country": [
+            "USA",
+            "Canada"
+        ],
         "posted": "2 days ago",
         "salary": "$6000/month",
         "status": "Closed",
@@ -29,17 +40,25 @@
         "created_by": "admin_user",
         "job_type": "Freelance",
         "workplace": "Remote",
-        "tags": ["Mid Level", "Backend Development", "APIs", "Server-side Logic", "IT/Software Development"],
+        "tags": [
+            "Mid Level",
+            "Backend Development",
+            "APIs",
+            "Server-side Logic",
+            "IT/Software Development"
+        ],
         "category": "IT/Software Development",
         "career_level": "Mid Level",
         "logo": "assets/codebase_inc.webp",
-        "details_link": "pages/job_details2.html"
+        "details_link": "pages/job_details.html?job_id=2"
     },
     {
         "id": 3,
         "title": "Fullstack Developer",
         "company": "DevWorks",
-        "country": ["none"],
+        "country": [
+            "none"
+        ],
         "posted": "1 week ago",
         "salary": "$4000/month",
         "status": "Open",
@@ -47,17 +66,25 @@
         "created_by": "admin_user",
         "job_type": "Contract",
         "workplace": "Hybrid",
-        "tags": ["Senior Level", "Frontend", "Backend", "Fullstack Development", "IT/Software Development"],
+        "tags": [
+            "Senior Level",
+            "Frontend",
+            "Backend",
+            "Fullstack Development",
+            "IT/Software Development"
+        ],
         "category": "IT/Software Development",
         "career_level": "Senior Level",
         "logo": "assets/logo-devworks.svg",
-        "details_link": "pages/job_details3.html"
+        "details_link": "pages/job_details.html?job_id=3"
     },
     {
         "id": 4,
         "title": "Marketing Specialist",
         "company": "Orange Egypt",
-        "country": ["Egypt"],
+        "country": [
+            "Egypt"
+        ],
         "posted": "3 hours ago",
         "salary": "$3500/month",
         "status": "Open",
@@ -65,17 +92,26 @@
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "On-site",
-        "tags": ["Mid Level", "Digital Marketing", "SEO", "Social Media", "Content Strategy", "Marketing"],
+        "tags": [
+            "Mid Level",
+            "Digital Marketing",
+            "SEO",
+            "Social Media",
+            "Content Strategy",
+            "Marketing"
+        ],
         "category": "Marketing",
         "career_level": "Mid Level",
         "logo": "assets/orange-egypt-logo.png",
-        "details_link": "pages/job_details4.html"
+        "details_link": "pages/job_details.html?job_id=4"
     },
     {
         "id": 5,
         "title": "Graphic Designer",
         "company": "Jumia Egypt",
-        "country": ["Egypt"],
+        "country": [
+            "Egypt"
+        ],
         "posted": "1 day ago",
         "salary": "$2800/month",
         "status": "Open",
@@ -83,17 +119,26 @@
         "created_by": "admin_user",
         "job_type": "Part Time",
         "workplace": "Remote",
-        "tags": ["Entry Level", "Design", "UI/UX", "Adobe Suite", "Creative", "Design & Creative"],
+        "tags": [
+            "Entry Level",
+            "Design",
+            "UI/UX",
+            "Adobe Suite",
+            "Creative",
+            "Design & Creative"
+        ],
         "category": "Design & Creative",
         "career_level": "Entry Level",
         "logo": "assets/jumia-logo.png",
-        "details_link": "pages/job_details5.html"
+        "details_link": "pages/job_details.html?job_id=5"
     },
     {
         "id": 6,
         "title": "Accountant",
         "company": "Fawry Egypt",
-        "country": ["Egypt"],
+        "country": [
+            "Egypt"
+        ],
         "posted": "2 days ago",
         "salary": "$3200/month",
         "status": "Open",
@@ -101,17 +146,27 @@
         "created_by": "admin_user",
         "job_type": "Temporary",
         "workplace": "On-site",
-        "tags": ["Accounting", "Finance", "Budgeting", "Bookkeeping", "Taxation", "Accounting/Finance", "Mid Level"],
+        "tags": [
+            "Accounting",
+            "Finance",
+            "Budgeting",
+            "Bookkeeping",
+            "Taxation",
+            "Accounting/Finance",
+            "Mid Level"
+        ],
         "category": "Accounting/Finance",
         "career_level": "Mid Level",
         "logo": "assets/fawry-logo.png",
-        "details_link": "pages/job_details6.html"
+        "details_link": "pages/job_details.html?job_id=6"
     },
     {
         "id": 7,
         "title": "HR Coordinator",
         "company": "SAP",
-        "country": ["Germany"],
+        "country": [
+            "Germany"
+        ],
         "posted": "5 days ago",
         "salary": "$3100/month",
         "status": "Open",
@@ -119,17 +174,27 @@
         "created_by": "admin_user",
         "job_type": "Internship",
         "workplace": "Hybrid",
-        "tags": ["Entry Level", "Recruitment", "Employee Relations", "Human Resources", "Training", "Human Resources", "Entry Level"],
+        "tags": [
+            "Entry Level",
+            "Recruitment",
+            "Employee Relations",
+            "Human Resources",
+            "Training",
+            "Human Resources",
+            "Entry Level"
+        ],
         "category": "Human Resources",
         "career_level": "Entry Level",
         "logo": "assets/sap-logo.png",
-        "details_link": "pages/job_details7.html"
+        "details_link": "pages/job_details.html?job_id=7"
     },
     {
         "id": 8,
         "title": "Data Analyst",
         "company": "HSBC",
-        "country": ["UK"],
+        "country": [
+            "UK"
+        ],
         "posted": "4 days ago",
         "salary": "$4500/month",
         "status": "Open",
@@ -137,10 +202,18 @@
         "created_by": "admin_user",
         "job_type": "Full Time",
         "workplace": "Remote",
-        "tags": ["Mid Level", "Data Analysis", "Excel", "SQL", "Python", "Reporting", "Data & Analytics"],
+        "tags": [
+            "Mid Level",
+            "Data Analysis",
+            "Excel",
+            "SQL",
+            "Python",
+            "Reporting",
+            "Data & Analytics"
+        ],
         "category": "Data & Analytics",
         "career_level": "Mid Level",
         "logo": "assets/hsbc-logo.png",
-        "details_link": "pages/job_details8.html"
+        "details_link": "pages/job_details.html?job_id=8"
     }
 ]

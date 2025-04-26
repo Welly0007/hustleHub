@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: newId,
             ...jobData,
             logo: jobData.logo || "assets/default-logo.png",
-            details_link: `pages/job_details${newId}.html`
+            details_link: `pages/job_details.html?job_id=${newId}`
         };
 
         jobs.push(job);
