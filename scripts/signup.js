@@ -91,7 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 occupation: "",
                 linkedin: "",
                 language: "",
-                skills: []
+                addedJobs: [],
+                appliedJobs: [],
+
             };
 
             users.push(newUser);

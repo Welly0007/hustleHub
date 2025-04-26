@@ -72,16 +72,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function saveJobToLocalStorage(jobData) {
         let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
         const newId = Date.now();
-
+    
         const job = {
             id: newId,
             ...jobData,
-            logo: jobData.logo || "assets/img_missing.jpg",
-            details_link: `pages/job_details.html?job_id=${newId}`
+            logo: jobData.logo || "assets/default-logo.png",
+            details_link: `pages/job_details.html?job_id=${newId}`,
+            created_by: loggedInUser.username // Ensure created_by is set
         };
-
+    
         jobs.push(job);
+        
+        // Update the user's addedJobs array
+        if (loggedInUser) {
+            loggedInUser.addedJobs = loggedInUser.addedJobs || [];
+            loggedInUser.addedJobs.push(newId);
+            localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+            
+            // Update in allUsers array
+            users = users.map(user => 
+                user.email === loggedInUser.email 
+                    ? { ...user, addedJobs: [...(user.addedJobs || []), newId] }
+                    : user
+            );
+            localStorage.setItem("users", JSON.stringify(users));
+        }
+    
         localStorage.setItem("jobs", JSON.stringify(jobs));
     }
 });
