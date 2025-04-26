@@ -311,13 +311,6 @@ input[type="radio"] {
     outline: none;
 }
 
-.password-wrapper input[type="password"]::-ms-reveal {
-    display: none;
-}
-.password-wrapper input[type="password"]::-ms-clear {
-    display: none;
-}
-
 .password-wrapper button {
     width: 2rem;
     height: 100%;
