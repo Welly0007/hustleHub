@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const jobId = urlParams.get('job_id');
+    const url = new URLSearchParams(window.location.search);
+    const jobId = url.get('job_id');
 
     if (!jobId) {
         console.error("Job ID is missing in the URL");
@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("jobTitle").textContent = job.title;
-    document.getElementById("jobLogo").src = job.logo || "assets/default-logo.png";
+    const jobLogo = document.getElementById("jobLogo");
+    jobLogo.src = (job.logo && job.logo !== "null") ? job.logo : "assets/img_missing.jpg"; // Fallback to missing image
     document.getElementById("jobCompany").textContent = job.company;
     document.getElementById("jobPosted").textContent = job.posted;
     document.getElementById("jobType").textContent = job.job_type;
@@ -29,13 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("jobCreatedBy").textContent = job.created_by;
     document.getElementById("jobDescription").textContent = job.description;
 
-    const jobTags = document.getElementById("jobTags");
-    jobTags.innerHTML = "<strong>Tags:</strong>";
+    const tags = document.getElementById("jobTags");
+    tags.innerHTML = "<strong>Tags:</strong>";
 
 
     job.tags.forEach(tag => {
         const tagElement = document.createElement("span");
         tagElement.textContent = tag;
-        jobTags.appendChild(tagElement);
+        tags.appendChild(tagElement);
     });
 });
