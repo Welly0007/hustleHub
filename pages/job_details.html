@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Details - Call Center Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/job-details.css">
+    <!-- Script responsible for pre-display queries -->
+    <script src="../scripts/preDisplayScript.js"></script>
+    <script src="../scripts/jobDetails.js" defer></script>
+</head>
+
+<body>
+    <div class="headcontainer">
+        <!-- header fetched from js -->
+    </div>
+
+    <main class="job-details">
+        <div class="job-detail">
+            <!-- Job Title and Logo -->
+            <div class="job-title-logo-container">
+                <div class="job-title-container">
+                    <h1 class="job-title" id="jobTitle">Loading...</h1>
+                </div>
+                <div class="job-logo-container">
+                    <img src="" alt="Company Logo" class="new-logo-img" id="jobLogo" />
+                </div>
+            </div>
+
+            <!-- Job Info Section -->
+            <div class="info-card-container">
+                <p><strong>Job Information</strong></p>
+                <div class="info-card"><strong class="strong">Company:</strong> <span id="jobCompany">Loading...</span>
+                </div>
+                <div class="info-card"><strong class="strong">Posted:</strong><span id="jobPosted">Loading...</span>
+                </div>
+                <div class="info-card"><strong class="strong">Job
+                        Type:</strong> <span id="jobType">Loading...</span></div>
+                <div class="info-card"><strong class="strong">Workplace:</strong><span
+                        id="jobWorkplace">Loading...</span></div>
+                <div class="info-card"><strong class="strong">Career
+                        Level:</strong><span id="jobCareerLevel">Loading...</span></div>
+                <div class="info-card"><strong class="strong">Experience
+                        Required:</strong><span id="jobExperience">Loading...</span></div>
+                <div class="info-card"><strong class="strong">Salary:</strong><span id="jobSalary">Loading...</span>
+                </div>
+                <div class="info-card"><strong class="strong">Status:</strong><span id="jobStatus">Loading...</span>
+                </div>
+                <div class="info-card"><strong class="strong">Created
+                        By:</strong><span id="jobCreatedBy">Loading...</span></div>
+            </div>
+
+            <!-- Job Description -->
+            <div class="job-description-container">
+                <p><strong>Description</strong></p>
+                <p class="job-description" id="jobDescription">Loading...</p>
+            </div>
+
+            <!-- Job Tags -->
+            <div class="job-tags" id="jobTags">
+                <strong>Tags :</strong>
+                <span>Loading...</span>
+            </div>
+
+            <!-- Action Buttons -->
+            <a href="pages/apply.html?job_id=1" class="btn apply-btn">Apply Now</a>
+            <a href="pages/edit_job.html" class="btn apply-btn">Edit
+                Now</a>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Fetched from footer.html -->
+    </footer>
+</body>
+
+</html>
