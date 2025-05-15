@@ -81,18 +81,18 @@ document.addEventListener("DOMContentLoaded", function () {
             ...jobData,
             logo: jobData.logo || "assets/default-logo.png",
             details_link: `pages/job_details.html?job_id=${newId}`,
-            created_by: loggedInUser.username // Ensure created_by is set
+            created_by: loggedInUser.username 
         };
     
         jobs.push(job);
         
-        // Update the user's addedJobs array
+       
         if (loggedInUser) {
             loggedInUser.addedJobs = loggedInUser.addedJobs || [];
             loggedInUser.addedJobs.push(newId);
             localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
             
-            // Update in allUsers array
+           
             users = users.map(user => 
                 user.email === loggedInUser.email 
                     ? { ...user, addedJobs: [...(user.addedJobs || []), newId] }
