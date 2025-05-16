@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Profile</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+        <!-- Script responsible for pre-display queries -->
+        <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
+    </head>
+    <body>
+        <div class="headcontainer">
+            <!-- header fetched from js -->
+        </div>
+
+        <div class="profile-container">
+            <div class="profile-header">
+                <img src="{% static 'assets/anon5.webp' %}" alt="Profile Photo"
+                    class="profile-avatar"
+                    id="avatarPreview">
+
+                <div class="profile-info">
+                    <h1>John Doe</h1>
+                    <p>ryan@example.com - <span>Administrator</span></p>
+                    <label class="profile-upload-btn">
+                        Upload your own avatar
+                        <input type="file" accept="image/*"
+                            class="profile-avatar-input" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="profile-account">
+                <h2>Account</h2>
+                <form>
+                    <label>Username <input type="text" value="ryan"></label>
+                    <label>Email* <input type="email"
+                            value="ryan@example.com"></label>
+                    <label>Phone Number <input type="tel"
+                            value="+1234567890"></label>
+                    <label>Password <input type="password"
+                            value="password"></label>
+                    <label>Full name* <input type="text"
+                            value="John Doe"></label>
+                    <label>Date of Birth <input type="date"></label>
+                    <label>Location <input type="text"
+                            value="New York, USA"></label>
+                    <label>Title <input type="text"
+                            value="Administrator"></label>
+                    <label>Company <input type="text" value="Devworks"></label>
+                    <label>Language
+                        <select>
+                            <option>English</option>
+                            <option>French</option>
+                            <option>Arabic</option>
+                        </select>
+                    </label>
+                    <label>LinkedIn <input type="url"
+                            value="https://linkedin.com/in/ryan"></label>
+                    <br>
+                    <div class="form-actions">
+                        <button type="submit">Save Changes</button>
+                        <button type="button" class="delete-account-btn">Delete
+                            Account</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="profile-jobs">
+                <h2>📝 Added Jobs</h2>
+                <ul>
+                    <li>✅ Backend Developer at CodeBase Inc.</li>
+                    <li>✅ Call Center Agent at Etisalat Egypt</li>
+                </ul>
+                <a href="/pages/add_job.html" class="profile-add-btn">➕ Add a
+                    new
+                    job</a>
+            </div>
+        </div>
+
+        <footer>
+            <!-- Fetched from footer.html -->
+        </footer>
+        <script src="{% static 'scripts/profileScript.js' %}"></script>
+    </body>
+</html>

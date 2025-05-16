@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Listings</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+        <link rel="stylesheet" href="{% static 'styles/jobs.css' %}">
+        <!-- Script responsible for pre-display queries -->
+        <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
+    </head>
+
+    <body>
+        <div class="headcontainer">
+            <!-- header fetched from js -->
+        </div>
+
+        <input type="checkbox" id="toggleFilters">
+
+        <main class="job-listings">
+            <h1>Jobs Available</h1>
+            <label for="toggleFilters" id="toggleFiltersBtn">Show
+                Filters</label>
+
+            <div class="job-container">
+                <!-- Sidebar Filters -->
+                <aside class="job-filters">
+                    <h2>Filters</h2>
+
+                    <div id="meta-filters">
+                        <p class="filter-summary" id="numberOfSelectedFilters">0 filters selected</p>
+                        <button id="clear-filters">Clear all filters</button>
+                    </div>
+
+                    <div class="filter-group" id="workplace">
+                        <h3>Workplace <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options" id="workplace-list"></ul>
+                    </div>
+
+                    <div class="filter-group" id="country">
+                        <h3>Country <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li>
+                                <select id="countryValues"></select>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="filter-group" id="career-level">
+                        <h3>Career Level <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options" id="career-level-list"></ul>
+                    </div>
+                    <!-- Years of Experience -->
+                    <div class="filter-group">
+                        <h3>Years of Experience <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options">
+                            <li>
+                                <select id="min-experience"></select>
+                                <select id="max-experience"></select>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Job Category -->
+                    <div class="filter-group" id="job-category">
+                        <h3>Job Category <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options" id="job-category-list"></ul>
+                    </div>
+                    <!-- Job Type -->
+                    <div class="filter-group" id="job-type">
+                        <h3>Job Type <span class="arrow">&#9660;</span></h3>
+                        <ul class="filter-options" id="job-type-list"></ul>
+                    </div>
+                    <!-- Add more filter groups as needed -->
+                </aside>
+
+                <!-- Job Listings -->
+                <section id="job-cards"></section>
+                
+                <template id="job-card">
+                    <div class="job-card">
+                        <img src="" alt="Company Logo" class="Company-logo">
+                        <div class="job-card-content">
+                            <h2 class="jobTitle"></h2>
+                            <p class="jobCompany"><strong>Company: </strong></p>
+                            <p class="jobPostTime"><strong>Posted: </strong></p>
+                            <p class="jobSalary"><strong>Salary: </strong></p>
+                            <p class="jobStatus"><strong>Status: </strong></p>
+                            <p class="jobExperience"><strong>Experience: </strong></p>
+                            <p class="jobCreator"><strong>Created By: </strong></p>
+
+                            <div class="job-meta">
+                                <span class="jobType"></span>
+                                <span class="jobPlace"></span>
+                            </div>
+
+                            <div class="job-tags"></div>
+                            <a href="" class="btn-details">Show Job Details</a>
+                        </div>
+                        
+                        
+                    
+                    </div>
+                </template>
+            </div>
+        </main>
+
+        <footer>
+            <!-- Fetched from footer.html -->
+        </footer>
+
+        <!-- script after the page is displayed -->
+        <script src="{% static 'scripts/afterDisplayScript.js' %}"></script>
+        <script src="{% static 'scripts/displayJobs.js' %}"></script>
+        <script src="{% static 'scripts/available_jobs.js' %}"></script>
+    </body>
+
+</html>

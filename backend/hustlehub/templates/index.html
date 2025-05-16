@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HustleHUB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/hero.css' %}">
+    <!-- Script responsible for pre-display queries -->
+    <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
+    <script src="{% static 'scripts/index.js' %}"></script>
+    
+</head>
+
+<body>
+    <div class="headcontainer">
+        <!-- header fetched from js -->
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to hustleHUB</h1>
+            <p>Your gateway to endless opportunities.</p>
+            <div class="hero-buttons">
+                <a href="pages/add_job.html" class="btn-primary">Add Job</a>
+                <a href="pages/jobs.html" class="btn-secondary">Find One</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <!-- Fetched from footer.html -->
+    </footer>
+</body>
+
+</html>
