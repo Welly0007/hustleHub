@@ -1,9 +1,9 @@
 // dynamically set the base URL
-// const base = document.createElement('base');
-// base.href = window.location.hostname === 'welly0007.github.io'
-//     ? 'https://welly0007.github.io/hustleHub/'
-//     : '/';
-// document.head.prepend(base);
+const base = document.createElement('base');
+base.href = window.location.hostname === 'welly0007.github.io'
+    ? 'https://welly0007.github.io/hustleHub/'
+    : '/';
+document.head.prepend(base);
 
 // fetching Header and rendering to page (skip for login, signup, and forgotPassword pages)
 const excludedPages = ["login.html", "signup.html", "forgotPassword.html"];
@@ -70,6 +70,7 @@ if (!excludedPages.some(page => window.location.pathname.endsWith(page))) {
         });
 }
 
+// Fetching Footer
 fetch('/static/footer.html')
     .then(res => res.text())
     .then(data => {

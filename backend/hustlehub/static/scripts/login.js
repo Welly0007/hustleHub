@@ -25,24 +25,38 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
         clearError();
 
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        const users = JSON.parse(localStorage.getItem("users")) || [];
+        try {
+            const response = await fetch('/api/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                }),
+            });
 
-        const userExists = users.find(user => user.email === email && user.password === password);
+            const data = await response.json();
 
-        if (userExists) {
-            localStorage.setItem("loggedInUser", JSON.stringify(userExists));
-            window.location.href = userExists.isAdmin ? "pages/AProfile.html" : "pages/profile.html";
-        } else {
-            const errorField = document.getElementById("login-email-error");
-            errorField.textContent = "Invalid email or password.";
+            if (!response.ok) {
+                showError(data.error || "Invalid email or password.");
+                return;
+            }
+
+            // Redirect based on user type - using relative paths for Django
+            window.location.href = data.isAdmin ? "/pages/AProfile.html" : "/pages/profile.html";
             
+        } catch (error) {
+            console.error("Login error:", error);
+            showError("An error occurred during login. Please try again later.");
         }
     });
 });
