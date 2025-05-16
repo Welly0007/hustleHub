@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
         clearErrors();
 
@@ -70,38 +70,42 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!hasError) {
+            try {
+                const response = await fetch('/api/signup/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        isAdmin,
+                        companyName: isAdmin ? companyName : "",
+                    }),
+                });
 
-            let users = JSON.parse(localStorage.getItem("users")) || [];
-            const emailExists = users.some(user => user.email === email);
-            if (emailExists) {
-                errorFields.email.textContent = "This email is already registered.";
-                return;
+                const data = await response.json();
+
+                if (!response.ok) {
+                    // Handle error response
+                    if (data.error.includes("Email already exists")) {
+                        errorFields.email.textContent = "This email is already registered.";
+                    } else if (data.error.includes("Username already exists")) {
+                        errorFields.username.textContent = "This username is already taken.";
+                    } else {
+                        // Handle other errors
+                        alert("Signup failed: " + data.error);
+                    }
+                    return;
+                }
+
+                // Redirect based on user type - using relative paths for Django
+                window.location.href = isAdmin ? "/pages/AProfile.html" : "/pages/profile.html";
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An error occurred during signup. Please try again later.");
             }
-            const newUser = {
-                username,
-                email,
-                password,
-                isAdmin,
-                companyName: isAdmin ? companyName : "",
-                fullName: "",
-                phoneNumber: "",
-                location: "",
-                dateOfBirth: "",
-                title: "",
-                occupation: "",
-                linkedin: "",
-                language: "",
-                addedJobs: [],
-                appliedJobs: [],
-
-            };
-
-            users.push(newUser);
-            localStorage.setItem("users", JSON.stringify(users));
-            localStorage.setItem("loggedInUser", JSON.stringify(newUser));
-
-
-            window.location.href = isAdmin ? "pages/AProfile.html" : "pages/profile.html";
         }
     });
     const companyNameWrapper = document.getElementById("company-name-wrapper");
