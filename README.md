@@ -65,11 +65,25 @@ project/
 
 ## How to Run
 
-1. Open `index.html` in a browser to view the home page.
-2. Navigate to other pages using the links in the header.
-3. The website works both locally and on GitHub Pages:
-   - Locally: Open the project using a local server (e.g., Live Server in VS Code).
-   - GitHub Pages: Visit [https://welly0007.github.io/hustleHub/](https://welly0007.github.io/hustleHub/).
+To run the Django project locally:
+
+1. Make sure you have Python and pip installed.
+2. Install Django (if not already):  
+   ```
+   pip install django
+   ```
+3. Navigate to the backend project directory:
+   ```
+   cd backend
+   ```
+4. Run the development server:
+   ```
+   python manage.py runserver
+   ```
+6. Open your browser and go to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the site.
+
+> **Note:**  
+> Static files are managed by Django's `{% static %}` template tag. Make sure `DEBUG = True` in your `settings.py` for local development.
 
 ## Future Enhancements
 

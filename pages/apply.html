@@ -13,15 +13,17 @@
   <link rel="stylesheet" href="../styles/apply.css">
   <!-- Script responsible for pre-display queries -->
   <script src="../scripts/preDisplayScript.js"></script>
+  <script src="../scripts/applyJob.js" defer></script>
 </head>
+<body>
 <div class="headcontainer">
   <!-- header fetched from js -->
 </div>
 
-  <main class="apply-container">
+<main class="apply-container">
     <h1>Apply to Job</h1>
-    <h2 class="job-title">Position: Front-End Developer</h2>
-    <h2 class="job-title">At: Company</h2>
+    <h2 class="job-title" id="jobPosition">Loading...</h2>
+    <h2 class="job-title" id="jobCompany">Loading...</h2>
     <form class="apply-form">
       <label>
         Full Name
@@ -39,12 +41,12 @@
       </label>
 
 
-      <label for="jobImg">Upload Resume</label>
-            <div class="file-upload">
-                <label for="jobImg" class="upload-btn">Browse Files</label>
-                <span id="file-name">No file selected</span>
-                <input type="file" id="jobImg" accept="image/*" hidden>
-            </div>
+      <label for="resumeUpload">Upload Resume</label>
+      <div class="file-upload">
+          <label for="resumeUpload" class="upload-btn">Browse Files</label>
+          <span id="file-name">No file selected</span>
+          <input type="file" id="resumeUpload" name="resume" accept=".pdf,.doc,.docx" required hidden>
+      </div>
 
 
       <label>
@@ -56,10 +58,10 @@
         <button type="submit">Submit Application</button>
       </div>
     </form>
-  </main>
+</main>
 
-  <footer>
-		<!-- Fetched from footer.html -->
-	</footer>
+<footer>
+    <!-- Fetched from footer.html -->
+</footer>
 </body>
 </html>

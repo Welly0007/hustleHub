@@ -21,7 +21,7 @@
 
     <div class="profile-container">
       <div class="profile-header">
-        <img src="assets/anon5.webp" alt="Profile Photo"
+        <img src="../assets/anon5.webp" alt="Profile Photo"
           class="profile-avatar" id="avatarPreview">
 
         <div class="profile-info">
@@ -42,7 +42,7 @@
           <label>Email* <input type="email" value="ryan@example.com"></label>
           <label>Phone Number <input type="tel" value="+1234567890"></label>
           <label>Password <input type="password" value="password"></label>
-          <label>Full name* <input type="text" value="John Doe"></label>
+          <label>Full name* <input type="text" value="John Doe" required></label>
           <label>Date of Birth <input type="date"></label>
           <label>Location <input type="text" value="New York, USA"></label>
           <label>Title <input type="text" value="User"></label>
@@ -57,9 +57,6 @@
           </label>
           <label>LinkedIn <input type="url"
               value="https://linkedin.com/in/ryan"></label>
-          <label>Skills <input type="text"
-              placeholder="e.g., JavaScript, Python, React"></label>
-
           <div class="form-actions">
             <button type="submit">Save Changes</button>
             <button type="button" class="delete-account-btn">Delete
@@ -72,8 +69,6 @@
       <div class="profile-jobs">
         <h2>📝 Applied Jobs</h2>
         <ul>
-          <li>✅ Backend Developer at CodeBase Inc.</li>
-          <li>✅ Call Center Agent at Etisalat Egypt</li>
         </ul>
         <a href="pages/jobs.html" class="profile-add-btn">➕ Apply to a new
           job</a>
@@ -82,5 +77,6 @@
     <footer>
       <!-- Fetched from footer.html -->
     </footer>
-  </body>
+    <script src="../scripts/profileScript.js"></script>
+      </body>
 </html>

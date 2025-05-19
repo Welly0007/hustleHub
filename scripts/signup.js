@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
         e.preventDefault();
         clearErrors();
 
@@ -70,36 +70,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!hasError) {
-                   
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-        const emailExists = users.some(user => user.email === email);
-        if (emailExists) {
-            errorFields.email.textContent = "This email is already registered.";
-            return;
-        }
-        const newUser = {
-            username,
-            email,
-            password, 
-            isAdmin,
-            fullName: "",
-            phoneNumber: "",
-            location: "",
-            dateOfBirth: "",
-            title: "",
-            occupation: "",
-            linkedin: "",
-            language: "",
-            skills: []
-        };
+            try {
+                const response = await fetch('/api/signup/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        isAdmin,
+                        companyName: isAdmin ? companyName : "",
+                    }),
+                });
 
-        users.push(newUser);
-        localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("loggedInUser", JSON.stringify(newUser)); 
-    
+                const data = await response.json();
 
-        window.location.href = isAdmin ? "pages/AProfile.html" : "pages/profile.html";
+                if (!response.ok) {
+                    // Handle error response
+                    if (data.error.includes("Email already exists")) {
+                        errorFields.email.textContent = "This email is already registered.";
+                    } else if (data.error.includes("Username already exists")) {
+                        errorFields.username.textContent = "This username is already taken.";
+                    } else {
+                        // Handle other errors
+                        alert("Signup failed: " + data.error);
+                    }
+                    return;
                 }
+
+                // Redirect based on user type - using relative paths for Django
+                window.location.href = isAdmin ? "/pages/AProfile.html" : "/pages/profile.html";
+            } catch (error) {
+                console.error("Error during signup:", error);
+                alert("An error occurred during signup. Please try again later.");
+            }
+        }
     });
     const companyNameWrapper = document.getElementById("company-name-wrapper");
 
@@ -110,62 +117,62 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (radio.checked && radio.value === "False") {
                 companyNameWrapper.style.display = "none";
                 companyNameInput.value = "";
-                errorFields.company.textContent = ""; 
+                errorFields.company.textContent = "";
             }
         });
-});
-
-const toggleButtons = document.querySelectorAll(".password-wrapper button");
-
-toggleButtons.forEach(button => {
-    button.addEventListener("click", () => {
-        const input = button.closest(".password-wrapper").querySelector("input");
-
-        if (input.type === "password") {
-            input.type = "text";
-        } else {
-            input.type = "password";
-        }
     });
-});
 
-usernameInput.addEventListener("blur", validateUsername);
-emailInput.addEventListener("blur", validateEmail);
-passwordInput.addEventListener("blur", validatePassword);
-confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
-companyNameInput.addEventListener("blur", validateCompanyName);
+    const toggleButtons = document.querySelectorAll(".password-wrapper button");
 
-function validateUsername() {
-    errorFields.username.textContent = isValidUsername(usernameInput.value)
-        ? ""
-        : "Username must be at least 3 characters with only letters, numbers, or _";
-}
+    toggleButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const input = button.closest(".password-wrapper").querySelector("input");
 
-function validateEmail() {
-    errorFields.email.textContent = isValidEmail(emailInput.value)
-        ? ""
-        : "Enter a valid email address.";
-}
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        });
+    });
 
-function validatePassword() {
-    errorFields.password.textContent = isStrongPassword(passwordInput.value)
-        ? ""
-        : "Password must include uppercase, lowercase, number, and special character.";
-}
+    usernameInput.addEventListener("blur", validateUsername);
+    emailInput.addEventListener("blur", validateEmail);
+    passwordInput.addEventListener("blur", validatePassword);
+    confirmPasswordInput.addEventListener("blur", validateConfirmPassword);
+    companyNameInput.addEventListener("blur", validateCompanyName);
 
-function validateConfirmPassword() {
-    errorFields.confirmPassword.textContent = doPasswordsMatch(passwordInput.value, confirmPasswordInput.value)
-        ? ""
-        : "Passwords do not match.";
-}
-
-function validateCompanyName() {
-    if (companyNameWrapper.style.display !== "none") {
-        errorFields.company.textContent = isNotEmpty(companyNameInput.value)
+    function validateUsername() {
+        errorFields.username.textContent = isValidUsername(usernameInput.value)
             ? ""
-            : "Company name is required for company admins.";
-    } else {
-        errorFields.company.textContent = "";
+            : "Username must be at least 3 characters with only letters, numbers, or _";
     }
-}
+
+    function validateEmail() {
+        errorFields.email.textContent = isValidEmail(emailInput.value)
+            ? ""
+            : "Enter a valid email address.";
+    }
+
+    function validatePassword() {
+        errorFields.password.textContent = isStrongPassword(passwordInput.value)
+            ? ""
+            : "Password must include uppercase, lowercase, number, and special character.";
+    }
+
+    function validateConfirmPassword() {
+        errorFields.confirmPassword.textContent = doPasswordsMatch(passwordInput.value, confirmPasswordInput.value)
+            ? ""
+            : "Passwords do not match.";
+    }
+
+    function validateCompanyName() {
+        if (companyNameWrapper.style.display !== "none") {
+            errorFields.company.textContent = isNotEmpty(companyNameInput.value)
+                ? ""
+                : "Company name is required for company admins.";
+        } else {
+            errorFields.company.textContent = "";
+        }
+    }
 });

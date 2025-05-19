@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apply to Job</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/apply.css' %}">
+  <!-- Script responsible for pre-display queries -->
+  <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
+  <script src="{% static 'scripts/applyJob.js' %}" defer></script>
+</head>
+<body>
+<div class="headcontainer">
+  <!-- header fetched from js -->
+</div>
+
+<main class="apply-container">
+    <h1>Apply to Job</h1>
+    <h2 class="job-title" id="jobPosition">Loading...</h2>
+    <h2 class="job-title" id="jobCompany">Loading...</h2>
+    <form class="apply-form">
+      <label>
+        Full Name
+        <input type="text" name="name" placeholder="John Doe" required />
+      </label>
+
+      <label>
+        Email
+        <input type="email" name="email" placeholder="john@example.com" required />
+      </label>
+
+      <label>
+        Phone Number
+        <input type="tel" name="phone" placeholder="123-456-7890" required />
+      </label>
+
+
+      <label for="resumeUpload">Upload Resume</label>
+      <div class="file-upload">
+          <label for="resumeUpload" class="upload-btn">Browse Files</label>
+          <span id="file-name">No file selected</span>
+          <input type="file" id="resumeUpload" name="resume" accept=".pdf,.doc,.docx" required hidden>
+      </div>
+
+
+      <label>
+        Cover Letter
+        <textarea name="cover" rows="5" placeholder="Write your message here..." required></textarea>
+      </label>
+    
+      <div class="form-actions">
+        <button type="submit">Submit Application</button>
+      </div>
+    </form>
+</main>
+
+<footer>
+    <!-- Fetched from footer.html -->
+</footer>
+</body>
+</html>

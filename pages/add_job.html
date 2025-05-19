@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
+    <title>Add Job</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -37,21 +37,34 @@
                 <input type="file" id="jobImg" accept="image/*" hidden>
             </div>
 
-            <label for="location">Location</label>
-            <input type="text" id="location" required>
-
-            <label for="type">Job Type</label>
-            <div class="checkbox-group">
-                <label><input type="checkbox" value="Full Time"> Full
-                    Time</label>
-                <label><input type="checkbox" value="Part Time"> Part
-                    Time</label>
-                <label><input type="checkbox" value="Internship">
-                    Internship</label>
+            <label>Available Countries</label>
+            <div class="country-container">
+                <label><input type="checkbox" value="Egypt"> Egypt</label><br>
+                <label><input type="checkbox" value="USA"> USA</label><br>
+                <label><input type="checkbox" value="UK"> UK</label><br>
+                <label><input type="checkbox" value="Canada"> Canada</label><br>
+                <label><input type="checkbox" value="Germany"> Germany</label><br>
+                <label><input type="checkbox" value="France"> France</label><br>
+                <label><input type="checkbox" value="UAE"> UAE</label><br>
+                <label><input type="checkbox" value="Saudi Arabia"> Saudi Arabia</label><br>
+                <label><input type="checkbox" value="Australia"> Australia</label><br>
+                <label><input type="checkbox" value="Netherlands"> Netherlands</label><br>
             </div>
 
-            <label for="mode">Work Mode</label>
-            <select id="mode" required>
+
+            <label for="job_type">Job Type</label>
+            <select id="job_type" required>
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <option value="Internship">Internship</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Contract">Contract</option>
+                <option value="Temporary">Temporary</option>
+            </select>
+
+
+            <label for="workplace">Work Mode</label>
+            <select id="workplace" required>
                 <option value="On-site">On-site</option>
                 <option value="Remote">Remote</option>
                 <option value="Hybrid">Hybrid</option>
@@ -67,6 +80,13 @@
             <label for="experience">Years of Experience</label>
             <input type="number" id="experience" min="0" placeholder="e.g. 2" required>
 
+            <label for="salary">Salary</label>
+            <input type="text" id="salary" placeholder="$3000/month" required>
+
+            <label for="category">Job Category</label>
+            <input type="text" id="category" placeholder="e.g. IT/Software Development" required>
+
+
             <label for="tags">Tags</label>
             <input type="text" id="tags" placeholder="e.g. Customer Service, Backend, APIs">
 
@@ -80,6 +100,8 @@
     <footer>
         <!-- Fetched from footer.html -->
     </footer>
+    <script src="../scripts/available_jobs.js"></script>
+
 </body>
 
 </html>

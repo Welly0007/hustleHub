@@ -2,6 +2,7 @@
     padding: 100px 20px;
     font-family: var(--fontFamily);
     color: var(--black);
+    min-height: 100vh;
 }
 
 .job-listings h1 {
@@ -260,7 +261,13 @@
 /* Media Query for mobile view */
 @media (max-width: 768px) {
 
-    .job-listings .job-cards {
+    body, html {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .job-listings #job-cards {
         width: 100%;
     }
 
