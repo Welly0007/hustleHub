@@ -78,6 +78,8 @@ def signup_view(request):
                     email=email,
                     password=password,
                     is_company_admin=is_admin,
+                    is_staff = False,
+                    is_superuser = False,
                     company_name=company_name if is_admin else '',
                 )
                 
