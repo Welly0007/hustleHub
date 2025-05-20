@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class CustomUser(AbstractUser):
     is_company_admin = models.BooleanField(default=False)
     company_name = models.CharField(max_length=255, blank=True, null=True)
@@ -22,6 +23,7 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
 
+
 # Classes to store attributes
 # This class stores contries supported by the website
 class Countries(models.Model):
@@ -30,47 +32,69 @@ class Countries(models.Model):
     def __str__(self):
         return f"{self.country}"
 
+
 # Class to store categories
 class Categories(models.Model):
     category = models.CharField(max_length=255, blank=False, null=False)
+
     def __str__(self):
         return f"{self.category}"
 
-# Class to store job types   
+
+# Class to store job types
 class JobType(models.Model):
     job_type = models.CharField(max_length=255, blank=False, null=False)
+
     def __str__(self):
         return f"{self.job_type}"
 
-# Class to store workplace 
+
+# Class to store workplace
 class Workplace(models.Model):
     workplace = models.CharField(max_length=50, blank=False, null=False)
+
     def __str__(self):
         return f"{self.workplace}"
+
 
 # Class to store career level
 class Career_level(models.Model):
     level = models.CharField(max_length=50, null=False, blank=True)
+
     def __str__(self):
         return f"{self.level}"
-    
+
 
 class Jobs(models.Model):
     title = models.CharField(max_length=50, blank=False, null=False)
-    countries = models.ManyToManyField(Countries, related_name='countries', blank=True)
+    countries = models.ManyToManyField(Countries, related_name="countries", blank=True)
     post_date = models.DateField(auto_now_add=True, verbose_name="posted")
     # Admin and admin's company can be accessed from this field
-    added_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE,blank=True, null=False, related_name="added")
+    added_by = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=False,
+        related_name="added",
+    )
     applied = models.ManyToManyField(CustomUser, blank=True, related_name="applied_to")
     salary = models.FloatField(blank=False, null=False)
     # True or False for Open or Closed
     status = models.BooleanField(null=False, default=True)
-    job_type = models.ForeignKey(JobType, on_delete=models.CASCADE, related_name="jobs_in_jobType")
+    job_type = models.ForeignKey(
+        JobType, on_delete=models.CASCADE, related_name="jobs_in_jobType"
+    )
     experience = models.IntegerField(null=False, blank=False)
-    workplace = models.ForeignKey(Workplace, on_delete=models.CASCADE, related_name="jobs_in_workplace")
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="jobs_in_category")
-    logo = models.ImageField(upload_to='static/assets/')
-    career_level = models.ForeignKey(Career_level, on_delete=models.CASCADE, related_name="jobs_in_level")
+    workplace = models.ForeignKey(
+        Workplace, on_delete=models.CASCADE, related_name="jobs_in_workplace"
+    )
+    category = models.ForeignKey(
+        Categories, on_delete=models.CASCADE, related_name="jobs_in_category"
+    )
+    logo = models.ImageField(upload_to="logos/", blank=True, null=True)
+    career_level = models.ForeignKey(
+        Career_level, on_delete=models.CASCADE, related_name="jobs_in_level"
+    )
     details_link = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField()
 
@@ -80,12 +104,11 @@ class Jobs(models.Model):
         # f"added_by: {self.added_by}, applied: {self.applied}, salary: {self.salary}, status: {self.status}"
         # f"job_type: {self.job_type}, experienc: {self.experience}, workplace: {self.workplace},"
         # f"category: {self.category}, logo: {self.logo}, career_level: {self.career_level}, details_link: {self.details_link}")
-        
-    
+
     def as_json(self):
         return {
             "id": self.pk,
-            "title" : self.title,
+            "title": self.title,
             "company": self.added_by.company_name,
             "country": [country.country for country in self.countries.all()],
             "posted": self.post_date.isoformat() if self.post_date else None,
@@ -98,11 +121,12 @@ class Jobs(models.Model):
             "tags": [tag.tag for tag in self.job_tags.all()],
             "category": self.category.category,
             "career_level": self.career_level.level,
-            "logo": self.logo.url,
-            "details_link": self.details_link, 
-            "description": self.description
+            "logo": self.logo.url if self.logo else "/media/logos/img_missing.jpg",
+            "details_link": self.details_link,
+            "description": self.description,
         }
-    
+
+
 # Classes to store multi-valued attributes
 # This class stores tags for each job
 class Tags(models.Model):
@@ -111,5 +135,3 @@ class Tags(models.Model):
 
     def __str__(self):
         return f"{self.job}: {self.tag}"
-    
-
