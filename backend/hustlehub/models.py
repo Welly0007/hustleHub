@@ -66,12 +66,13 @@ class Jobs(models.Model):
     # True or False for Open or Closed
     status = models.BooleanField(null=False, default=True)
     job_type = models.ForeignKey(JobType, on_delete=models.CASCADE, related_name="jobs_in_jobType")
-    experience = models.IntegerField()
+    experience = models.IntegerField(null=False, blank=False)
     workplace = models.ForeignKey(Workplace, on_delete=models.CASCADE, related_name="jobs_in_workplace")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="jobs_in_category")
     logo = models.ImageField(upload_to='static/assets/')
     career_level = models.ForeignKey(Career_level, on_delete=models.CASCADE, related_name="jobs_in_level")
     details_link = models.CharField(max_length=255, blank=True, null=True)
+    description = models.TextField()
 
     def __str__(self):
         return f"{self.title}"
@@ -79,6 +80,28 @@ class Jobs(models.Model):
         # f"added_by: {self.added_by}, applied: {self.applied}, salary: {self.salary}, status: {self.status}"
         # f"job_type: {self.job_type}, experienc: {self.experience}, workplace: {self.workplace},"
         # f"category: {self.category}, logo: {self.logo}, career_level: {self.career_level}, details_link: {self.details_link}")
+        
+    
+    def as_json(self):
+        return {
+            "id": self.pk,
+            "title" : self.title,
+            "company": self.added_by.company_name,
+            "country": [country.country for country in self.countries.all()],
+            "posted": self.post_date.isoformat() if self.post_date else None,
+            "salary": self.salary,
+            "status": self.status,
+            "experience": self.experience,
+            "created_by": self.added_by.full_name,
+            "job_type": self.job_type.job_type,
+            "workplace": self.workplace.workplace,
+            "tags": [tag.tag for tag in self.job_tags.all()],
+            "category": self.category.category,
+            "career_level": self.career_level.level,
+            "logo": self.logo.url,
+            "details_link": self.details_link, 
+            "description": self.description
+        }
     
 # Classes to store multi-valued attributes
 # This class stores tags for each job

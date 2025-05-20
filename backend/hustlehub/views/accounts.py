@@ -4,9 +4,6 @@ from django.shortcuts import render
 def home(request):
     return render(request, 'index.html')
 
-def jobs(request):
-    return render(request, 'pages/jobs.html')
-
 def contact(request):
     return render(request, 'pages/contact.html')
 
@@ -24,9 +21,6 @@ def add_job(request):
 
 def apply(request):
     return render(request, 'pages/apply.html')
-
-def job_details(request):
-    return render(request, 'pages/job_details.html')
 
 def submitted_successfully(request):
     return render(request, 'pages/submitted_successfully.html')
