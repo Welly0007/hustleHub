@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const response = await fetch('/api/signup/', {
                     method: 'POST',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrfToken
