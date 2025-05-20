@@ -40,46 +40,34 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const salary = document.getElementById("salary").value;
-        const category = document.getElementById("category").value;
-        const title = document.getElementById("title").value;
-        const workplace = document.getElementById("workplace").value;
-        const career_level = document.getElementById("level").value;
-        const status = document.getElementById("status").value;
-        const description = document.getElementById("description").value;
-        const experience = document.getElementById("experience").value;
-        const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
+        const formData = new FormData(form);
+        // Ensure the correct field name for backend
+        formData.set("career_level", document.getElementById("level").value);
+
+        // Collect countries (checkboxes)
         const countries = Array.from(document.querySelectorAll('.country-container input[type="checkbox"]'))
             .filter(cb => cb.checked)
             .map(cb => cb.value);
-        const job_type = document.getElementById("job_type").value;
+        formData.set("country", JSON.stringify(countries));
 
-        const updatedJobData = {
-            title,
-            country: countries,
-            salary,
-            status,
-            experience,
-            job_type,
-            workplace,
-            tags,
-            category,
-            career_level,
-            description
-        };
+        // Collect tags (comma-separated)
+        const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
+        formData.set("tags", JSON.stringify(tags));
 
         fetch(`/api/jobs/${jobId}/edit/`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedJobData)
+            body: formData
         })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                window.location.href = "/pages/jobs.html";
-            } else {
-                alert(data.error || "Failed to update job.");
-            }
-        });
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "/pages/jobs.html";
+                } else {
+                    alert(data.error || "Failed to update job.");
+                }
+            })
+            .catch(err => {
+                alert("An error occurred: " + err);
+            });
     });
 });

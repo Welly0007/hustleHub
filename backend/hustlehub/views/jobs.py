@@ -48,13 +48,22 @@ def edit_job_api(request, job_id):
             Tags,
         )
 
-        data = json.loads(request.body)
+        # Use request.POST for text data, request.FILES for files
+        if request.content_type.startswith("multipart/form-data"):
+            data = request.POST
+            files = request.FILES
+        else:
+            data = json.loads(request.body)
+            files = None
+
         job = get_object_or_404(Jobs, pk=job_id)
         job.title = data.get("title", job.title)
         job.salary = data.get("salary", job.salary)
         job.status = data.get("status", job.status) == "Open"
         job.experience = data.get("experience", job.experience)
         job.description = data.get("description", job.description)
+        if files and "logo" in files:
+            job.logo = files["logo"]
         if "category" in data:
             job.category = Categories.objects.get(category=data["category"])
         if "job_type" in data:
@@ -64,10 +73,24 @@ def edit_job_api(request, job_id):
         if "career_level" in data:
             job.career_level = Career_level.objects.get(level=data["career_level"])
         if "country" in data:
-            job.countries.set(Countries.objects.filter(country__in=data["country"]))
+            import json as pyjson
+
+            countries = (
+                pyjson.loads(data["country"])
+                if isinstance(data["country"], str)
+                else data["country"]
+            )
+            job.countries.set(Countries.objects.filter(country__in=countries))
         if "tags" in data:
+            import json as pyjson
+
+            tags = (
+                pyjson.loads(data["tags"])
+                if isinstance(data["tags"], str)
+                else data["tags"]
+            )
             job.job_tags.all().delete()
-            for tag in data["tags"]:
+            for tag in tags:
                 Tags.objects.create(job=job, tag=tag)
         job.save()
         return JsonResponse({"success": True})
