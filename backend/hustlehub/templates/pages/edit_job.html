@@ -27,14 +27,14 @@
         ← Back to Jobs
     </a>
 
-    <div class="container" onsubmit="event.preventDefault(); window.location.href='/pages/jobs.html';">
+    <div class="container">
         <h2>Edit Job</h2>
-        <form class="job-form" id="jobForm">
+        <form class="job-form" id="jobForm" enctype="multipart/form-data">
             <label for="title">Job Title</label>
-            <input type="text" id="title" required />
+            <input type="text" id="title" name="title" required />
 
             <label for="status">Job Status</label>
-            <select id="status" required>
+            <select id="status" name="status" required>
                 <option value="Open">Open</option>
                 <option value="Closed">Closed</option>
             </select>
@@ -43,7 +43,7 @@
             <div class="file-upload">
                 <label for="jobImg" class="upload-btn">Browse Files</label>
                 <span id="file-name">No file selected</span>
-                <input type="file" id="jobImg" accept="image/*" hidden>
+                <input type="file" id="jobImg" name="logo" accept="image/*" hidden>
             </div>
 
             <label>Available Countries</label>
@@ -61,7 +61,7 @@
             </div>
 
             <label for="job_type">Job Type</label>
-            <select id="job_type" required>
+            <select id="job_type" name="job_type" required>
                 <option value="Full Time">Full Time</option>
                 <option value="Part Time">Part Time</option>
                 <option value="Internship">Internship</option>
@@ -71,33 +71,33 @@
             </select>
 
             <label for="workplace">Work Mode</label>
-            <select id="workplace" required>
+            <select id="workplace" name="workplace" required>
                 <option value="On-site">On-site</option>
                 <option value="Remote">Remote</option>
                 <option value="Hybrid">Hybrid</option>
             </select>
 
             <label for="level">Experience Level</label>
-            <select id="level" required>
-                <option value="Entry Level">Entry Level</option>
-                <option value="Mid Level" selected>Mid Level</option>
-                <option value="Senior Level">Senior Level</option>
+            <select id="level" name="career_level" required>
+                <option value="Entry">Entry Level</option>
+                <option value="Mid">Mid Level</option>
+                <option value="Senior">Senior Level</option>
             </select>
 
             <label for="experience">Years of Experience</label>
-            <input type="number" id="experience" min="0" value="3" required>
+            <input type="number" id="experience" name="experience" min="0" value="3" required>
 
             <label for="salary">Salary</label>
-            <input type="text" id="salary" placeholder="$3000/month" required>
+            <input type="text" id="salary" name="salary" placeholder="$3000/month" required>
 
             <label for="category">Job Category</label>
-            <input type="text" id="category" placeholder="e.g. IT/Software Development" required>
+            <input type="text" id="category" name="category" placeholder="e.g. IT/Software Development" required>
 
             <label for="tags">Tags</label>
-            <input type="text" id="tags" value=" Backend Development, APIs, Server-side Logic" />
+            <input type="text" id="tags" name="tags" value=" Backend Development, APIs, Server-side Logic" />
 
             <label for="description">Job Description</label>
-            <textarea id="description" rows="4" required>
+            <textarea id="description" name="description" rows="4" required>
                 We are looking for a software engineer to join our remote team.
             </textarea>
 
