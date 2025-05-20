@@ -35,8 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const response = await fetch('/api/login/', {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
                 },
                 body: JSON.stringify({
                     email,
