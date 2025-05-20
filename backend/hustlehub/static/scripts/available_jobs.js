@@ -3,122 +3,15 @@ function getPreloadedJobs() {
     return JSON.parse(raw);
 }
 
-function sortById(arr) {
-  return Array.isArray(arr) ? arr.slice().sort((a, b) => a.id - b.id) : [];
-}
-
-function isJobsUpToDate(serverJobs, localJobs) {
-  return JSON.stringify(sortById(serverJobs)) === JSON.stringify(sortById(localJobs))
-}
-
-function setJobsInLocalStorage(jobs) {
-  localStorage.setItem("jobs", JSON.stringify(jobs));
-  localStorage.setItem("jobsTimeStamp", Date.now().toString());
-}
-
-function isJobsWithinLimits(maxTimeInHours = 1) {
-  if (!localStorage.getItem("jobs")) return false;
-
-    const rawTimestamp = localStorage.getItem("jobsTimeStamp");
-    const ageInMs = Date.now() - parseInt(rawTimestamp, 10);
-    maxTimeInHours = maxTimeInHours * 60 * 60 * 1000;
-
-    if (ageInMs > maxTimeInHours) {
-        localStorage.removeItem("jobs");
-        localStorage.removeItem("jobsTimeStamp");
-        return false;
-    }
-
-    return true;
-}
-
-
 async function initPage() {
 
-    const localJobs = JSON.parse(localStorage.getItem("jobs") || "[]");
     const serverJobs = getPreloadedJobs();
 
-    if (!isJobsWithinLimits() || !isJobsUpToDate(serverJobs, localJobs)) {
-        setJobsInLocalStorage(serverJobs);
-        localJobs = serverJobs;
-    }
-
-    displayJobs(localJobs);
-    displayFilters(localJobs);
-    clearAllFilters(localJobs);
-    setupFilters(localJobs);
+    displayJobs(serverJobs);
+    displayFilters(serverJobs);
+    clearAllFilters(serverJobs);
+    setupFilters(serverJobs);
 }
-
-/* 2 – deep-compare server vs. cache */
-function isJobsUpToDate(serverJobs, localJobs) {
-  return (
-    JSON.stringify(sortById(serverJobs)) ===
-    JSON.stringify(sortById(localJobs))
-  );
-}
-
-/* 3 – write to localStorage */
-function setJobsInLocalStorage(jobs) {
-  localStorage.setItem("jobs", JSON.stringify(jobs));
-  localStorage.setItem("jobsTimeStamp", Date.now().toString());
-}
-
-/* 4 – TTL guard (default 1 h, change if you like) */
-function isJobsWithinLimits(maxHours = 1) {
-  const ts = Number(localStorage.getItem("jobsTimeStamp"));
-  if (!ts) return false;
-  const ageMs = Date.now() - ts;
-  return ageMs <= maxHours * 60 * 60 * 1000;
-}
-
-/* ---------- data sources ---------- */
-
-/* A) jobs *baked* into the Django template                             
-   <script id="preload" type="application/json">{{ jobs_json|safe }}</script> */
-function getPreloadedJobs() {
-  try {
-    const raw = document.getElementById("preload")?.textContent || "[]";
-    return JSON.parse(raw);
-  } catch {
-    console.error("Malformed embedded jobs JSON");
-    return [];
-  }
-}
-
-/* B) (optional) fallback fetch — keep if you still have jobs.json on the server */
-async function fetchJobsJson() {
-  const res = await fetch("../scripts/jobs.json");
-  return await res.json();
-}
-
-/* ---------- main ---------- */
-
-async function initPage() {
-  /* 1. what’s in localStorage right now */
-  let localJobs = [];
-  try {
-    localJobs = JSON.parse(localStorage.getItem("jobs") || "[]");
-  } catch {}
-
-  /* 2. what the server just baked into the HTML */
-  const serverJobs = getPreloadedJobs();
-
-  /* 3. decide whether to refresh the cache */
-  const freshEnough = isJobsWithinLimits();
-  if (!freshEnough || !isJobsUpToDate(serverJobs, localJobs)) {
-    // If the preload block is empty (edge case) fall back to fetch
-    const finalJobs = serverJobs.length ? serverJobs : await fetchJobsJson();
-    setJobsInLocalStorage(finalJobs);
-    localJobs = finalJobs;
-  }
-
-  /* 4. finally render everything */
-  displayJobs(localJobs);
-  displayFilters(localJobs);
-  clearAllFilters(localJobs);
-  setupFilters(localJobs);
-}
-
 
 // Applying event listeners to all filters
 function setupFilters(jobsArray) {
