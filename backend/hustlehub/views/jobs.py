@@ -39,6 +39,15 @@ def job_detail_api(request, job_id):
 @csrf_exempt
 def edit_job_api(request, job_id):
     if request.method == "POST":
+        from ..models import (
+            Categories,
+            JobType,
+            Workplace,
+            Career_level,
+            Countries,
+            Tags,
+        )
+
         data = json.loads(request.body)
         job = get_object_or_404(Jobs, pk=job_id)
         job.title = data.get("title", job.title)
@@ -46,7 +55,20 @@ def edit_job_api(request, job_id):
         job.status = data.get("status", job.status) == "Open"
         job.experience = data.get("experience", job.experience)
         job.description = data.get("description", job.description)
-        # Update related fields (category, job_type, workplace, career_level, countries, tags) as needed
+        if "category" in data:
+            job.category = Categories.objects.get(category=data["category"])
+        if "job_type" in data:
+            job.job_type = JobType.objects.get(job_type=data["job_type"])
+        if "workplace" in data:
+            job.workplace = Workplace.objects.get(workplace=data["workplace"])
+        if "career_level" in data:
+            job.career_level = Career_level.objects.get(level=data["career_level"])
+        if "country" in data:
+            job.countries.set(Countries.objects.filter(country__in=data["country"]))
+        if "tags" in data:
+            job.job_tags.all().delete()
+            for tag in data["tags"]:
+                Tags.objects.create(job=job, tag=tag)
         job.save()
         return JsonResponse({"success": True})
     return JsonResponse({"error": "Invalid method"}, status=405)
