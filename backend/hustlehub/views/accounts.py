@@ -140,3 +140,8 @@ def login_view(request):
     else:
         return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
+
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'pages/login.html')
+
