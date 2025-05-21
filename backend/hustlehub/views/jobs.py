@@ -6,8 +6,8 @@ def jobs(request):
     jobs = Jobs.objects.all()
     jobs_json = json.dumps([job.as_json() for job in jobs])
     # print(jobs)
-    for job in jobs:
-        print(job.description)
+    # for job in jobs:
+    #     print(job.description)
 
     return render(request, 'pages/jobs.html', {
         "jobs_json": jobs_json

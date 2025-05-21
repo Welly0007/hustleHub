@@ -69,7 +69,7 @@ class Jobs(models.Model):
     experience = models.IntegerField(null=False, blank=False)
     workplace = models.ForeignKey(Workplace, on_delete=models.CASCADE, related_name="jobs_in_workplace")
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="jobs_in_category")
-    logo = models.ImageField(upload_to='static/assets/')
+    logo = models.ImageField(upload_to='logos/', blank=True, null=True)
     career_level = models.ForeignKey(Career_level, on_delete=models.CASCADE, related_name="jobs_in_level")
     details_link = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField()
@@ -83,6 +83,7 @@ class Jobs(models.Model):
         
     
     def as_json(self):
+        logo_url = self.logo.url if self.logo and hasattr(self.logo, 'url') else None
         return {
             "id": self.pk,
             "title" : self.title,
@@ -98,7 +99,7 @@ class Jobs(models.Model):
             "tags": [tag.tag for tag in self.job_tags.all()],
             "category": self.category.category,
             "career_level": self.career_level.level,
-            "logo": self.logo.url,
+            "logo": logo_url,
             "details_link": self.details_link, 
             "description": self.description
         }
