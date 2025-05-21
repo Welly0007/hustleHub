@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')
+                 
                 },
                 body: JSON.stringify({
                     email,

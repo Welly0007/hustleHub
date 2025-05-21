@@ -140,7 +140,3 @@ def login_view(request):
     else:
         return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
-# If you want a simple view to just render the login page without JSON:
-def login(request):
-    if request.method == 'GET':
-        return render(request, 'pages/login.html')
