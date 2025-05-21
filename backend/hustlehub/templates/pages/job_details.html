@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="job-logo-container">
-                    <img src="{{ job.logo }}" alt="Company Logo" class="new-logo-img" id="jobLogo" />
+                    <img src="{{ job.logo.url }}" alt="Company Logo" class="new-logo-img" id="jobLogo" />
                 </div>
 
             </div>
@@ -49,7 +49,7 @@
                 <p><strong>Job Information</strong></p>
 
                 <div class="info-card">
-                    <strong class="strong">Company:</strong> 
+                    <strong class="strong">Company:</strong>
                     <span id="jobCompany">{{ job.added_by.company_name }}</span>
                 </div>
 
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="info-card">
-                    <strong class="strong">Job Type:</strong> 
+                    <strong class="strong">Job Type:</strong>
                     <span id="jobType">{{ job.job_type }}</span>
                 </div>
 
@@ -87,9 +87,9 @@
                     <strong class="strong">Status:</strong>
                     <span id="jobStatus">
                         {% if job.status %}
-                            Open
+                        Open
                         {% else %}
-                            Closed
+                        Closed
                         {% endif %}
                     </span>
                 </div>
@@ -106,19 +106,19 @@
                 <p><strong>About the job</strong></p>
                 <div class="job-description" id="jobDescription">
                     {% for line in description_lines %}
-                        {% if line %}
-                            {% if line == "Key Responsibilities:" or line == "Required Skills:" %}
-                                <strong>{{ line }}</strong>
-                                <ul>
-                            {% elif line|slice:":1" == "-" %}
-                                <li>{{ line|slice:"1:" }}</li>
-                                {% if forloop.last %}
-                                    </ul>
-                                {% endif %}
-                            {% else %}
-                                <p>{{ line }}</p>
-                            {% endif %}
-                        {% endif %}
+                    {% if line %}
+                    {% if line == "Key Responsibilities:" or line == "Required Skills:" %}
+                    <strong>{{ line }}</strong>
+                    <ul>
+                        {% elif line|slice:":1" == "-" %}
+                        <li>{{ line|slice:"1:" }}</li>
+                        {% if forloop.last %}
+                    </ul>
+                    {% endif %}
+                    {% else %}
+                    <p>{{ line }}</p>
+                    {% endif %}
+                    {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -127,7 +127,7 @@
             <div class="job-tags" id="jobTags">
                 <strong>Tags :</strong>
                 {% for tag in job.job_tags.all %}
-                    <span>{{ tag.tag }}</span>
+                <span>{{ tag.tag }}</span>
                 {% endfor%}
             </div>
 
