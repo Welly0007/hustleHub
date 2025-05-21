@@ -85,6 +85,7 @@ class Jobs(models.Model):
         JobType, on_delete=models.CASCADE, related_name="jobs_in_jobType"
     )
     experience = models.IntegerField(null=False, blank=False)
+
     workplace = models.ForeignKey(
         Workplace, on_delete=models.CASCADE, related_name="jobs_in_workplace"
     )
@@ -95,6 +96,7 @@ class Jobs(models.Model):
     career_level = models.ForeignKey(
         Career_level, on_delete=models.CASCADE, related_name="jobs_in_level"
     )
+
     details_link = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField()
 

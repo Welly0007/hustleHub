@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     form.addEventListener("submit", function (e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         // get values from the form
         const salary = document.getElementById("salary").value;
@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
             window.location.href = "pages/jobs.html";
         }
     });
+    
 
     function saveJobToLocalStorage(jobData) {
         let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
