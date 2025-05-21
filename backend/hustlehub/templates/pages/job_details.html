@@ -23,6 +23,11 @@
         <!-- header fetched from js -->
     </div>
 
+    <!-- Add a hidden element to preload user data -->
+    <script id="preload" type="application/json">
+      {{ user_data|safe }}
+    </script>
+
     <main class="job-details">
         <div class="job-detail">
 

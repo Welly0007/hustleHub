@@ -7,8 +7,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
-    const isAdmin = loggedInUser.isAdmin || false;
+    // Get logged-in user from preloaded data (like profileScript.js)
+    let loggedInUser = {};
+    const preload = document.getElementById("preload");
+    if (preload && preload.textContent.trim()) {
+        try {
+            loggedInUser = JSON.parse(preload.textContent);
+        } catch (err) {
+            loggedInUser = {};
+        }
+    }
+    const isAdmin = loggedInUser.is_company_admin || false;
 
     const applyBtn = document.querySelector('a[href^="pages/apply.html"]');
     const editBtn = document.querySelector('a[href^="pages/edit_job.html"]');
@@ -20,22 +29,22 @@ document.addEventListener("DOMContentLoaded", function () {
         applyBtn.style.display = 'inline-block';
     }
     else if (isAdmin && editBtn) {
-        if (job.created_by === loggedInUser.username) {
+        if (typeof job !== "undefined" && job.created_by === loggedInUser.username) {
             editBtn.style.display = 'inline-block';
         }
-
     }
 
     const applyNowBtn = document.getElementById("applyNowBtn");
-    applyNowBtn.addEventListener("click", function (e) {
-        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-        if (!loggedInUser) {
-            e.preventDefault(); // Prevent navigation to the apply page
-            alert("You need to sign in to apply for this job.");
-            window.location.href = "../pages/login.html"; // Redirect to sign-in page
-        } else if (loggedInUser.appliedJobs && loggedInUser.appliedJobs.includes(parseInt(jobId))) {
-            e.preventDefault();
-            alert("You have already applied for this job.");
-        }
-    });
+    if (applyNowBtn) {
+        applyNowBtn.addEventListener("click", function (e) {
+            if (!loggedInUser || !loggedInUser.username) {
+                e.preventDefault(); // Prevent navigation to the apply page
+                alert("You need to sign in to apply for this job.");
+                window.location.href = "../pages/login.html"; // Redirect to sign-in page
+            } else if (loggedInUser.appliedJobs && loggedInUser.appliedJobs.includes(parseInt(jobId))) {
+                e.preventDefault();
+                alert("You have already applied for this job.");
+            }
+        });
+    }
 });

@@ -1,14 +1,15 @@
 from django.urls import path
 from .views import (
     signup_view,
-    login_view,
-    login,
+    custom_login_view,
+    login_page_view,  # Updated import
     home,
     edit_job,
     contact,
     jobs,
     profile,
     admin_profile,
+    delete_account,  # Import delete_account
 )
 from .views import (
     login_page,
@@ -30,9 +31,9 @@ urlpatterns = [
     path("pages/contact.html", views.contact, name="contact"),
     path("pages/profile.html", views.profile, name="profile"),
     path("pages/AProfile.html", views.admin_profile, name="admin_profile"),
-    path("pages/login.html", views.login, name="login_page"),
-    path("pages/login.html/", views.login, name="login_page_slash"),
-    path("api/login/", views.login_view, name="login_api"),
+    path("pages/login.html", login_page_view, name="login_page"),  # Updated usage
+    path("pages/login.html/", login_page_view, name="login_page_slash"),  # Updated usage
+    path("api/login/", custom_login_view, name="login_api"),  # Updated usage
     path("pages/add_job.html", views.add_job, name="add_job"),
     path("pages/apply.html", views.apply, name="apply"),
     path("pages/job_details.html", views.job_details, name="job_details"),
@@ -52,4 +53,5 @@ urlpatterns = [
     ),
     path("api/jobs/<int:job_id>/", job_detail_api, name="job_detail_api"),
     path("api/jobs/<int:job_id>/edit/", edit_job_api, name="edit_job_api"),
+    path("profile/delete/", delete_account, name="delete_account"),  # Add this line
 ]

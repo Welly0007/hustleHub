@@ -20,64 +20,86 @@
       <!-- header fetched from js -->
     </div>
 
+    <!-- Add a hidden element to preload user data -->
+    <script id="preload" type="application/json">
+      {{ user_data|safe }}
+    </script>
+
     <div class="profile-container">
       <div class="profile-header">
         <img src="{% static 'assets/anon5.webp' %}" alt="Profile Photo"
           class="profile-avatar" id="avatarPreview">
 
         <div class="profile-info">
-          <h1>John Doe</h1>
-          <p>ryan@example.com - <span>User</span></p>
+          <h1>User</h1>
+          <p>example@example.com - <span>User</span></p>
           <label class="profile-upload-btn">
             Upload your own avatar
-            <input type="file" accept="image/*" class="profile-avatar-input" />
+            <input type="file" accept="image/*" class="profile-avatar-input" id="avatarInputVisible" />
           </label>
         </div>
       </div>
-      <!-- comment -->
 
       <div class="profile-account">
         <h2>Account</h2>
-        <form>
-          <label>Username <input type="text" value="ryan"></label>
-          <label>Email* <input type="email" value="ryan@example.com"></label>
-          <label>Phone Number <input type="tel" value="+1234567890"></label>
-          <label>Password <input type="password" value="password"></label>
-          <label>Full name* <input type="text" value="John Doe" required></label>
-          <label>Date of Birth <input type="date"></label>
-          <label>Location <input type="text" value="New York, USA"></label>
-          <label>Title <input type="text" value="User"></label>
-          <label>Occupation <input type="text"
-              value="Front-End Developer"></label>
+        <form method="post" enctype="multipart/form-data" id="profileForm">
+          {% csrf_token %}
+          <!-- Hidden file input for form submission -->
+          <input type="file" accept="image/*" name="avatar" id="avatarInputHidden" style="display:none;" />
+          <label>Username <input type="text" name="username"></label>
+          <label>Email* <input type="email" name="email"></label>
+          <label>Phone Number <input type="tel" name="phoneNumber"></label>
+          <label>Password <input type="password" name="password"></label>
+          <label>Full name* <input type="text" name="fullName" required></label>
+          <label>Date of Birth <input type="date" name="dateOfBirth"></label>
+          <label>Location <input type="text" name="location"></label>
+          <label>Title <input type="text" name="title"></label>
+          <label>Occupation <input type="text" name="occupation"></label>
           <label>Language
-            <select>
+            <select name="language">
               <option>English</option>
               <option>French</option>
               <option>Arabic</option>
             </select>
           </label>
-          <label>LinkedIn <input type="url"
-              value="https://linkedin.com/in/ryan"></label>
+          <label>LinkedIn <input type="url" name="linkedin"></label>
           <div class="form-actions">
             <button type="submit">Save Changes</button>
-            <button type="button" class="delete-account-btn">Delete
-              Account</button>
+            <button type="button" class="delete-account-btn">Delete Account</button>
           </div>
-
         </form>
       </div>
 
       <div class="profile-jobs">
         <h2>📝 Applied Jobs</h2>
         <ul>
+          <!-- Jobs will be dynamically loaded -->
         </ul>
-        <a href="pages/jobs.html" class="profile-add-btn">➕ Apply to a new
-          job</a>
+        <a href="{% url 'jobs' %}" class="profile-add-btn">➕ Apply to a new job</a>
       </div>
     </div>
     <footer>
       <!-- Fetched from footer.html -->
     </footer>
     <script src="{% static 'scripts/profileScript.js' %}"></script>
-      </body>
+    <script>
+      // Copy file from visible input to hidden input before form submit
+      document.getElementById('avatarInputVisible').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const hiddenInput = document.getElementById('avatarInputHidden');
+        if (file) {
+          // Create a new DataTransfer to set the file for the hidden input
+          const dt = new DataTransfer();
+          dt.items.add(file);
+          hiddenInput.files = dt.files;
+          // Optionally update preview
+          const reader = new FileReader();
+          reader.onload = function(ev) {
+            document.getElementById('avatarPreview').src = ev.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
 </html>

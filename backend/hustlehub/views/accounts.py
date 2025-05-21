@@ -1,4 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model, login as auth_login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import logging
+import json
+
+logger = logging.getLogger(__name__)
+User = get_user_model()
 
 # Create your views here.
 def home(request):
@@ -35,14 +44,6 @@ def edit_job(request):
     return render(request, 'pages/edit_job.html')
 
 ########
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import get_user_model, login as auth_login
-import json
-import logging
-
-logger = logging.getLogger(__name__)
-User = get_user_model()
 
 @csrf_exempt
 def signup_view(request):
@@ -72,11 +73,8 @@ def signup_view(request):
                     email=email,
                     password=password,
                     is_company_admin=is_admin,
-                    is_staff = False,
-                    is_superuser = False,
                     company_name=company_name if is_admin else '',
                 )
-                
                 auth_login(request, user)
                 logger.info(f"User created successfully: {username}")
 
@@ -87,7 +85,7 @@ def signup_view(request):
             except Exception as e:
                 logger.error(f"Error creating user: {str(e)}")
                 return JsonResponse({'error': f'Error creating user: {str(e)}'}, status=500)
-        
+
         except json.JSONDecodeError as e:
             logger.error(f"Invalid JSON: {str(e)}")
             return JsonResponse({'error': f'Invalid JSON: {str(e)}'}, status=400)
@@ -96,15 +94,58 @@ def signup_view(request):
             return JsonResponse({'error': f'Server error: {str(e)}'}, status=500)
 
     return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
-####
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth import authenticate, login as auth_login
-from django.http import JsonResponse
-import json
+
+@login_required
+def profile(request):
+    if request.method == "POST":
+        user = request.user
+        user.username = request.POST.get("username", user.username)
+        user.email = request.POST.get("email", user.email)
+        user.phone_number = request.POST.get("phoneNumber", user.phone_number)
+        user.full_name = request.POST.get("fullName", user.full_name)
+        
+        # Handle empty date_of_birth
+        date_of_birth = request.POST.get("dateOfBirth")
+        user.date_of_birth = date_of_birth if date_of_birth else None
+        
+        user.location = request.POST.get("location", user.location)
+        user.title = request.POST.get("title", user.title)
+        user.occupation = request.POST.get("occupation", user.occupation)
+        user.language = request.POST.get("language", user.language)
+        user.linkedin = request.POST.get("linkedin", user.linkedin)
+
+        # Handle avatar upload
+        if "avatar" in request.FILES:
+            user.avatar = request.FILES["avatar"]
+
+        user.save()  # Save all changes to the database
+        return redirect("profile")
+
+    # Pass serialized user data to the template
+    user_data = {
+        "username": request.user.username,
+        "email": request.user.email,
+        "phone_number": request.user.phone_number,
+        "full_name": request.user.full_name,
+        "date_of_birth": request.user.date_of_birth,
+        "location": request.user.location,
+        "title": request.user.title,
+        "occupation": request.user.occupation,
+        "language": request.user.language,
+        "linkedin": request.user.linkedin,
+        "avatar": request.user.avatar.url if request.user.avatar else None,
+        "is_company_admin": request.user.is_company_admin,
+    }
+    return render(request, "pages/profile.html", {"user_data": json.dumps(user_data)})
+
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        request.user.delete()
+        return redirect("home")
 
 @csrf_exempt
-def login_view(request):
+def custom_login_view(request):  # Renamed from login_view
     if request.method == 'GET':
         # Show login page
         return render(request, 'pages/login.html')
@@ -140,8 +181,35 @@ def login_view(request):
     else:
         return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
-
-def login(request):
+def login_page_view(request):  # Renamed from login
     if request.method == 'GET':
         return render(request, 'pages/login.html')
+
+def get_user_data(request):
+    if request.user.is_authenticated:
+        return {
+            "username": request.user.username,
+            "email": request.user.email,
+            "phone_number": getattr(request.user, "phone_number", ""),
+            "full_name": getattr(request.user, "full_name", ""),
+            "date_of_birth": getattr(request.user, "date_of_birth", ""),
+            "location": getattr(request.user, "location", ""),
+            "title": getattr(request.user, "title", ""),
+            "occupation": getattr(request.user, "occupation", ""),
+            "language": getattr(request.user, "language", ""),
+            "linkedin": getattr(request.user, "linkedin", ""),
+            "avatar": request.user.avatar.url if getattr(request.user, "avatar", None) else None,
+            "is_company_admin": getattr(request.user, "is_company_admin", False),
+            # Add more fields as needed
+        }
+    else:
+        return {}
+
+def job_details(request, job_id):
+    # ...fetch job logic...
+    user_data = get_user_data(request)
+    return render(request, 'pages/job_details.html', {
+        # ...other context...
+        "user_data": json.dumps(user_data)
+    })
 

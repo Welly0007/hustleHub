@@ -15,6 +15,7 @@ class CustomUser(AbstractUser):
     occupation = models.CharField(max_length=255, blank=True, null=True)
     linkedin = models.URLField(blank=True, null=True)
     language = models.CharField(max_length=100, blank=True, null=True)
+    avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)  # Add this field
 
     # For storing lists like jobs, use JSONField (works with SQLite)
     # added_jobs = models.JSONField(default=list, blank=True)
