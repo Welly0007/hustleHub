@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if (response.ok) {
                 alert("Application submitted successfully!");
-                window.location.href = "/pages/submitted_successfully.html";
+                window.location.href = "/pages/profile.html";
             } else {
                 const errorData = await response.json();
                 alert(`Failed to submit application: ${errorData.error}`);

@@ -19,7 +19,7 @@ class CustomUser(AbstractUser):
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)  # Add this field
 
     # For storing lists like jobs, use JSONField (works with SQLite)
-    # added_jobs = models.JSONField(default=list, blank=True)
+    applied_jobs = models.ManyToManyField('Jobs', blank=True, related_name='applied_users')
     # applied_jobs = models.JSONField(default=list, blank=True)
 
     def __str__(self):

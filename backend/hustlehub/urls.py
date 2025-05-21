@@ -25,9 +25,10 @@ from django.urls import re_path
 from .views.jobs import job_detail_api, edit_job_api, check_application_status
 from .views.editjob import edit_job as edit_job_page
 from .views.addJob import addJob
-from .views.accounts import get_job_details
+from .views.accounts import get_job_details, get_applied_jobs, apply_to_job
 
 urlpatterns = [
+    path('api/user/applied_jobs/', get_applied_jobs, name='get_applied_jobs'),
     path("", views.home, name="home"),
     path("pages/jobs.html", views.jobs, name="jobs"),
     path("pages/contact.html", views.contact, name="contact"),
@@ -58,4 +59,5 @@ urlpatterns = [
     path("api/applications/check/", check_application_status, name="check_application_status"),
     path("profile/delete/", delete_account, name="delete_account"),  # Add this line
     path("api/jobs/<int:job_id>/", get_job_details, name="get_job_details"),
+    path('api/apply/', apply_to_job, name='apply_to_job'),
 ]

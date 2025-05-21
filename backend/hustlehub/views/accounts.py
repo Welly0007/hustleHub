@@ -286,6 +286,7 @@ def apply_to_job(request):
                 resume=resume,
                 cover_letter=cover_letter
             )
+            applicant.applied_jobs.add(job)
             return JsonResponse({"message": "Application submitted successfully."})
 
         except Jobs.DoesNotExist:
@@ -293,5 +294,21 @@ def apply_to_job(request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=500)
 
+    return JsonResponse({"error": "Invalid HTTP method."}, status=405)
+
+@login_required
+def get_applied_jobs(request):
+    if request.method == "GET":
+        user = request.user
+        applied_jobs = user.applied_jobs.all()
+        jobs_data = [
+            {
+                "title": job.title,
+                "company": job.added_by.company_name,
+                "post_date": job.post_date,
+            }
+            for job in applied_jobs
+        ]
+        return JsonResponse(jobs_data, safe=False)
     return JsonResponse({"error": "Invalid HTTP method."}, status=405)
 

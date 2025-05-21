@@ -73,5 +73,26 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    async function loadAppliedJobs() {
+        try {
+            const response = await fetch('/api/user/applied_jobs/');
+            if (response.ok) {
+                const jobs = await response.json();
+                const appliedJobsList = document.getElementById('appliedJobsList');
+                appliedJobsList.innerHTML = '';
+                jobs.forEach(job => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${job.title} at ${job.company}`;
+                    appliedJobsList.appendChild(listItem);
+                });
+            } else {
+                console.error('Failed to fetch applied jobs:', response.status);
+            }
+        } catch (error) {
+            console.error('Error fetching applied jobs:', error);
+        }
+    }
+
     loadUserProfile(); // Load profile data on page load
+    loadAppliedJobs(); // Load applied jobs on page load
 });
