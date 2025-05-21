@@ -117,7 +117,7 @@ class Jobs(models.Model):
             "salary": self.salary,
             "status": self.status,
             "experience": self.experience,
-            "created_by": self.added_by.full_name,
+            "created_by": self.added_by.username,
             "job_type": self.job_type.job_type,
             "workplace": self.workplace.workplace,
             "tags": [tag.tag for tag in self.job_tags.all()],

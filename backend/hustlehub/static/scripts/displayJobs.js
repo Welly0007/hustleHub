@@ -205,8 +205,8 @@ function displayJobs(jobs) {
         content.querySelector(".jobTitle").textContent = job.title;
         content.querySelector(".jobCompany").append(job.company);
         content.querySelector(".jobPostTime").append(job.posted);
-        content.querySelector(".jobSalary").append(job.salary);
-        content.querySelector(".jobStatus").append(job.status);
+        content.querySelector(".jobSalary").append("$" + job.salary);
+        content.querySelector(".jobStatus").append(job.status ? "Open" : "Closed");
         content.querySelector(".jobExperience").append(`${job.experience}+ years`);
         content.querySelector(".jobCreator").append(job.created_by);
         content.querySelector(".job-meta .jobType").textContent = job.job_type;
