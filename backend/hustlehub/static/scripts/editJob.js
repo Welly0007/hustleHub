@@ -41,16 +41,15 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
 
         const formData = new FormData(form);
-        // Ensure the correct field name for backend
         formData.set("career_level", document.getElementById("level").value);
 
-        // Collect countries (checkboxes)
+        // Collect countries
         const countries = Array.from(document.querySelectorAll('.country-container input[type="checkbox"]'))
             .filter(cb => cb.checked)
             .map(cb => cb.value);
         formData.set("country", JSON.stringify(countries));
 
-        // Collect tags (comma-separated)
+        // Collect tags 
         const tags = document.getElementById("tags").value.split(",").map(tag => tag.trim());
         formData.set("tags", JSON.stringify(tags));
 

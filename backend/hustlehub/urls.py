@@ -22,6 +22,7 @@ from .views import (
 from . import views
 from django.urls import re_path
 from .views.jobs import job_detail_api, edit_job_api
+from .views.editjob import edit_job as edit_job_page
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -44,7 +45,11 @@ urlpatterns = [
     path("pages/signup.html/", views.signup, name="signup_page_slash"),
     path("api/signup/", signup_view, name="signup_api"),
     path("pages/forgotPassword.html", views.forgot_password, name="forgot_password"),
-    path("pages/edit_job.html", views.edit_job, name="edit_job"),
+    path(
+        "pages/edit_job.html",
+        lambda request: edit_job_page(request, request.GET.get("job_id")),
+        name="edit_job",
+    ),
     path("api/jobs/<int:job_id>/", job_detail_api, name="job_detail_api"),
     path("api/jobs/<int:job_id>/edit/", edit_job_api, name="edit_job_api"),
 ]

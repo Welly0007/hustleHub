@@ -35,8 +35,9 @@
 
             <label for="status">Job Status</label>
             <select id="status" name="status" required>
-                <option value="Open">Open</option>
-                <option value="Closed">Closed</option>
+                {% for status in job_status %}
+                <option value="{{ status }}">{{ status }}</option>
+                {% endfor %}
             </select>
 
             <label for="jobImg">Upload Image</label>
@@ -48,40 +49,30 @@
 
             <label>Available Countries</label>
             <div class="country-container">
-                <label><input type="checkbox" value="Egypt"> Egypt</label><br>
-                <label><input type="checkbox" value="USA"> USA</label><br>
-                <label><input type="checkbox" value="UK"> UK</label><br>
-                <label><input type="checkbox" value="Canada"> Canada</label><br>
-                <label><input type="checkbox" value="Germany"> Germany</label><br>
-                <label><input type="checkbox" value="France"> France</label><br>
-                <label><input type="checkbox" value="UAE"> UAE</label><br>
-                <label><input type="checkbox" value="Saudi Arabia"> Saudi Arabia</label><br>
-                <label><input type="checkbox" value="Australia"> Australia</label><br>
-                <label><input type="checkbox" value="Netherlands"> Netherlands</label><br>
+                {% for country in countries %}
+                <label><input type="checkbox" value="{{ country.country }}"> {{ country.country }}</label><br>
+                {% endfor %}
             </div>
 
             <label for="job_type">Job Type</label>
             <select id="job_type" name="job_type" required>
-                <option value="Full Time">Full Time</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Internship">Internship</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Contract">Contract</option>
-                <option value="Temporary">Temporary</option>
+                {% for type in job_types %}
+                <option value="{{ type.job_type }}">{{ type.job_type }}</option>
+                {% endfor %}
             </select>
 
             <label for="workplace">Work Mode</label>
             <select id="workplace" name="workplace" required>
-                <option value="On-site">On-site</option>
-                <option value="Remote">Remote</option>
-                <option value="Hybrid">Hybrid</option>
+                {% for workplace in workplaces %}
+                <option value="{{ workplace.workplace }}">{{ workplace.workplace }}</option>
+                {% endfor %}
             </select>
 
             <label for="level">Experience Level</label>
             <select id="level" name="career_level" required>
-                <option value="Entry">Entry Level</option>
-                <option value="Mid">Mid Level</option>
-                <option value="Senior">Senior Level</option>
+                {% for level in experience_levels %}
+                <option value="{{ level.level }}">{{ level.level }}</option>
+                {% endfor %}
             </select>
 
             <label for="experience">Years of Experience</label>
