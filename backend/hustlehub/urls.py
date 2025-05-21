@@ -23,6 +23,7 @@ from . import views
 from django.urls import re_path
 from .views.jobs import job_detail_api, edit_job_api
 from .views.editjob import edit_job as edit_job_page
+from .views.addJob import addJob
 
 urlpatterns = [
     path("", views.home, name="home"),
@@ -30,10 +31,10 @@ urlpatterns = [
     path("pages/contact.html", views.contact, name="contact"),
     path("pages/profile.html", views.profile, name="profile"),
     path("pages/AProfile.html", views.admin_profile, name="admin_profile"),
-    path("pages/login.html", views.login, name="login_page"),
-    path("pages/login.html/", views.login, name="login_page_slash"),
+    path("pages/login.html", views.login_view, name="login_page"),
+    path("pages/login.html/", views.login_view, name="login_page_slash"),
     path("api/login/", views.login_view, name="login_api"),
-    path("pages/add_job.html", views.add_job, name="add_job"),
+    path("pages/add_job.html", views.addJob, name="add_job"),
     path("pages/apply.html", views.apply, name="apply"),
     path("pages/job_details.html", views.job_details, name="job_details"),
     path(

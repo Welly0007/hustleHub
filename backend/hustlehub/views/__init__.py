@@ -14,7 +14,7 @@ __all__ = [
     "profile", 
     "admin_profile", 
     "login_page", 
-    "add_job", 
+    "addJob", 
     "apply", 
     "job_details", 
     "submitted_successfully", 
