@@ -24,7 +24,7 @@ __all__ = [
     "admin_profile",
     "delete_account",  # Add this to the __all__ list
     "login_page",
-    "add_job",
+    "addJob",
     "apply",
     "job_details",
     "submitted_successfully",

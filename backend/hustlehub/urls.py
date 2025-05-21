@@ -2,6 +2,7 @@ from django.urls import path
 from .views import (
     signup_view,
     custom_login_view,
+    addJob,
     login_page_view,  # Updated import
     home,
     edit_job,
@@ -37,7 +38,7 @@ urlpatterns = [
     path("pages/login.html", login_page_view, name="login_page"),  # Updated usage
     path("pages/login.html/", login_page_view, name="login_page_slash"),  # Updated usage
     path("api/login/", custom_login_view, name="login_api"),  # Updated usage
-    path("pages/add_job.html", views.add_job, name="add_job"),
+    path("pages/add_job.html", views.addJob, name="add_job"),
     path("pages/apply.html", views.apply, name="apply"),
     path("pages/job_details.html", views.job_details, name="job_details"),
     path(
