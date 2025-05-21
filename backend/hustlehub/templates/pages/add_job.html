@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static 'styles/add_job.css' %}">
     <!-- Script responsible for pre-display queries -->
     <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
-    <script src="{% static 'scripts/addJob.js' %}" defer></script>
+    <!-- <script src="{% static 'scripts/addJob.js' %}" defer></script> -->
 </head>
 
 <body>
@@ -27,72 +27,88 @@
     </a>
     <div class="container">
         <h2>Add Job</h2>
-        <form class="job-form" id="jobForm">
+
+        <form class="job-form" id="jobForm" method="post" action="{% url 'add_job' %}" enctype="multipart/form-data">
             <label for="title">Job Title</label>
-            <input type="text" id="title" required>
+            <input type="text" id="title" name="title" required>
+            {% if errors.title %}
+                <div class="errorMsg">{{ errors.title }}</div>
+            {% endif %}
 
             <label for="jobImg">Upload Image</label>
             <div class="file-upload">
                 <label for="jobImg" class="upload-btn">Browse Files</label>
                 <span id="file-name">No file selected</span>
-                <input type="file" id="jobImg" accept="image/*" hidden>
+                <input type="file" id="jobImg" accept="image/*" hidden name="img">
             </div>
 
             <label>Available Countries</label>
             <div class="country-container">
-                <label><input type="checkbox" value="Egypt"> Egypt</label><br>
-                <label><input type="checkbox" value="USA"> USA</label><br>
-                <label><input type="checkbox" value="UK"> UK</label><br>
-                <label><input type="checkbox" value="Canada"> Canada</label><br>
-                <label><input type="checkbox" value="Germany"> Germany</label><br>
-                <label><input type="checkbox" value="France"> France</label><br>
-                <label><input type="checkbox" value="UAE"> UAE</label><br>
-                <label><input type="checkbox" value="Saudi Arabia"> Saudi Arabia</label><br>
-                <label><input type="checkbox" value="Australia"> Australia</label><br>
-                <label><input type="checkbox" value="Netherlands"> Netherlands</label><br>
+                {% for country in countries %}
+                    <label><input type="checkbox" value="{{ country }}" name="country">{{ country }}</label><br>
+                {% endfor %}
+
             </div>
 
 
             <label for="job_type">Job Type</label>
-            <select id="job_type" required>
-                <option value="Full Time">Full Time</option>
-                <option value="Part Time">Part Time</option>
-                <option value="Internship">Internship</option>
-                <option value="Freelance">Freelance</option>
-                <option value="Contract">Contract</option>
-                <option value="Temporary">Temporary</option>
+            <select id="job_type" name="type" required>
+                {% for type in jobTypes %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
             </select>
+            {% if errors.type %}
+                <div class="errorMsg">{{ errors.type }}</div>
+            {% endif %}
 
 
             <label for="workplace">Work Mode</label>
-            <select id="workplace" required>
-                <option value="On-site">On-site</option>
-                <option value="Remote">Remote</option>
-                <option value="Hybrid">Hybrid</option>
+            <select id="workplace" name="workplace" required>
+                {% for place in workplace %}
+                    <option value="{{ place }}">{{ place }}</option>
+                {% endfor %}
             </select>
+            {% if errors.workplace %}
+                <div class="errorMsg">{{ errors.workplace }}</div>
+            {% endif %}
 
             <label for="level">Experience Level</label>
-            <select id="level" required>
-                <option value="Entry Level">Entry Level</option>
-                <option value="Mid Level">Mid Level</option>
-                <option value="Senior Level">Senior Level</option>
+            <select id="level" required name="level">
+                {% for level in career_level %}
+                    <option value="{{ level }}">{{ level }} Level</option>
+                {% endfor %}
             </select>
+            {% if errors.level %}
+                <div class="errorMsg">{{ errors.level }}</div>
+            {% endif %}
 
             <label for="experience">Years of Experience</label>
-            <input type="number" id="experience" min="0" placeholder="e.g. 2" required>
+            <input type="number" id="experience" min="0" name="experience" placeholder="e.g. 2" required>
+            {% if errors.experience %}
+                <div class="errorMsg">{{ errors.experience }}</div>
+            {% endif %}
 
             <label for="salary">Salary</label>
-            <input type="text" id="salary" placeholder="$3000/month" required>
+            <input type="text" id="salary" name="salary" placeholder="$3000/month" required>
+            {% if errors.salary %}
+                <div class="errorMsg">{{ errors.salary }}</div>
+            {% endif %}
 
             <label for="category">Job Category</label>
-            <input type="text" id="category" placeholder="e.g. IT/Software Development" required>
+            <input type="text" id="category" name="category" placeholder="e.g. IT/Software Development" required>
+            {% if errors.category %}
+                <div class="errorMsg">{{ errors.category }}</div>
+            {% endif %}
 
 
             <label for="tags">Tags</label>
-            <input type="text" id="tags" placeholder="e.g. Customer Service, Backend, APIs">
+            <input type="text" id="tags" name="tags" placeholder="e.g. Customer Service, Backend, APIs">
 
             <label for="description">Job Description</label>
-            <textarea id="description" rows="4" required></textarea>
+            <textarea id="description" name="description" rows="4" required></textarea>
+            {% if errors.description %}
+                <div class="errorMsg">{{ errors.description }}</div>
+            {% endif %}
 
             <button type="submit">Save Job</button>
         </form>

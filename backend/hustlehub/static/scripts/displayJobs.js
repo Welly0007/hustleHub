@@ -220,6 +220,10 @@ function displayJobs(jobs) {
         });
 
         content.querySelector(".btn-details").setAttribute("href", job.details_link);
+        if (job.logo)
+        {
+            card.querySelector(".Company-logo").setAttribute("src", job.logo);
+        }
         card.querySelector(".Company-logo").setAttribute("src", job.logo);
 
         container.appendChild(card);
