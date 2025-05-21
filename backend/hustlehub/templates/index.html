@@ -23,7 +23,10 @@
     <div class="headcontainer">
         <!-- header fetched from js -->
     </div>
-
+    <!-- Add a hidden element to preload user data -->
+    <script id="preload" type="application/json">
+      {{ user_data|safe }}
+    </script>
     <section class="hero">
         <div class="hero-content">
             <h1>Welcome to hustleHUB</h1>

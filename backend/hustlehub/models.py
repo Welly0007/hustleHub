@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth import get_user_model
 
 
 class CustomUser(AbstractUser):
@@ -138,3 +139,24 @@ class Tags(models.Model):
 
     def __str__(self):
         return f"{self.job}: {self.tag}"
+
+
+class JobApplication(models.Model):
+    job = models.ForeignKey('Jobs', on_delete=models.CASCADE, related_name='applications')
+    applicant = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='applications')
+    resume = models.FileField(upload_to='resumes/', null=True, blank=True)
+    cover_letter = models.TextField()
+    applied_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=20, default='pending', choices=[
+        ('pending', 'Pending'),
+        ('reviewed', 'Reviewed'),
+        ('accepted', 'Accepted'),
+        ('rejected', 'Rejected')
+    ])
+
+    class Meta:
+        unique_together = ('job', 'applicant')  # Prevent duplicate applications
+        ordering = ['-applied_at']
+
+    def __str__(self):
+        return f"{self.applicant.username}'s application for {self.job.title}"

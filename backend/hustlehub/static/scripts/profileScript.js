@@ -21,7 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
             form.querySelector('input[name="dateOfBirth"]').value = user.date_of_birth || "";
             form.querySelector('input[name="location"]').value = user.location || "";
             form.querySelector('input[name="title"]').value = user.title || "";
-            form.querySelector('input[name="occupation"]').value = user.occupation || "";
+            if (user.is_company_admin) {
+                form.querySelector('input[name="companyName"]').value = user.company_name || "";
+            } else {
+                form.querySelector('input[name="occupation"]').value = user.occupation || "";
+            }
             form.querySelector('select[name="language"]').value = user.language || "English";
             form.querySelector('input[name="linkedin"]').value = user.linkedin || "";
 

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const url = new URLSearchParams(window.location.search);
     const jobId = url.get('job_id');
 
@@ -7,41 +7,30 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Get logged-in user from preloaded data (like profileScript.js)
+    // Fetch logged-in user from preloaded JSON
     let loggedInUser = {};
-    const preload = document.getElementById("preload");
-    if (preload && preload.textContent.trim()) {
-        try {
-            loggedInUser = JSON.parse(preload.textContent);
-        } catch (err) {
-            loggedInUser = {};
+    try {
+        const preload = document.getElementById('preload');
+        if (preload && preload.textContent.trim()) {
+            loggedInUser = JSON.parse(preload.textContent || '{}');
+            console.log("User data retrieved from preload:", loggedInUser);
+        } else {
+            console.warn("Preload element is empty or missing");
         }
+    } catch (err) {
+        console.error("Failed to parse user data from preload", err);
     }
-    const isAdmin = loggedInUser.is_company_admin || false;
 
-    const applyBtn = document.querySelector('a[href^="pages/apply.html"]');
-    const editBtn = document.querySelector('a[href^="pages/edit_job.html"]');
+    // Select buttons
+    const applyBtn = document.getElementById("applyNowBtn");
 
-    if (applyBtn) applyBtn.style.display = 'none';
-    if (editBtn) editBtn.style.display = 'none';
-
-    if (!isAdmin && applyBtn) {
+    // Ensure the apply button is always visible
+    if (applyBtn) {
         applyBtn.style.display = 'inline-block';
-    }
-    else if (isAdmin && editBtn) {
-        if (typeof job !== "undefined" && job.created_by === loggedInUser.username) {
-            editBtn.style.display = 'inline-block';
-        }
-    }
 
-    const applyNowBtn = document.getElementById("applyNowBtn");
-    if (applyNowBtn) {
-        applyNowBtn.addEventListener("click", function (e) {
-            if (!loggedInUser || !loggedInUser.username) {
-                e.preventDefault(); // Prevent navigation to the apply page
-                alert("You need to sign in to apply for this job.");
-                window.location.href = "../pages/login.html"; // Redirect to sign-in page
-            } else if (loggedInUser.appliedJobs && loggedInUser.appliedJobs.includes(parseInt(jobId))) {
+        // Add click handler for apply button
+        applyBtn.addEventListener("click", function (e) {
+            if (loggedInUser.appliedJobs && loggedInUser.appliedJobs.includes(parseInt(jobId))) {
                 e.preventDefault();
                 alert("You have already applied for this job.");
             }

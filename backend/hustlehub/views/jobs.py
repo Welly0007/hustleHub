@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from ..models import Jobs
+from ..models import Jobs, JobApplication
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -33,7 +33,22 @@ def job_details(request):
 def job_detail_api(request, job_id):
     if request.method == "GET":
         job = get_object_or_404(Jobs, pk=job_id)
-        return JsonResponse(job.as_json())
+        return JsonResponse({
+            'id': job.pk,
+            'title': job.title,
+            'company': job.added_by.company_name if job.added_by.company_name else '',
+            'salary': str(job.salary),
+            'status': 'Open' if job.status else 'Closed',
+            'experience': job.experience,
+            'created_by': job.added_by.username,
+            'job_type': job.job_type.job_type if job.job_type else '',
+            'workplace': job.workplace.workplace if job.workplace else '',
+            'career_level': job.career_level.level if job.career_level else '',
+            'description': job.description,
+            'logo': job.logo.url if job.logo else None,
+            'countries': [country.country for country in job.countries.all()],
+            'tags': [tag.tag for tag in job.job_tags.all()]
+        })
 
 
 @csrf_exempt
@@ -95,3 +110,19 @@ def edit_job_api(request, job_id):
         job.save()
         return JsonResponse({"success": True})
     return JsonResponse({"error": "Invalid method"}, status=405)
+
+
+def check_application_status(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'has_applied': False})
+    
+    job_id = request.GET.get('job_id')
+    if not job_id:
+        return JsonResponse({'error': 'Job ID is required'}, status=400)
+    
+    has_applied = JobApplication.objects.filter(
+        job_id=job_id,
+        applicant=request.user
+    ).exists()
+    
+    return JsonResponse({'has_applied': has_applied})

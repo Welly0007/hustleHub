@@ -5,13 +5,15 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import logging
 import json
+from hustlehub.models import Jobs, JobApplication
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
 
 # Create your views here.
 def home(request):
-    return render(request, 'index.html')
+    user_data = get_user_data(request)
+    return render(request, 'index.html',  {"user_data": json.dumps(user_data)})
 
 def contact(request):
     return render(request, 'pages/contact.html')
@@ -119,8 +121,8 @@ def profile(request):
             user.avatar = request.FILES["avatar"]
 
         user.save()  # Save all changes to the database
-        return redirect("profile")
-
+        return redirect("profile")  # This redirects to the URL named "profile" in urls.py
+        
     # Pass serialized user data to the template
     user_data = {
         "username": request.user.username,
@@ -137,7 +139,45 @@ def profile(request):
         "is_company_admin": request.user.is_company_admin,
     }
     return render(request, "pages/profile.html", {"user_data": json.dumps(user_data)})
-
+@login_required
+def admin_profile(request):
+    if request.method == "POST":
+        user = request.user
+        user.username = request.POST.get("username", user.username)
+        user.email = request.POST.get("email", user.email)
+        user.phone_number = request.POST.get("phoneNumber", user.phone_number)
+        user.full_name = request.POST.get("fullName", user.full_name)
+        
+        # Handle empty date_of_birth
+        date_of_birth = request.POST.get("dateOfBirth")
+        user.date_of_birth = date_of_birth if date_of_birth else None
+        
+        user.location = request.POST.get("location", user.location)
+        user.title = request.POST.get("title", user.title)
+        user.company_name = request.POST.get("company_name", user.company_name)
+        user.language = request.POST.get("language", user.language)
+        user.linkedin = request.POST.get("linkedin", user.linkedin)
+        # Handle avatar upload
+        if "avatar" in request.FILES:
+            user.avatar = request.FILES["avatar"]
+        user.save()  # Save all changes to the database
+        return redirect("admin_profile")
+    # Pass serialized user data to the template
+    user_data = {
+        "username": request.user.username,
+        "email": request.user.email,
+        "phone_number": request.user.phone_number,
+        "full_name": request.user.full_name,
+        "date_of_birth": request.user.date_of_birth,
+        "location": request.user.location,
+        "title": request.user.title,
+        "company_name": request.user.company_name,
+        "language": request.user.language,
+        "linkedin": request.user.linkedin,
+        "avatar": request.user.avatar.url if request.user.avatar else None,
+        "is_company_admin": request.user.is_company_admin,
+    }
+    return render(request, "pages/AProfile.html", {"user_data": json.dumps(user_data)})
 @login_required
 def delete_account(request):
     if request.method == "POST":
@@ -196,6 +236,7 @@ def get_user_data(request):
             "location": getattr(request.user, "location", ""),
             "title": getattr(request.user, "title", ""),
             "occupation": getattr(request.user, "occupation", ""),
+            "company_name": getattr(request.user, "company_name", ""),
             "language": getattr(request.user, "language", ""),
             "linkedin": getattr(request.user, "linkedin", ""),
             "avatar": request.user.avatar.url if getattr(request.user, "avatar", None) else None,
@@ -207,9 +248,50 @@ def get_user_data(request):
 
 def job_details(request, job_id):
     # ...fetch job logic...
-    user_data = get_user_data(request)
+    user_data = get_user_data(request) or {}
     return render(request, 'pages/job_details.html', {
-        # ...other context...
         "user_data": json.dumps(user_data)
     })
+
+@csrf_exempt
+def get_job_details(request, job_id):
+    try:
+        job = Jobs.objects.get(pk=job_id)
+        return JsonResponse(job.as_json())
+    except Jobs.DoesNotExist:
+        return JsonResponse({"error": "Job not found"}, status=404)
+
+@csrf_exempt
+def apply_to_job(request):
+    if request.method == "POST":
+        job_id = request.POST.get("job_id")
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        phone = request.POST.get("phone")
+        resume = request.FILES.get("resume")
+        cover_letter = request.POST.get("cover")
+
+        try:
+            job = Jobs.objects.get(pk=job_id)
+            applicant = request.user
+
+            # Check if the user has already applied
+            if JobApplication.objects.filter(job=job, applicant=applicant).exists():
+                return JsonResponse({"error": "You have already applied for this job."}, status=400)
+
+            # Create a new job application
+            application = JobApplication.objects.create(
+                job=job,
+                applicant=applicant,
+                resume=resume,
+                cover_letter=cover_letter
+            )
+            return JsonResponse({"message": "Application submitted successfully."})
+
+        except Jobs.DoesNotExist:
+            return JsonResponse({"error": "Job not found."}, status=404)
+        except Exception as e:
+            return JsonResponse({"error": str(e)}, status=500)
+
+    return JsonResponse({"error": "Invalid HTTP method."}, status=405)
 
