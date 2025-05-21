@@ -24,6 +24,7 @@ from . import views
 from django.urls import re_path
 from .views.jobs import job_detail_api, edit_job_api
 from .views.editjob import edit_job as edit_job_page
+from .views.addJob import addJob
 
 urlpatterns = [
     path("", views.home, name="home"),
