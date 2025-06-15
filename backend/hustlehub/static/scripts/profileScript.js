@@ -27,10 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 form.querySelector('input[name="occupation"]').value = user.occupation || "";
             }
             form.querySelector('select[name="language"]').value = user.language || "English";
-            form.querySelector('input[name="linkedin"]').value = user.linkedin || "";
-
-            // Update avatar and profile info
-            avatarPreview.src = user.avatar || "{% static 'assets/anon5.webp' %}";
+            form.querySelector('input[name="linkedin"]').value = user.linkedin || "";            // Update avatar and profile info
+            avatarPreview.src = user.avatar || "/static/assets/anon5.webp";
             profileName.textContent = user.full_name || "User";
             profileEmailRole.innerHTML = `${user.email} - <span>${user.is_company_admin ? "Administrator" : "User"}</span>`;
         } catch (error) {

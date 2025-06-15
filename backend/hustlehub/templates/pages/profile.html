@@ -23,11 +23,9 @@
     <!-- Add a hidden element to preload user data -->
     <script id="preload" type="application/json">
       {{ user_data|safe }}
-    </script>
-
-    <div class="profile-container">
+    </script>    <div class="profile-container">
       <div class="profile-header">
-        <img src="{% static 'assets/anon5.webp' %}" alt="Profile Photo"
+        <img src="/static/assets/anon5.webp" alt="Profile Photo"
           class="profile-avatar" id="avatarPreview">
 
         <div class="profile-info">

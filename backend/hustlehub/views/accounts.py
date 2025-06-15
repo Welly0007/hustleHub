@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import logging
 import json
+from datetime import date
 from hustlehub.models import Jobs, JobApplication
 
 logger = logging.getLogger(__name__)
@@ -18,8 +19,24 @@ def home(request):
 def contact(request):
     return render(request, 'pages/contact.html')
 
-def profile(request):
-    return render(request, 'pages/profile.html')
+@login_required
+def profile_get(request):
+    user_data = {
+        "username": request.user.username,
+        "email": request.user.email,
+        "phone_number": request.user.phone_number,
+        "full_name": request.user.full_name,
+        "date_of_birth": request.user.date_of_birth.isoformat() if request.user.date_of_birth else None,
+        "location": request.user.location,
+        "title": request.user.title,
+        "occupation": request.user.occupation,
+        "language": request.user.language,
+        "linkedin": request.user.linkedin,
+        "avatar": request.user.avatar.url if request.user.avatar else None,
+        "is_company_admin": request.user.is_company_admin,
+    }
+
+    return render(request, 'pages/profile.html', {"user_data": json.dumps(user_data)})
 
 def admin_profile(request):
     return render(request, 'pages/AProfile.html')
@@ -114,12 +131,10 @@ def profile(request):
         user.title = request.POST.get("title", user.title)
         user.occupation = request.POST.get("occupation", user.occupation)
         user.language = request.POST.get("language", user.language)
-        user.linkedin = request.POST.get("linkedin", user.linkedin)
-
-        # Handle avatar upload
+        user.linkedin = request.POST.get("linkedin", user.linkedin)        # Handle avatar upload
         if "avatar" in request.FILES:
             user.avatar = request.FILES["avatar"]
-
+        
         user.save()  # Save all changes to the database
         return redirect("profile")  # This redirects to the URL named "profile" in urls.py
         
@@ -129,7 +144,7 @@ def profile(request):
         "email": request.user.email,
         "phone_number": request.user.phone_number,
         "full_name": request.user.full_name,
-        "date_of_birth": request.user.date_of_birth,
+        "date_of_birth": request.user.date_of_birth.isoformat() if request.user.date_of_birth else None,
         "location": request.user.location,
         "title": request.user.title,
         "occupation": request.user.occupation,
@@ -161,14 +176,13 @@ def admin_profile(request):
         if "avatar" in request.FILES:
             user.avatar = request.FILES["avatar"]
         user.save()  # Save all changes to the database
-        return redirect("admin_profile")
-    # Pass serialized user data to the template
+        return redirect("admin_profile")    # Pass serialized user data to the template
     user_data = {
         "username": request.user.username,
         "email": request.user.email,
         "phone_number": request.user.phone_number,
         "full_name": request.user.full_name,
-        "date_of_birth": request.user.date_of_birth,
+        "date_of_birth": request.user.date_of_birth.isoformat() if request.user.date_of_birth else None,
         "location": request.user.location,
         "title": request.user.title,
         "company_name": request.user.company_name,
@@ -227,12 +241,13 @@ def login_page_view(request):  # Renamed from login
 
 def get_user_data(request):
     if request.user.is_authenticated:
+        date_of_birth = getattr(request.user, "date_of_birth", None)
         return {
             "username": request.user.username,
             "email": request.user.email,
             "phone_number": getattr(request.user, "phone_number", ""),
             "full_name": getattr(request.user, "full_name", ""),
-            "date_of_birth": getattr(request.user, "date_of_birth", ""),
+            "date_of_birth": date_of_birth.isoformat() if date_of_birth else None,
             "location": getattr(request.user, "location", ""),
             "title": getattr(request.user, "title", ""),
             "occupation": getattr(request.user, "occupation", ""),
