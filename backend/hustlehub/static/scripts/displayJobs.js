@@ -217,9 +217,8 @@ function displayJobs(jobs) {
             const span = document.createElement("span");
             span.textContent = tag;
             tags.appendChild(span);
-        });
-
-        content.querySelector(".btn-details").setAttribute("href", job.details_link);
+        });        content.querySelector(".btn-details").setAttribute("href", 
+            job.details_link || `/pages/job_details.html?job_id=${job.id}`);
         if (job.logo)
         {
             card.querySelector(".Company-logo").setAttribute("src", job.logo);

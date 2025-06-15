@@ -104,10 +104,6 @@ class Jobs(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-        # return (f"title: {self.title}, countires: {self.countries}, post_date: {self.post_date}"
-        # f"added_by: {self.added_by}, applied: {self.applied}, salary: {self.salary}, status: {self.status}"
-        # f"job_type: {self.job_type}, experienc: {self.experience}, workplace: {self.workplace},"
-        # f"category: {self.category}, logo: {self.logo}, career_level: {self.career_level}, details_link: {self.details_link}")
 
     def as_json(self):
         return {
@@ -126,7 +122,7 @@ class Jobs(models.Model):
             "category": self.category.category,
             "career_level": self.career_level.level,
             "logo": self.logo.url if self.logo else "/media/logos/img_missing.jpg",
-            "details_link": self.details_link,
+            "details_link": self.details_link or f"/pages/job_details.html?job_id={self.pk}",
             "description": self.description,
         }
 

@@ -104,8 +104,7 @@ def addJob(request):
     countries_pk = []
     for c in country:
         temp = Countries.objects.filter(country=c).first()
-        countries_pk.append(temp)
-    # Saving the job to the database
+        countries_pk.append(temp)    # Saving the job to the database
     try:
         img = request.FILES.get('img')
         newJob = Jobs.objects.create(
@@ -122,14 +121,16 @@ def addJob(request):
         )
         newJob.save()
         newJob.countries.set(countries_pk)
+        
         if tags:
             for tag in tags:
                 Tags.objects.create(
                     job=newJob,
                     tag=tag
                 )
+        
         job_id = newJob.pk
-        newJob.description = f"pages/job_details.html?job_id={job_id}"
+        newJob.details_link = f"job_details.html?job_id={job_id}"
         newJob.save()
         return redirect('jobs')
 
