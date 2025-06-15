@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (editedJob.country.includes(cb.value)) {
                     cb.checked = true;
                 }
-            });
-
-            if (editedJob.logo && editedJob.logo !== "assets/img_missing.jpg") {
-                imgN.textContent = "Existing image loaded";
+            });            if (editedJob.logo && editedJob.logo !== "/media/logos/img_missing.jpg") {
+                imgN.textContent = "Current image: " + editedJob.logo.split('/').pop();
+            } else {
+                imgN.textContent = "No file selected";
             }
         });
 
