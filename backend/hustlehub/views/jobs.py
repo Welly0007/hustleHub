@@ -3,22 +3,25 @@ from ..models import Jobs, JobApplication
 import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .accounts import get_user_data
 
 
 def jobs(request):
     jobs = Jobs.objects.all()
     jobs_json = json.dumps([job.as_json() for job in jobs])
+    user_data = get_user_data(request)
     # print(jobs)
     # for job in jobs:
     #     print(job.description)
 
-    return render(request, "pages/jobs.html", {"jobs_json": jobs_json})
+    return render(request, "pages/jobs.html", {"jobs_json": jobs_json, "user_data": json.dumps(user_data)})
 
 
 def job_details(request):
     job_id = request.GET.get("job_id")
     job = Jobs.objects.filter(id=job_id).first()
     description_lines = job.description.split("\n")
+    user_data = get_user_data(request)
 
     return render(
         request,
@@ -26,6 +29,7 @@ def job_details(request):
         {
             "job": job,
             "description_lines": description_lines,
+            "user_data": json.dumps(user_data),
         },
     )
 

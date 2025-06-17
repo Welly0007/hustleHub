@@ -12,12 +12,18 @@
       rel="stylesheet">
   <link rel="stylesheet" href="{% static 'styles/style.css' %}">
   <link rel="stylesheet" href="{% static 'styles/apply.css' %}">
+  <!-- Script responsible for pre-display queries -->
+  <script src="{% static 'scripts/preDisplayScript.js' %}"></script>
   <script src="{% static 'scripts/applyJob.js' %}" defer></script>
 </head>
 <body>
 <div class="headcontainer">
   <!-- header fetched from js -->
 </div>
+<!-- Add a hidden element to preload user data -->
+<script id="user-data" type="application/json">
+  {{ user_data|safe }}
+</script>
 
 <main class="apply-container">
     <h1>Apply to Job</h1>

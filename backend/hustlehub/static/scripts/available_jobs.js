@@ -1,5 +1,5 @@
 function getPreloadedJobs() {
-    const raw = document.getElementById("preload")?.textContent || "[]";
+    const raw = document.getElementById("jobs-data")?.textContent || "[]";
     return JSON.parse(raw);
 }
 

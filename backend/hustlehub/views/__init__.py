@@ -8,6 +8,7 @@ from .accounts import (
     profile,
     admin_profile,
     delete_account,  # Add this import
+    logout_view,  # Add logout_view import
 )
 from .accounts import login_page, add_job, apply, submitted_successfully, forgot_password, signup
 from .jobs import jobs, job_details
@@ -23,6 +24,7 @@ __all__ = [
     "profile",
     "admin_profile",
     "delete_account",  # Add this to the __all__ list
+    "logout_view",  # Add logout_view to __all__
     "login_page",
     "addJob",
     "apply",

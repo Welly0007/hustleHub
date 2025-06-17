@@ -11,6 +11,7 @@ from .views import (
     profile,
     admin_profile,
     delete_account,  # Import delete_account
+    logout_view,  # Import logout_view
 )
 from .views import (
     login_page,
@@ -59,6 +60,7 @@ urlpatterns = [
     path("api/jobs/<int:job_id>/edit/", edit_job_api, name="edit_job_api"),
     path("api/applications/check/", check_application_status, name="check_application_status"),
     path("profile/delete/", delete_account, name="delete_account"),  # Add this line
+    path("api/logout/", logout_view, name="logout_api"),  # Add logout endpoint
     path("api/jobs/<int:job_id>/", get_job_details, name="get_job_details"),
     path('api/apply/', apply_to_job, name='apply_to_job'),
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model, login as auth_login, authenticate
+from django.contrib.auth import get_user_model, login as auth_login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -17,7 +17,8 @@ def home(request):
     return render(request, 'index.html',  {"user_data": json.dumps(user_data)})
 
 def contact(request):
-    return render(request, 'pages/contact.html')
+    user_data = get_user_data(request)
+    return render(request, 'pages/contact.html', {"user_data": json.dumps(user_data)})
 
 @login_required
 def profile_get(request):
@@ -38,9 +39,6 @@ def profile_get(request):
 
     return render(request, 'pages/profile.html', {"user_data": json.dumps(user_data)})
 
-def admin_profile(request):
-    return render(request, 'pages/AProfile.html')
-
 def login_page(request):
     return render(request, 'pages/login.html')
 
@@ -48,10 +46,12 @@ def add_job(request):
     return render(request, 'pages/add_job.html')
 
 def apply(request):
-    return render(request, 'pages/apply.html')
+    user_data = get_user_data(request)
+    return render(request, 'pages/apply.html', {"user_data": json.dumps(user_data)})
 
 def submitted_successfully(request):
-    return render(request, 'pages/submitted_successfully.html')
+    user_data = get_user_data(request)
+    return render(request, 'pages/submitted_successfully.html', {"user_data": json.dumps(user_data)})
 
 def signup(request):
    return render(request, 'pages/signup.html') 
@@ -182,8 +182,7 @@ def admin_profile(request):
         "email": request.user.email,
         "phone_number": request.user.phone_number,
         "full_name": request.user.full_name,
-        "date_of_birth": request.user.date_of_birth.isoformat() if request.user.date_of_birth else None,
-        "location": request.user.location,
+        "date_of_birth": request.user.date_of_birth.isoformat() if request.user.date_of_birth else None,        "location": request.user.location,
         "title": request.user.title,
         "company_name": request.user.company_name,
         "language": request.user.language,
@@ -192,6 +191,7 @@ def admin_profile(request):
         "is_company_admin": request.user.is_company_admin,
     }
     return render(request, "pages/AProfile.html", {"user_data": json.dumps(user_data)})
+
 @login_required
 def delete_account(request):
     if request.method == "POST":
@@ -326,4 +326,11 @@ def get_applied_jobs(request):
         ]
         return JsonResponse(jobs_data, safe=False)
     return JsonResponse({"error": "Invalid HTTP method."}, status=405)
+
+@csrf_exempt
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return JsonResponse({'success': True, 'message': 'Logged out successfully'})
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 

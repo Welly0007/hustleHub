@@ -5,17 +5,15 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (!jobId) {
         console.error("Job ID is missing in the URL");
         return;
-    }
-
-    // Fetch logged-in user from preloaded JSON
+    }    // Fetch logged-in user from preloaded JSON
     let loggedInUser = {};
     try {
-        const preload = document.getElementById('preload');
+        const preload = document.getElementById('user-data');
         if (preload && preload.textContent.trim()) {
             loggedInUser = JSON.parse(preload.textContent || '{}');
             console.log("User data retrieved from preload:", loggedInUser);
         } else {
-            console.warn("Preload element is empty or missing");
+            console.warn("User data element is empty or missing");
         }
     } catch (err) {
         console.error("Failed to parse user data from preload", err);

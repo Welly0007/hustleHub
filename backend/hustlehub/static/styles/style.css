@@ -100,7 +100,10 @@ header nav {
     display: flex;
     gap: 20px;
 }
-
+#auth-links{
+    display: flex;
+    gap: 20px;
+}
 header nav a.active {
     color: var(--primary-color);
     font-weight: 700;
@@ -141,7 +144,9 @@ header nav a:hover {
         /* Fully transparent */
         transition: opacity 0.5s ease-in-out, visibility 0s 1.0s;
     }
-
+    #auth-links{
+        flex-direction: column;
+    }
     header {
         justify-content: flex-start;
         height: 0vh;

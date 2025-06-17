@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from ..models import Jobs, Countries, JobType, Workplace, Career_level
+from .accounts import get_user_data
+import json
 
 # View to render the edit job page with all dynamic fields
 
@@ -11,6 +13,7 @@ def edit_job(request, job_id):
     workplaces = Workplace.objects.all()
     experience_levels = Career_level.objects.all()
     job_status = ["Open", "Closed"]
+    user_data = get_user_data(request)
 
     return render(
         request,
@@ -22,5 +25,6 @@ def edit_job(request, job_id):
             "workplaces": workplaces,
             "experience_levels": experience_levels,
             "job_status": job_status,
+            "user_data": json.dumps(user_data),
         },
     )
