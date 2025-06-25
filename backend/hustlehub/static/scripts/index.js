@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Get the logged in user from localStorage
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")) || {};
-    const isAdmin = loggedInUser.isAdmin || false;
+    const userDataElement = document.getElementById("user-data");
+    const userDataText = userDataElement.textContent;
+    const user = JSON.parse(userDataText || '{}');
+     // Fallback to empty object if no user data
+    const isAdmin = user.is_company_admin || false;
     
     // Get both buttons
     const addJobBtn = document.querySelector('a[href="pages/add_job.html"]');

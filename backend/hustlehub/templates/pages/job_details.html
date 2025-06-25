@@ -128,10 +128,13 @@
                 <span>{{ tag.tag }}</span>
                 {% endfor%}
             </div>
-
             <!-- Action Buttons -->
+            {% if not user.is_company_admin %}
             <a href="/pages/apply.html?job_id={{ job.id }}" class="btn apply-btn" id="applyNowBtn">Apply Now</a>
+            {% endif %}
+            {% if user.is_company_admin and job.added_by.company_name == user.company_name %}
             <a href="/pages/edit_job.html?job_id={{ job.id }}" class="btn apply-btn">Edit Now</a>
+            {% endif %}
         </div>
     </main>
 

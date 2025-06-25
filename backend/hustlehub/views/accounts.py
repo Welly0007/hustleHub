@@ -36,9 +36,10 @@ def profile_get(request):
         "avatar": request.user.avatar.url if request.user.avatar else None,
         "is_company_admin": request.user.is_company_admin,
     }
-
     return render(request, 'pages/profile.html', {"user_data": json.dumps(user_data)})
-
+def index(request):
+   user_data = get_user_data(request)
+   return render(request, 'pages/contact.html', {"user_data": json.dumps(user_data)})
 def login_page(request):
     return render(request, 'pages/login.html')
 
